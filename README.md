@@ -8,7 +8,6 @@
 The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 My Custom Extentions Lists 』
-
 <br />○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
 <br />○  (Optional) Tampermonkey or Violentmonkey
@@ -38,10 +37,9 @@ The filter lists block most ads on the web. This is the list what to do:
 > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
-<br />
-<br />
-<br />
-<br />
+
+
+
 ## MORE ADD-ON Installation
 
 ### Step 1: Install Userscript
