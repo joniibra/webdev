@@ -5,15 +5,16 @@
 
 ### Customize AdBlock – Private Custom Filter Lists
 
-The filter lists block most ads on the web.
+The filter lists block most ads on the web. This is the list what to do:
 <br />
-『 My Custom Filter Lists 』
-<br />https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
-<br />https://ghostery.com
+『 My Custom Filter Lists 』<br />
+<br />○  AdBlock
+<br />○  [Ghostery](https://ghostery.com)
+<br />○  (Optional) Tampermonkey or Violentmonkey
 <br />
-
-
-## Installation Instruction
+<br />
+<br />
+## ADD-ON Installation Instruction
 
 #### Step 1: Install Addon
 * ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
@@ -22,28 +23,43 @@ The filter lists block most ads on the web.
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/)
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/)
 
+#### Step 2: Add Filter List
+* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+![header](images/adblockOptions.jpg)
+<br />
+<br />『 My Custom Filter Lists 』
+<br />[For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+<br />[For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+<br />
+<br />
 
 > ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
-> ##### ^(1) Greasemonkey is not fully compatible due it tripping on [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP). It usually works, but not always, and we don't have a fix for when it doesn't work. If you have a fix, please open a Merge Request. 
+## MORE ADD-ON Installation
 
-#### Step 2: Install Userscript
-* If you are using uBlock Origin, [click here](https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-script-ubo.user.js) 
-* If you are using AdBlock, Adblock Plus, or other adblockers, [click here](https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-script-notubo.user.js)
+#### Step 1: Install Userscript
+* ![Opera](images/browsers/opera.png) [Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/) or [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
+* ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) - Greasemonkey 3.x is not fully compatible (FIXME^(1)), Greasemonkey 4.x does not work at all (FIXME^(2))
+* ![Safari](images/browsers/safari.png) [Tampermonkey](https://safari.tampermonkey.net/tampermonkey.safariextz)
+* ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
+* ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
+
+<br />
+<br />
+<br />
+<br />
 > ##### Note: [Test: BlockAdBlock](https://blockadblock.com/) [Test: Antiblock](http://antiblock.org/?p=v3&demo)
-
-#### Step 3: Add Filter List
-* [Subscribe from GitLab](https://xuhaiyang1234.gitlab.io/AAK-Cont/index.html#filterlist)
-
-> ##### Note: Please first check your Adblocker settings page to see if the filter is listed. 
-> ##### Note: Don't forget to also enable Adblock Warning Removal List. 
+<br />
+<br />
+<br />
+<br />
 
 ## Features
 * Detect & Kill Anti-Adblockers
 * More filters for ad blockers
-* [Settings](https://xuhaiyang1234.gitlab.io/AAK-Cont/#settings)
-* [Suggest features](https://gitlab.com/xuhaiyang1234/AAK-Cont/issues)
+* [Settings](https://github.com/joniibra/webdev/adblock/#settings)
+* [Suggest features](https://github.com/joniibra/webdev/adblock/issues)
 
 ## Help
 * Check if you have only one ad blocker enabled. (uBlock Origin, AdBlock, Adblock Plus, etc...).
@@ -64,11 +80,11 @@ and disable it to see if that fixes the problem.
 * Enable only the filter lists you need, too many can cause performance issues.
 * Force an update in ad blocker settings.
 * Force an update in Script Host settings.
-* Try with another browser or script host. Don't want to switch? [Open an issue](https://gitlab.com/xuhaiyang1234/AAK-Cont/issues) and let us know.
+* Try with another browser or script host. Don't want to switch? [Open an issue](https://github.com/joniibra/webdev/adblock/issues) and let us know.
 * How write Adblock Plus filters: [click here](https://adblockplus.org/en/filters)
 * Where to report missed advertisement: [click here](https://forums.lanik.us/)
-* A website does not work? Please report it [here](https://gitlab.com/xuhaiyang1234/AAK-Cont/issues)
-* Need help with installation? Ask for help [here](https://gitlab.com/xuhaiyang1234/AAK-Cont/issues)
+* A website does not work? Please report it [here](https://github.com/joniibra/webdev/adblock/issues)
+* Need help with installation? Ask for help [here](https://github.com/joniibra/webdev/adblock//issues)
 
 ## Supported Browsers
 * ![Opera](images/browsers/opera.png) Opera &#10004;
@@ -122,8 +138,8 @@ and disable it to see if that fixes the problem.
 * Ad Block Defender
 * Ad Blocking Advisor
 
-##### And more!
-『 Others Custom Filter Lists 』
+###### And more!
+『 Another Examples of Custom Filter Lists 』
 <br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
 <br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
 <br />
