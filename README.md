@@ -9,8 +9,8 @@ The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 My Custom Extentions Lists 』
 ○  AdBlock
-○  [Ghostery](https://ghostery.com)
-○  (Optional) Tampermonkey or Violentmonkey
+<br />○  [Ghostery](https://ghostery.com)
+<br />○  (Optional) Tampermonkey or Violentmonkey
 
 <br />
 
@@ -23,12 +23,15 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/) for Safari
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/) for Edge
 
+<br />
+
 ### Step 2: Add Filter List
 
 * ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
 
 ![header](images/adblockOptions.jpg)
 
+<br />
 
 #### 『 My Custom Filter Lists 』
 * ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html)
@@ -38,8 +41,8 @@ The filter lists block most ads on the web. This is the list what to do:
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
-
 <br /><br />
+
 ## MORE ADD-ON INSTALLATION (OPTIONAL)
 
 ### Step 1: Install Userscript
@@ -52,6 +55,11 @@ The filter lists block most ads on the web. This is the list what to do:
 
 > ##### Note: [Test: BlockAdBlock](https://blockadblock.com/) [Test: Antiblock](http://antiblock.org/?p=v3&demo)
 
+#### 『 My Custom JavaScript 』
+
+> https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
+
+<br /><br />
 
 ## Features
 * Detect & Kill Anti-Adblockers
