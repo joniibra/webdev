@@ -2,7 +2,7 @@
 ! Title: Joni Ibra ® Custom Filter for AdBlock, Plus, etc
 ! Author: joniibra
 ! Version: 1.205
-! Expires: 14 days
+! Expires: 1 days
 ! License: GNU GPL v3
 ! Homepage: https://github.com/joniibra/webdev/adblock
 ! Support: https://github.com/joniibra/webdev/adblock/issues
