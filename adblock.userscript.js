@@ -5,10 +5,10 @@
 // @version 1.206
 // @encoding utf-8
 // @license GNU GPL v3
-// @icon https://github.com/joniibra/webdev/blob/adblock/images/joniibra.png
+// @icon https://cdn.rawgit.com/joniibra/webdev/adblock/images/joniibra.png
 // @homepage https://joniibra.github.io/webdev/adblock/
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
-// @updateURL https://cdn.github.com/joniibra/webdev/adblock/adblock.userscript.js
+// @updateURL https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
 // @downloadURL https://joniibra.github.io/webdev/adblock/adblock.userscript.js
 // @include http://*/*
 // @include https://*/*
@@ -52,7 +52,7 @@ var a = (function(win) {
          * @type Object
          */
         about: {
-            homeURL: "https://xuhaiyang1234.gitlab.io/AAK-Cont/"
+            homeURL: "https://joniibra.github.io/webdev/adblock/"
         },
          
         /**
