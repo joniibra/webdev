@@ -26,18 +26,19 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 #### Step 2: Add Filter List
-<br />
+
 * ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+
 ![header](images/adblockOptions.jpg)
 <br />
 <br />
 #### 『 My Custom Filter Lists 』
-* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
-* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />
 <br />
 
-> ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
+##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 <br />
 <br />
 <br />
@@ -98,13 +99,13 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![FireFox](images/browsers/firefox.png) FireFox &#10004;
 * ![Safari](images/browsers/safari.png) Safari &#10004;
 * ![Edge](images/browsers/msedge.png) Edge &#10004;
-* ![Chrome](images/browsers/chrome.png) Chrome ❔ - uBlock Protector should work better for you
+* ![Chrome](images/browsers/chrome.png) Chrome ❔ uBlock Protector should work better for you
 
 ## Supported ad blockers
 * ![AdBlock](images/adblockers/addon/adblock.png) AdBlock &#10004;
 * ![Adblock Plus](images/adblockers/addon/adblock.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/adblockers/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/adblockers/addon/adguard.PNG) Adguard ❔ Me not using this anymore
+* ![Adguard](images/adblockers/addon/adguard.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
