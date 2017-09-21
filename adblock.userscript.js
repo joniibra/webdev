@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name Custom Userscript For AdBlock, Adblock Plus, etc
+// @name JoniIbra Custom Userscript for Ad-Blockers Addons, on Monkeys
 // @description Helps you keep your Ads Blocker active, when you visit a website and it asks you to disable.
-// @author JoniIbra
+// @author Joni Ibra
 // @version 1.207
 // @encoding utf-8
 // @license GNU GPL v3
