@@ -7,7 +7,8 @@
 
 The filter lists block most ads on the web. This is the list what to do:
 <br />
-『 My Custom Filter Lists 』<br />
+『 My Custom Filter Lists 』
+<br />
 <br />○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
 <br />○  (Optional) Tampermonkey or Violentmonkey
@@ -26,13 +27,13 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 #### Step 2: Add Filter List
 <br />
-* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+* ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
 ![header](images/adblockOptions.jpg)
 <br />
 <br />
-####『 My Custom Filter Lists 』
-<br />[For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
-<br />[For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+#### 『 My Custom Filter Lists 』
+* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />
 <br />
 
