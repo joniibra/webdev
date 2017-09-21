@@ -2,7 +2,7 @@
 // @name Custom Userscript For AdBlock, Adblock Plus, etc
 // @description Helps you keep your Ads Blocker active, when you visit a website and it asks you to disable.
 // @author JoniIbra
-// @version 1.206
+// @version 1.207
 // @encoding utf-8
 // @license GNU GPL v3
 // @icon https://cdn.rawgit.com/joniibra/webdev/adblock/images/joniibra.png
@@ -52,7 +52,7 @@ var a = (function(win) {
          * @type Object
          */
         about: {
-            homeURL: "https://joniibra.github.io/webdev/adblock/"
+            homeURL: "https://xuhaiyang1234.gitlab.io/AAK-Cont/"
         },
          
         /**
