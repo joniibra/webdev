@@ -6,7 +6,7 @@
 // @encoding utf-8
 // @license GNU GPL v3
 // @icon https://cdn.rawgit.com/joniibra/webdev/adblock/images/joniibra.png
-// @homepage https://joniibra.github.io/webdev/adblock/
+// @homepage https://joniibra.github.io/webdev/adblock
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
 // @updateURL https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
 // @downloadURL https://joniibra.github.io/webdev/adblock/adblock.userscript.js
