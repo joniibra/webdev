@@ -12,8 +12,8 @@ The filter lists block most ads on the web. This is the list what to do:
 ○  [Ghostery](https://ghostery.com)
 ○  (Optional) Tampermonkey or Violentmonkey
 
-
-## ADD-ON Installation Instruction
+<br />
+## ADD-ON INSTALLATION TUTORIAL
 
 ### Step 1: Install Addon
 * ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
@@ -38,8 +38,8 @@ The filter lists block most ads on the web. This is the list what to do:
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
 
-
-## MORE ADD-ON INSTALLATION (OPTONAL)
+<br /><br />
+## MORE ADD-ON INSTALLATION (OPTIONAL)
 
 ### Step 1: Install Userscript
 
@@ -93,7 +93,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![AdBlock](images/addon/adblock.png) AdBlock &#10004;
 * ![Adblock Plus](images/addon/adblock.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/adblock/adguard.png) Adguard ❔ Me not using this anymore
+* ![Adguard](images/addon/adguard.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
