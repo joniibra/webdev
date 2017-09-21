@@ -34,10 +34,14 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 
 > ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
-
+<br />
+<br />
+<br />
+<br />
 ## MORE ADD-ON Installation
 
 #### Step 1: Install Userscript
+
 * ![Opera](images/browsers/opera.png) [Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/) or [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 * ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) - Greasemonkey 3.x is not fully compatible (FIXME^(1)), Greasemonkey 4.x does not work at all (FIXME^(2))
 * ![Safari](images/browsers/safari.png) [Tampermonkey](https://safari.tampermonkey.net/tampermonkey.safariextz)
@@ -71,9 +75,8 @@ The filter lists block most ads on the web. This is the list what to do:
 * Try update or re-install AAK-Cont Script.
 * Try update or re-subscribe AAK-Cont filter lists.
 * Check if you have another userscript that might interfere with AAK-Cont (e.g. AdBlock Protector, the original (discontinued) AAK).
-* These extensions are problematic: Disable Anti-Adblock, Ghostery, Online Security Avast, Donotrackme, Privacy Badger, Disconnect, Blur, 
-TrackerBlock, Kaspersky Anti-Banner, Freebox (Anti-pub), No Script, YesScript, HTTPS Everywhere. Check if you have it installed, 
-and disable it to see if that fixes the problem.
+* These extensions are problematic: Disable Anti-Adblock, Ghostery, Online Security Avast, Donotrackme, Privacy Badger, Disconnect, Blur, TrackerBlock, Kaspersky Anti-Banner, Freebox (Anti-pub), No Script, YesScript, HTTPS Everywhere.
+Check if you have it installed, and disable it to see if that fixes the problem.
 * Check if, your JavaScript is enabled [Test](http://activatejavascript.org/).
 * Remove duplicates AAK-Cont Script / filter lists.
 * Remove or disable personal filters.
@@ -84,7 +87,7 @@ and disable it to see if that fixes the problem.
 * How write Adblock Plus filters: [click here](https://adblockplus.org/en/filters)
 * Where to report missed advertisement: [click here](https://forums.lanik.us/)
 * A website does not work? Please report it [here](https://github.com/joniibra/webdev/adblock/issues)
-* Need help with installation? Ask for help [here](https://github.com/joniibra/webdev/adblock//issues)
+* Need help with installation? Ask for help [here](https://github.com/joniibra/webdev/adblock/issues)
 
 ## Supported Browsers
 * ![Opera](images/browsers/opera.png) Opera &#10004;
@@ -94,10 +97,10 @@ and disable it to see if that fixes the problem.
 * ![Chrome](images/browsers/chrome.png) Chrome ❔ - uBlock Protector should work better for you
 
 ## Supported ad blockers
-* ![AdBlock](images/adblockers/adblock.png) AdBlock &#10004;
-* ![Adblock Plus](images/adblockers/adblock_plus.png) Adblock Plus &#10004;
-* ![uBlock Origin](images/adblockers/ublock_origin.png) uBlock Origin &#10004;
-* ![Adguard](images/adblockers/adguard-temp.PNG) Adguard ❔ - Ask for help in Adguard forum should work better for you
+* ![AdBlock](images/adblockers/addon/adblock.png) AdBlock &#10004;
+* ![Adblock Plus](images/adblockers/addon/adblock.plus.png) Adblock Plus &#10004;
+* ![uBlock Origin](images/adblockers/addon/ublock.origin.png) uBlock Origin &#10004;
+* ![Adguard](images/adblockers/addon/adguard.PNG) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
@@ -138,7 +141,7 @@ and disable it to see if that fixes the problem.
 * Ad Block Defender
 * Ad Blocking Advisor
 
-###### And more!
+##### And more!
 『 Another Examples of Custom Filter Lists 』
 <br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
 <br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
