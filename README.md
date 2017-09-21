@@ -1,6 +1,6 @@
 # AdBlock – Custom Filter Lists
 
-![header](images/header.png)
+![header](images/joniibra.png)
 
 
 ### Customize AdBlock – Private Custom Filter Lists
