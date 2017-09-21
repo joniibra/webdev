@@ -145,7 +145,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 
 ##### And more!
 『 Another Examples of Custom Filter Lists 』
-<br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
+<br />https://xuhaiyang1234.gitlab.io/AAK-Cont
 <br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
 <br />
 
