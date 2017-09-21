@@ -18,11 +18,11 @@ The filter lists block most ads on the web. This is the list what to do:
 ## ADD-ON Installation Instruction
 
 ### Step 1: Install Addon
-* ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
-* ![FireFox](images/browsers/firefox.png) [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/)
-* ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/)
-* ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/)
-* ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/)
+* ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
+* ![FireFox](images/browsers/firefox.png) [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/) for Firefox
+* ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/) for Opera
+* ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/) for Safari
+* ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/) for Edge
 <br />
 <br />
 ### Step 2: Add Filter List
@@ -34,10 +34,9 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 #### 『 My Custom Filter Lists 』
 * ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) –
+* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – > 
+<br />
 > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
-* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
-<br />
-<br />
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 <br />
