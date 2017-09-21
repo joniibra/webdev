@@ -22,12 +22,14 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/)
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/)
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/)
-
+<br />
+<br />
 #### Step 2: Add Filter List
-* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+<br />* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
 ![header](images/adblockOptions.jpg)
 <br />
-<br />『 My Custom Filter Lists 』
+<br />
+####『 My Custom Filter Lists 』
 <br />[For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />[For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />
