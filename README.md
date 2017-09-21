@@ -13,6 +13,7 @@ The filter lists block most ads on the web. This is the list what to do:
 ○  (Optional) Tampermonkey or Violentmonkey
 
 <br />
+
 ## ADD-ON INSTALLATION TUTORIAL
 
 ### Step 1: Install Addon
