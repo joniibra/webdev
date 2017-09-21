@@ -25,7 +25,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 #### Step 2: Add Filter List
-<br />* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+<br />
+* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
 ![header](images/adblockOptions.jpg)
 <br />
 <br />
