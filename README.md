@@ -8,12 +8,11 @@
 The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 My Custom Extentions Lists 』
-<br />○  AdBlock
-<br />○  [Ghostery](https://ghostery.com)
-<br />○  (Optional) Tampermonkey or Violentmonkey
-<br />
-<br />
-<br />
+○  AdBlock
+○  [Ghostery](https://ghostery.com)
+○  (Optional) Tampermonkey or Violentmonkey
+
+
 ## ADD-ON Installation Instruction
 
 ### Step 1: Install Addon
@@ -40,7 +39,7 @@ The filter lists block most ads on the web. This is the list what to do:
 
 
 
-## MORE ADD-ON Installation
+## MORE ADD-ON INSTALLATION (OPTONAL)
 
 ### Step 1: Install Userscript
 
