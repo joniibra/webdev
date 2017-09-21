@@ -6,40 +6,25 @@
 ### Customize AdBlock – Private Custom Filter Lists
 
 The filter lists block most ads on the web.
-
+<br />
 『 My Custom Filter Lists 』
 <br />https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />https://ghostery.com
-
-『 Others Custom Filter Lists 』
-<br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
-<br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
-
-
-## This is semi-automated compatibility shim for uBlock Protector
-
-If you are using Chromium / Chrome and uBlock Origin, please use [uBlock Protector](https://jspenguin2017.github.io/uBlockProtector/) instead. 
-
-Please DO NOT install AAK-Cont if you are using uBlock Protector, it will cause undefined behavior. 
-
-
-# We need contributors! Head over to issues page and let me know! 
-
-A draft of contributor guide is available [here](CONTRIBUTING.MD). 
-
-Special thanks to Giwayume for porting most part of uBlock Protector Extension Core to ECMAScript 6 Userscript. 
+<br />
 
 
 ## Installation Instruction
 
-#### Step 1: Install Script Host
-* ![Opera](images/browsers/opera.png) [Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/) or [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
-* ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) - Greasemonkey is not fully compatible (FIXME^(1))
-* ![Safari](images/browsers/safari.png) [Tampermonkey](https://safari.tampermonkey.net/tampermonkey.safariextz)
-* ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
-* ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+#### Step 1: Install Addon
+* ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
+* ![FireFox](images/browsers/firefox.png) [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/)
+* ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/)
+* ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/)
+* ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/)
 
-> ##### Note: After installation (which may require restarting your browser), you are now ready to install userscripts. 
+
+> ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
+
 > ##### ^(1) Greasemonkey is not fully compatible due it tripping on [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP). It usually works, but not always, and we don't have a fix for when it doesn't work. If you have a fix, please open a Merge Request. 
 
 #### Step 2: Install Userscript
@@ -137,7 +122,11 @@ and disable it to see if that fixes the problem.
 * Ad Block Defender
 * Ad Blocking Advisor
 
-##### And more! 
+##### And more!
+『 Others Custom Filter Lists 』
+<br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
+<br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
+<br />
 
 ## Like this project?
 * Help us resolve issues
