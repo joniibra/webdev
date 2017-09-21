@@ -1,5 +1,5 @@
-[Adblock Plus 2.0]
-! Title: JoniIbra Custom Filter for AdBlock, Plus, etc
+[Adblock 3.15.0]
+! Title: Joni Ibra ® Custom Filter for AdBlock, Plus, etc
 ! Author: joniibra
 ! Version: 1.205
 ! Expires: 14 days
