@@ -8,7 +8,7 @@
 The filter lists block most ads on the web. This is the list what to do:
 <br />
 #### 『 My Custom Extentions Lists 』
-<br />
+
 <br />○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
 <br />○  (Optional) Tampermonkey or Violentmonkey
@@ -103,10 +103,10 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![Chrome](images/browsers/chrome.png) Chrome ❔ uBlock Protector should work better for you
 
 ## Supported ad blockers
-* ![AdBlock](images/adblock/addon/adblock.png) AdBlock &#10004;
-* ![Adblock Plus](images/adblock/addon/adblock.plus.png) Adblock Plus &#10004;
-* ![uBlock Origin](images/adblock/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/adblock/addon/adguard.png) Adguard ❔ Me not using this anymore
+* ![AdBlock](images/addon/adblock.png) AdBlock &#10004;
+* ![Adblock Plus](images/addon/adblock.plus.png) Adblock Plus &#10004;
+* ![uBlock Origin](images/addon/ublock.origin.png) uBlock Origin &#10004;
+* ![Adguard](images/adblock/adguard.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
