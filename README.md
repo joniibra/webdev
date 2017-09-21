@@ -99,10 +99,10 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![Chrome](images/browsers/chrome.png) Chrome ❔ uBlock Protector should work better for you
 
 ## Supported ad blockers
-* ![AdBlock](images/addon/adblock.png) AdBlock &#10004;
-* ![Adblock Plus](images/addon/adblock.plus.png) Adblock Plus &#10004;
-* ![uBlock Origin](images/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/addon/adguard.png) Adguard ❔ Me not using this anymore
+* ![AdBlock](images/addon/adblock.origins.png) AdBlock &#10004;
+* ![Adblock Plus](images/addon/adblock.origins.plus.png) Adblock Plus &#10004;
+* ![uBlock Origin](images/addon/ublock.origins.png) uBlock Origin &#10004;
+* ![Adguard](images/addon/adguard.origins.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
