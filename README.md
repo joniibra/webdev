@@ -8,12 +8,12 @@
 The filter lists block most ads on the web.
 
 『 My Custom Filter Lists 』
-https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt <br />
-https://ghostery.com
+<br />https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+<br />https://ghostery.com
 
 『 Others Custom Filter Lists 』
-https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt <br /> <br />
-https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt <br />
+<br />https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
+<br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
 
 
 ## This is semi-automated compatibility shim for uBlock Protector
