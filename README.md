@@ -1,8 +1,20 @@
-# Anti-Adblock Killer Continued [MAINTAINERS WANTED!]
+# AdBlock – Custom Filter Lists
 
 ![header](images/header.png)
 
-### Let's revive our beloved Anti-Adblock Killer! 
+
+### Customize AdBlock – Private Custom Filter Lists
+
+The filter lists block most ads on the web.
+
+『 My Custom Filter Lists 』
+https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+https://ghostery.com
+
+『 Others Custom Filter Lists 』
+https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-list-notubo.txt
+https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
+
 
 ## This is semi-automated compatibility shim for uBlock Protector
 
@@ -10,11 +22,13 @@ If you are using Chromium / Chrome and uBlock Origin, please use [uBlock Protect
 
 Please DO NOT install AAK-Cont if you are using uBlock Protector, it will cause undefined behavior. 
 
+
 # We need contributors! Head over to issues page and let me know! 
 
 A draft of contributor guide is available [here](CONTRIBUTING.MD). 
 
 Special thanks to Giwayume for porting most part of uBlock Protector Extension Core to ECMAScript 6 Userscript. 
+
 
 ## Installation Instruction
 
