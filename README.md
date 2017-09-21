@@ -29,8 +29,8 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
 
 ![header](images/adblockOptions.jpg)
-<br />
-<br />
+
+
 #### 『 My Custom Filter Lists 』
 * ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html)
 * ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html)
@@ -52,16 +52,8 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
 * ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
-
-<br />
-<br />
-<br />
-<br />
 > ##### Note: [Test: BlockAdBlock](https://blockadblock.com/) [Test: Antiblock](http://antiblock.org/?p=v3&demo)
-<br />
-<br />
-<br />
-<br />
+
 
 ## Features
 * Detect & Kill Anti-Adblockers
