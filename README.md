@@ -7,7 +7,7 @@
 
 The filter lists block most ads on the web. This is the list what to do:
 <br />
-『 My Custom Filter Lists 』
+#### 『 My Custom Extentions Lists 』
 <br />
 <br />○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
@@ -17,7 +17,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 ## ADD-ON Installation Instruction
 
-#### Step 1: Install Addon
+### Step 1: Install Addon
 * ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
 * ![FireFox](images/browsers/firefox.png) [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/)
 * ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/)
@@ -25,15 +25,16 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/)
 <br />
 <br />
-#### Step 2: Add Filter List
+### Step 2: Add Filter List
 
-* ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#customize-adblock--private-custom-filter-lists)
+* ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
 
 ![header](images/adblockOptions.jpg)
 <br />
 <br />
 #### 『 My Custom Filter Lists 』
-* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) – > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html) –
+> https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 * ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html) – > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 <br />
 <br />
@@ -45,7 +46,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 ## MORE ADD-ON Installation
 
-#### Step 1: Install Userscript
+### Step 1: Install Userscript
 
 * ![Opera](images/browsers/opera.png) [Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/) or [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 * ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) - Greasemonkey 3.x is not fully compatible (FIXME^(1)), Greasemonkey 4.x does not work at all (FIXME^(2))
@@ -102,10 +103,10 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![Chrome](images/browsers/chrome.png) Chrome ❔ uBlock Protector should work better for you
 
 ## Supported ad blockers
-* ![AdBlock](images/adblockers/addon/adblock.png) AdBlock &#10004;
-* ![Adblock Plus](images/adblockers/addon/adblock.plus.png) Adblock Plus &#10004;
-* ![uBlock Origin](images/adblockers/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/adblockers/addon/adguard.png) Adguard ❔ Me not using this anymore
+* ![AdBlock](images/adblock/addon/adblock.png) AdBlock &#10004;
+* ![Adblock Plus](images/adblock/addon/adblock.plus.png) Adblock Plus &#10004;
+* ![uBlock Origin](images/adblock/addon/ublock.origin.png) uBlock Origin &#10004;
+* ![Adguard](images/adblock/addon/adguard.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
