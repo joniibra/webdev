@@ -8,7 +8,7 @@
 The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 What To Do Lists 』
-<br />○  AdBlock
+○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
 <br />○  (Optional) Tampermonkey or Violentmonkey
 
@@ -51,7 +51,7 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
 * ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
-> ##### Note: [Test: BlockAdBlock](https://blockadblock.com/) [Test: Antiblock](http://antiblock.org/?p=v3&demo)
+> ##### Notes : [Test: BlockAdBlock](https://blockadblock.com/) – [Test: Antiblock](http://antiblock.org/?p=v3&demo)
 
 <br />
 
@@ -102,7 +102,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![AdBlock](images/addon/adblock.png) AdBlock &#10004;
 * ![Adblock Plus](images/addon/adblock.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addon/ublock.origin.png) uBlock Origin &#10004;
-* ![Adguard](images/addon/adguard.png) Adguard ❔ Me not using this anymore
+* ![Adguard](images/addon/adguard.PNG) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
