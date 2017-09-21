@@ -7,8 +7,8 @@
 
 The filter lists block most ads on the web. This is the list what to do:
 
-#### 『 My Custom Extentions Lists 』
-○  AdBlock
+#### 『 What To Do Lists 』
+<br />○  AdBlock
 <br />○  [Ghostery](https://ghostery.com)
 <br />○  (Optional) Tampermonkey or Violentmonkey
 
@@ -34,8 +34,6 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 
 #### 『 My Custom Filter Lists 』
-* ![For Google Chrome](chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options.html)
-* ![For Mozilla Firefox](moz-extension://571be25a-d9e3-46cd-9f35-52c03591e06e/options/index.html)
 
 > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 
@@ -54,6 +52,8 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
 > ##### Note: [Test: BlockAdBlock](https://blockadblock.com/) [Test: Antiblock](http://antiblock.org/?p=v3&demo)
+
+<br />
 
 #### 『 My Custom JavaScript 』
 
