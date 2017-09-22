@@ -8,8 +8,8 @@
 // @icon https://cdn.rawgit.com/joniibra/webdev/adblock/images/joniibra.png
 // @homepage https://joniibra.github.io/webdev/adblock
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
-// @updateURL https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
-// @downloadURL https://joniibra.github.io/webdev/adblock/adblock.userscript.js
+// @updateURL https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-script-notubo.user.js
+// @downloadURL https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
 // @include http://*/*
 // @include https://*/*
 // @grant unsafeWindow
