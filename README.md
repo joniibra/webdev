@@ -158,11 +158,14 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 
 ##### And more!
 『 Another Examples of Custom Filter Lists 』
+
+<br />○  Subsribes from ABP Official – https://adblockplus.org/subscriptions
+<br />○  Packages – https://filterlists.com
+<br />○  IDN: ABPindo – https://cdn.rawgit.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
 <br />○  AAK-Cont Filters for uBlock Origin – https://xuhaiyang1234.gitlab.io/AAK-Cont
 <br />○  IDKwhattoputhere/uBlock-Filters-Plus – https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
-<br />○  YouTube: Pure Video Experience – https://cdn.rawgit.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
-<br />○  IDN: ABPindo – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
-<br />○  Others – https://filterlists.com
+<br />○  YouTube: Pure Video Experience – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
+<br />○  NoCoin – https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt
 
 ## Like this project?
 * Help us resolve issues
