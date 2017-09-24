@@ -18,8 +18,8 @@ The filter lists block most ads on the web. This is the list what to do:
 ## ADD-ON INSTALLATION TUTORIAL
 
 ### Step 1: Install Addon
-* ![Chrome](images/browsers/chrome.png) [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) – [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
-* ![FireFox](images/browsers/firefox.png) [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) – [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/) for Firefox
+* ![Chrome](images/browsers/chrome.png) [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) –or– [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
+* ![FireFox](images/browsers/firefox.png) [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) –or– [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/) for Firefox
 * ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/) for Opera
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/) for Safari
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/) for Edge
