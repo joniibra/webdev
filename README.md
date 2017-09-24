@@ -8,9 +8,9 @@
 The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 What To Do Lists 』
-○  [Ads Blocker addon/extension](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial)
-<br />○  [Ghostery](https://ghostery.com)
-<br />○  (Optional) [Tampermonkey or Violentmonkey](https://github.com/joniibra/webdev/tree/adblock#more-add-on-installation-optional)
+○  [Ads blocker addon](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial)
+<br />○  [Ghostery](https://ghostery.com) extension
+<br />○  (Optional) [Tampermonkey or Violentmonkey](https://github.com/joniibra/webdev/tree/adblock#more-add-on-installation-optional) extension
 <br />○  (Optional) [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) – Great extension for uBlock Origin only, no anti uBlock warning anymore.
 
 <br />
