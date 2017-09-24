@@ -70,7 +70,21 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * [Settings](https://joniibra.github.io/webdev)
 * [Suggest features](https://github.com/joniibra/webdev/adblock/issues)
 
-## Help
+## Supported Browsers
+* ![Opera](images/browsers/opera.png) Opera &#10004;
+* ![FireFox](images/browsers/firefox.png) FireFox &#10004;
+* ![Safari](images/browsers/safari.png) Safari &#10004;
+* ![Edge](images/browsers/msedge.png) Edge &#10004;
+* ![Chrome](images/browsers/chrome.png) Chrome &#10004; [uBlock Origin](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial) should work better for you, remember it is not uBlock, but uBlock Origin.
+
+## Supported ad blockers
+* ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
+* ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
+* ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
+* ✖ uBlock ❔ Its not uBlock Origin, I've warned you.
+* ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
+
+### Help
 * Check if you have only one ad blocker enabled. (uBlock Origin, AdBlock, Adblock Plus, etc...).
 * Check if the script manager is enabled (Violentmonkey, Tampermonkey, etc...).
 * Check if you have installed the latest version of AAK-Cont Script (Step 2).
@@ -94,19 +108,6 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * A website does not work? Please report it [here](https://github.com/joniibra/webdev/adblock/issues)
 * Need help with installation? Ask for help [here](https://github.com/joniibra/webdev/adblock/issues)
 
-## Supported Browsers
-* ![Opera](images/browsers/opera.png) Opera &#10004;
-* ![FireFox](images/browsers/firefox.png) FireFox &#10004;
-* ![Safari](images/browsers/safari.png) Safari &#10004;
-* ![Edge](images/browsers/msedge.png) Edge &#10004;
-* ![Chrome](images/browsers/chrome.png) Chrome &#10004; [uBlock Origin](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial) should work better for you, remember it is not uBlock, but uBlock Origin.
-
-## Supported ad blockers
-* ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
-* ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
-* ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
-* ![uBlock](images/addons/aguard.origins.png) uBlock ❔ Its not uBlock Origin, I've warned you.
-* ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
