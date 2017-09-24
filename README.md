@@ -105,6 +105,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
 * ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
+* ![uBlock](images/addons/aguard.origins.png) uBlock ❔ Its not uBlock Origin, I've warned you.
 * ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
 
 ## Anti-adblock scripts that we kill
