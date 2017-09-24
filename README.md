@@ -99,7 +99,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![FireFox](images/browsers/firefox.png) FireFox &#10004;
 * ![Safari](images/browsers/safari.png) Safari &#10004;
 * ![Edge](images/browsers/msedge.png) Edge &#10004;
-* ![Chrome](images/browsers/chrome.png) Chrome ❔ [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) should work better for you
+* ![Chrome](images/browsers/chrome.png) Chrome &#10004; [uBlock Origin](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial) should work better for you, remember it is not uBlock, but uBlock Origin.
 
 ## Supported ad blockers
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
@@ -148,11 +148,11 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 
 ##### And more!
 『 Another Examples of Custom Filter Lists 』
-<br />AAK-Cont Filters for uBlock Origin – https://xuhaiyang1234.gitlab.io/AAK-Cont
-<br />IDKwhattoputhere/uBlock-Filters-Plus – https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
-<br />YouTube: Pure Video Experience – https://cdn.rawgit.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
-<br />IDN: ABPindo – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
-<br />Others – https://filterlists.com
+<br />○  AAK-Cont Filters for uBlock Origin – https://xuhaiyang1234.gitlab.io/AAK-Cont
+<br />○  IDKwhattoputhere/uBlock-Filters-Plus – https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
+<br />○  YouTube: Pure Video Experience – https://cdn.rawgit.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
+<br />○  IDN: ABPindo – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
+<br />○  Others – https://filterlists.com
 
 ## Like this project?
 * Help us resolve issues
