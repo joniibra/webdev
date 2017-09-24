@@ -38,7 +38,11 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 #### 『 My Custom Filter Lists 』
 
+*  For AdBlock, AdBlock Plus
 > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+
+*  For uBlock Origin
+> https://cdn.rawgit.com/joniibra/webdev/ublockorigin/customfilter.txt
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
@@ -79,7 +83,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 ## Supported ad blockers
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
-* ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
+* ![AdBlock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
 * ✖ uBlock ❔ Its not uBlock Origin, I've warned you.
 * ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
