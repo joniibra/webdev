@@ -9,8 +9,11 @@
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
+@@||data.edinburghopendata.info^$document
+@@||marketplace.atlassian.com/$document
+@@||kissanime.co/$document
 @@||seputar.kisefx.com/$document
-@@||www.bisnisoptimal.com/$document
+@@||bisnisoptimal.com/$document
 @@||twistedshape.blogspot.co.id/$document
 @@||lagu-pujian.blogspot.com/$document
 @@||tickmill-ib.blogspot.com/$document
@@ -40,6 +43,40 @@
 @@||outlook.live.com/owa/?$document
 @@||gobann.com/user/edit|$document
 @@||karanpc.com/$document
+atlassian.com##[class="component component--image image-depth"]
+atlassian.com##[class="component__image"]
+chevereto.com##[id="space"]
+chevereto.com##[class="stars"]
+box.com##[class="hp-section-hero-layer hp-section-hero-layer-particle hp-js-layer hp-js-layer-particle"]
+box.com##[class="hp-section-hero-devices hp-js-devices"]
+box.com##[class="hp-section-hero-layers hp-js-layers"]
+box.com##[class="hp-section-hero-background hp-js-background"]
+getsharex.com##[class="img-responsive"]
+dropbox.com##[class="header-banner"]
+soehoe.id##[href="watched/forums"]
+wikia.com##[class="banner-notifications-placeholder"]
+wikia.com##[class="WikiaTopAds"]
+wikia.com##[id="WikiaTopAds"]
+wikia.com##[class="WikiaTopAdsInner"]
+wikia.com##[class="background"]
+wikia.com##[id="d-skin"]
+wikia.com##[class="wikia-ad noprint"]
+ay.gy##[id="cookie_notice"]
+adf.ly##[id="cookie_notice"]
+j.gs##[id="cookie_notice"]
+getintopc.com##[class="bc_random_banner script_bc_rb_widget"]
+getintopc.com##[id="logo"]
+getintopc.com##[class="size-m"]
+getintopc.com##[class="box textwidget pleasesubscribe"]
+getintopc.com##[class="box textwidget nevermisscoolsoftware"]
+getintopc.com##[class="box textwidget alexarank"]
+thejakartapost.com##[href="http://jobs.thejakartapost.com/articles/"]
+##[id="wideskyscraper"]
+##[class="tlogo"]
+tribunnews.com##[class="bgwhite ml10 cl fr pos_rel pos_ovh"]
+tribunnews.com##[class="bgwhite"]
+##[class="bggrey"]
+##[class="mt10 share"]
 filehippo.com##DIV[id="ad-slot-2"]
 filehippo.com##DIV[id="header-above-content-leaderboard"]
 filehippo.com##UL[class="ob-widget-items-container"]
@@ -1206,6 +1243,41 @@ google.com##[class="photo-wrapper"]
 google.com##[class="section-photo-fullscreen section-photo js-parallax-image js-responsive-image loaded"]
 twitter.com##[id="device-registration-form"]
 twitter.com##[class="t1-form form-horizontal sms-form"]
+inadequal.com/*
+atlassian.com/*/*.png
+vgy.me/*/aboutus_logo.png
+chevereto.com/*/themes/*/img/*.jpg
+chevereto.com/*/themes/*/img/*.png
+boxcdn.net/sites/*/styles/*.png
+boxcdn.net/sites/*/styles/*.gif
+boxcdn.net/sites/*/styles/*.jpg
+boxcdn.net/sites/*/styles/*.mp4
+boxcdn.net/*/homepage/*/*.png
+boxcdn.net/*/homepage/*/*.jpg
+dropboxstatic.com/*/index/*/*.png
+getsharex.com/img/*.gif
+getsharex.com/img/*.png
+searchmgr.com/*
+bundletowersapplication.com/*
+canardpc.com/sites/default/files/*.png
+canardpc.com/sites/default/files/*.jpg
+canardpc.com/themes/*.png
+canardpc.com/themes/*.jpg
+shopsavvy.com/cashback/assets/*/*.jpg
+farmersmarket.co.id/*/*.mp3
+akamaized.net/*/imageFileData/*
+getintopc.com/*/themes/*/images/*.png
+getintopc.com/*/themes/*/images/*.jpg
+getintopc.com/*/stains_texture_background_dark_50791_1920x1080.jpg
+superappbox.com/*
+nextlnk1.com/*
+thejakartapost.com/*/tjp-logo.jpg
+thejakartapost.com/*/jpjobs-logo.png
+tstatic.net/*/thumbnails/*.jpg
+tstatic.net/*/thumbnails2/*.jpg
+tstatic.net/*/logo/*/*.png
+tstatic.net/jualbeli/*/assets/*/*.png
+tstatic.net/jualbeli/*/assets/*/*.jpg
 static.licdn.com/sc/h/64xk850n3a8uzse6fi11l3vmz
 secure.icmarkets.com/Content/ICMarkets/images/Account/bg2.jpg
 secure.icmarkets.com/Content/ICMarkets/images/Account/logo_login_icm_png.png
