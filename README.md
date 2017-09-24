@@ -1,4 +1,4 @@
-# AdBlock – Custom Filter Lists
+# Ads Block – Custom Filter Lists
 
 ![header](images/joniibra.png)
 
@@ -8,20 +8,23 @@
 The filter lists block most ads on the web. This is the list what to do:
 
 #### 『 What To Do Lists 』
-○  AdBlock
+○  [Ads Blocker addon/extension](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial)
 <br />○  [Ghostery](https://ghostery.com)
-<br />○  (Optional) Tampermonkey or Violentmonkey
+<br />○  (Optional) [Tampermonkey or Violentmonkey](https://github.com/joniibra/webdev/tree/adblock#more-add-on-installation-optional)
+<br />○  (Optional) [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) – Great extension for uBlock Origin only, no anti uBlock warning anymore.
 
 <br />
 
 ## ADD-ON INSTALLATION TUTORIAL
 
 ### Step 1: Install Addon
-* ![Chrome](images/browsers/chrome.png) [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
-* ![FireFox](images/browsers/firefox.png) [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/) for Firefox
+* ![Chrome](images/browsers/chrome.png) [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) – [AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom) for Chrome
+* ![FireFox](images/browsers/firefox.png) [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) – [AdBlock](https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/) for Firefox
 * ![Opera](images/browsers/opera.png) [AdBlock](https://getadblock.com/opera/) for Opera
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/) for Safari
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/) for Edge
+
+NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) with [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) is my choice. Including Ghostery and ViolentMonkey
 
 <br />
 
@@ -96,7 +99,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * ![FireFox](images/browsers/firefox.png) FireFox &#10004;
 * ![Safari](images/browsers/safari.png) Safari &#10004;
 * ![Edge](images/browsers/msedge.png) Edge &#10004;
-* ![Chrome](images/browsers/chrome.png) Chrome ❔ uBlock Protector should work better for you
+* ![Chrome](images/browsers/chrome.png) Chrome ❔ [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) should work better for you
 
 ## Supported ad blockers
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
@@ -145,9 +148,11 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 
 ##### And more!
 『 Another Examples of Custom Filter Lists 』
-<br />https://xuhaiyang1234.gitlab.io/AAK-Cont
-<br />https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
-<br />
+<br />AAK-Cont Filters for uBlock Origin – https://xuhaiyang1234.gitlab.io/AAK-Cont
+<br />IDKwhattoputhere/uBlock-Filters-Plus – https://cdn.rawgit.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
+<br />YouTube: Pure Video Experience – https://cdn.rawgit.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
+<br />IDN: ABPindo – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
+<br />Others – https://filterlists.com
 
 ## Like this project?
 * Help us resolve issues
