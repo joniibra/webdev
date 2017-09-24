@@ -24,7 +24,7 @@ The filter lists block most ads on the web. This is the list what to do:
 * ![Safari](images/browsers/safari.png) [AdBlock](https://getadblock.com/safari/) for Safari
 * ![Edge](images/browsers/msedge.png) [AdBlock](https://getadblock.com/edge/) for Edge
 
-NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) with [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) is my choice. Including Ghostery and ViolentMonkey
+NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) with [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) is my choice, including Ghostery and Violentmonkey.
 
 <br />
 
@@ -49,7 +49,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 ### Step 1: Install Userscript
 
 * ![Opera](images/browsers/opera.png) [Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/) or [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
-* ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) - Greasemonkey 3.x is not fully compatible (FIXME^(1)), Greasemonkey 4.x does not work at all (FIXME^(2))
+* ![FireFox](images/browsers/firefox.png) [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) or [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) or Greasemonkey may optional choice
 * ![Safari](images/browsers/safari.png) [Tampermonkey](https://safari.tampermonkey.net/tampermonkey.safariextz)
 * ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
 * ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
@@ -81,7 +81,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
 * ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
-* ✖  uBlock ❔ Its not uBlock Origin, I've warned you.
+* ✖ uBlock ❔ Its not uBlock Origin, I've warned you.
 * ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
 
 <br />
