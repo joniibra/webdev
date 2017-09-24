@@ -9,7 +9,7 @@
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
-@@||data.edinburghopendata.info^$document
+@@||data.edinburghopendata.info/$document
 @@||marketplace.atlassian.com/$document
 @@||kissanime.co/$document
 @@||seputar.kisefx.com/$document
