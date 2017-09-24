@@ -38,10 +38,12 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 #### 『 My Custom Filter Lists 』
 
-*  For AdBlock, AdBlock Plus
+<br />
+
+*  For AdBlock, AdBlock Plus or others ads blocker →
 > https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 
-*  For uBlock Origin
+*  For uBlock Origin →
 > https://cdn.rawgit.com/joniibra/webdev/ublockorigin/customfilter.txt
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
