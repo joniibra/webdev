@@ -67,7 +67,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 ## Features
 * Detect & Kill Anti-Adblockers
 * More filters for ad blockers
-* [Settings](https://github.com/joniibra/webdev/adblock/#settings)
+* [Settings](https://joniibra.github.io/webdev)
 * [Suggest features](https://github.com/joniibra/webdev/adblock/issues)
 
 ## Help
