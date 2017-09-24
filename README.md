@@ -81,8 +81,10 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
 * ![Adblock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
 * ![uBlock Origin](images/addons/ublock.origins.png) uBlock Origin &#10004;
-* ✖ uBlock ❔ Its not uBlock Origin, I've warned you.
+* ✖  uBlock ❔ Its not uBlock Origin, I've warned you.
 * ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
+
+<br />
 
 ### Help
 * Check if you have only one ad blocker enabled. (uBlock Origin, AdBlock, Adblock Plus, etc...).
