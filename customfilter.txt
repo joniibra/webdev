@@ -1,14 +1,15 @@
 [Adblock 3.16.0]
 ! Title: Joni Ibra ® Custom Filter for AdBlock, Plus, etc
 ! Author: joniibra
-! Version: 1.205
-! Expires: 1 days
-! License: GNU GPL v3
+! Version: 1.00
+! Expires: 2 days (update frequency)
 ! Homepage: https://joniibra.github.io/webdev
 ! Support: https://github.com/joniibra/webdev/adblock/issues
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
+! Licence: https://cdn.rawgit.com/joniibra/webdev/adblock/LICENSE
+! *** customfilter.txt ***
 @@||data.edinburghopendata.info^$document
 @@||marketplace.atlassian.com/$document
 @@||kissanime.co/$document
