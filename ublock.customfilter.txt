@@ -2757,7 +2757,7 @@ dailymail.co.uk##.link-wocc.cnr-5
 dailymail.co.uk##.mobile-gallery.overlay-icon
 dailymail.co.uk##.vjs-control.vjs-social-controls
 dailymail.co.uk##.facebook-like-static
-sarapanpagi.org/*/theme/*/dashboard.*$domain=www.sarapanpagi.org,image
+sarapanpagi.org/*/theme/*/dashboard.*
 sarapanpagi.org##.inventia-sitename
 liputan6.com##.bottom.read-page--social-share
 liputan6.com##.newsletter__social-media
