@@ -2725,7 +2725,7 @@ wbs.lkpp.go.id/wbs_gambar/*
 hukumonline.com/*/hukumonline-logo.png
 hukumonline.com###rhs-section
 hukumonline.com##.rhs-list
-hukumonline.com/*/holnetwork.*$domain=id.hukumonline.com,image
+hukumonline.com/*/holnetwork.*
 sepeda-motor.info##.related
 sepeda-motor.info##.ktz-share
 sepeda-motor.info##.ktz-mainheader
@@ -2742,7 +2742,7 @@ dailymail.co.uk##.linkro-wocc.link-bogr2
 dailymail.co.uk##.item.femail
 dailymail.co.uk##DIV[class="item news"]
 dailymail.co.uk##DIV[class="loaded"]
-i.dailymail.co.uk/i/pix/blogs/*$image
+i.dailymail.co.uk/i/pix/blogs/$image
 dailymail.co.uk##.html_snippet_module.item.home
 dailymail.co.uk##.button-share-facebook
 dailymail.co.uk##.cleared.sc-icns.bigLinks
@@ -2774,6 +2774,6 @@ filehippo.com##.ratingHeader
 filehippo.com##.left-footer-menu.footer-menu
 filehippo.com##.right-footer-menu.footer-menu
 195.154.52.94###alt
-masnico.website/*$domain=195.154.52.94,image
+masnico.website/*
 195.154.52.94###close-fixedban
 195.154.52.94###close-teaser
