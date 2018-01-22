@@ -5463,3 +5463,7 @@ bareksa.com/*/umroh/images/*/$image
 bitdefender.com/themes/*/images/$image
 bitdefender.com/resources/themes/*/images/$image
 hukumonline.com/*/holnetwork.*
+195.154.52.94###alt
+masnico.website/*$domain=195.154.52.94,image
+195.154.52.94###close-fixedban
+195.154.52.94###close-teaser
