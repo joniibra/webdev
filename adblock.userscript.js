@@ -121,6 +121,65 @@ var a = (function(win) {
             this.on("DOMContentLoaded", func, capture);
             this.on("load", func, capture);
         },
+         
+        /**
+         * Filter assignment of innerHTML, innerText, or textContent. Should be called on document-start.
+         * @method antiCollapse
+         * @param name {string} - The name of the property to filter, can be "innerHTML", "innerText", or "textContent".
+         * @param filter {Function}  - The filter function. Use closure and self execution if you need to initialize.
+         ** @param elem {HTMLElement} - The target element.
+         ** @param val {string} - The value that is set.
+         * @return {boolean} True to block the assignment, false to allow.
+         */
+        antiCollapse(name, filter) {
+            let parent = "Element"; //innerHTML is on Element
+            switch (name) {
+                case "innerText":
+                    parent = "HTMLElement";
+                    break;
+                case "textContent":
+                    parent = "Node";
+                    break;
+                default:
+                    break;
+            }
+            this.inject(`(() => {
+                "use strict";
+                const handler = ${filter};
+                const log = window.console.log.bind(window.console);
+                const warn = window.console.warn.bind(window.console);
+                const error = window.console.error.bind(window.console);
+                const String = window.String.bind(window);
+                try {
+                    //Get setter and getter
+                    const descriptor = window.Object.getOwnPropertyDescriptor(window.${parent}.prototype, "${name}");
+                    const _set = descriptor.set;
+                    const _get = descriptor.get;
+                    window.Object.defineProperty(window.${parent}.prototype, "${name}", {
+                        configurable: false,
+                        set(val) {
+                            if (${this.config.debugMode}) {
+                                warn("${name} of an element is being assigned to:");
+                                log(val);
+                            }
+                            if (handler(this, String(val))) {
+                                error("Uncaught Error: uBlock Origin detectors are not allowed on this device!");
+                            } else {
+                                log("Tests passed.");
+                                _set.call(this, val);
+                            }
+                        },
+                        get() {
+                            return _get.call(this);
+                        },
+                    });
+                    window.console.log("Element collapse defuser activated on ${name}");
+                } catch (err) {
+                    //Failed to activate
+                    error("uBlock Protector failed to activate element collapse defuser on ${name}!");
+                }
+            })();`, true);
+        },
         
         /**
          * String content matching across an array of strings. Returns true if any string in the args array is matched.
@@ -183,6 +242,24 @@ var a = (function(win) {
             }
             elem.innerHTML = "<br>";
             this.doc.documentElement.prepend(elem);
+        },
+
+        /**
+         * Set up script execution observer.
+         * Can only interfere execution of scripts hard coded into the main document.
+         * TODO - Need to verify this method works in all browsers.
+         * @function
+         * @param handler {Function} - The event handler.
+         ** @param script {HTMLScriptElement} - The script that is about to be executed, it may not have its final textContent.
+         ** @param parent {HTMLElement} - The parent node of this script.
+         ** @param e {MutationObserver} - The observer object, call disconnect on it to stop observing.
+         */
+        beforeScript(handler) {
+            this.onInsert((node, target, observer) => {
+                if (node.tagName === "SCRIPT") {
+                    handler(node, target, observer);
+                }
+            });
         },
         
         /**
@@ -861,7 +938,7 @@ var a = (function(win) {
             this.$ = this.make$();
             this.md5 = this.MD5Factory();
             this.config();
-            this.config.debugMode && this.out.warn("Domain: " + a.dom);
+            this.config.debugMode && this.out.warn("Domain: " + this.dom);
             this.config.domExcluded = excluded.all;
             if (this.config.debugMode && excluded.all) {
                 this.out.warn("This domain is in excluded list. ");
@@ -1092,7 +1169,51 @@ var a = (function(win) {
                 this.win.addEventListener(event, func, capture);
             }
         },
-        
+         
+        /**
+         * Set up DOM insert observer.
+         * @method onInsert
+         * @param handler {Function} - The mutation handler.
+         ** @param insertedNode {HTMLElement} - The inserted node.
+         ** @param target {HTMLElement} - The parent of the inserted node.
+         ** @param e {MutationObserver} - The observer object, call disconnect on it to stop observing.
+         */
+        onInsert(handler) {
+            const observer = new MutationObserver((mutations) => {
+                for (let i = 0; i < mutations.length; i++) {
+                    for (let j = 0; j < mutations[i].addedNodes.length; j++) {
+                        handler(mutations[i].addedNodes[j], mutations[i].target, observer);
+                    }
+                }
+            });
+            observer.observe(document, {
+                childList: true,
+                subtree: true,
+            });
+        },
+         
+        /**
+         * Set up DOM remove observer.
+         * @method onRemove
+         * @param handler {Function} - The mutation handler.
+         ** @param removedNode {HTMLElement} - The removed node.
+         ** @param target {HTMLElement} - The parent of the removed node.
+         ** @param e {MutationObserver} - The observer object, call disconnect on it to stop observing.
+         */
+        onRemove(handler) {
+            const observer = new MutationObserver((mutations) => {
+                for (let i = 0; i < mutations.length; i++) {
+                    for (let j = 0; j < mutations[i].removedNodes.length; j++) {
+                        handler(mutations[i].removedNodes[j], mutations[i].target, observer);
+                    }
+                }
+            });
+            observer.observe(document, {
+                childList: true,
+                subtree: true,
+            });
+        },
+            
         /** 
          * The console of the unsafe window
          * @property out
@@ -2025,7 +2146,7 @@ a.init({
         "vimeo.com", "wikipedia.org", "w3schools.com", "yandex.ru", "youtu.be", "youtube.com", "xemvtv.net",
         "vod.pl", "agar.io", "pandoon.info", "fsf.org", "adblockplus.org", "plnkr.co", "exacttarget.com",
         "dolldivine.com", "popmech.ru", "calm.com", "chatango.com", "spaste.com"], true) || 
-        a.domInc(["192.168.0", "192.168.1", "google", "google.co", "google.com", "amazon", "yahoo"], true),
+        a.domInc(["192.168.0", "192.168.1", "google", "google.co", "google.com", "amazon", "ebay", "yahoo"], true),
     Adfly: a.domCmp(["adf.ly", "ay.gy", "j.gs", "q.gs", "gamecopyworld.click", "babblecase.com",
         "pintient.com", "atominik.com", "bluenik.com", "sostieni.ilwebmaster21.com", "auto-login-xxx.com",
         "microify.com", "riffhold.com"]),
@@ -2216,15 +2337,15 @@ if (a.domCmp(["player.pl"])) {
                         a.$("video").css("max-height", "540px");
                     } else if (vidSources[0].src) {
                         //DRM protected
-                        a.out.error("uBlock Protector will not replace this video player " +
+                        a.out.error("AAK will not replace this video player " +
                             "because it is DRM prtected.");
                     }
                 } catch (err) {
-                    a.out.error("uBlock Protector failed to find media URL!");
+                    a.out.error("AAK failed to find media URL!");
                 }
             },
             onerror() {
-                a.out.error("uBlock Protector failed to find media URL!");
+                a.out.error("AAK failed to find media URL!");
             },
         });
     });
@@ -2291,7 +2412,7 @@ if (a.domCmp(["money.pl", "parenting.pl", "tech.wp.pl", "sportowefakty.wp.pl", "
                 }
             }
         } catch (err) {
-            a.out.error("uBlock Protector failed to find media ID with method 1!");
+            a.out.error("AAK failed to find media ID with method 1!");
         }
         //Mid grabbing method 2
         if (a.$(containerMatcher).length > 0) {
@@ -2348,14 +2469,14 @@ if (a.domCmp(["money.pl", "parenting.pl", "tech.wp.pl", "sportowefakty.wp.pl", "
                         //Reset error counter
                         networkErrorCounter = 0;
                     } catch (err) {
-                        a.out.error("uBlock Protector failed to find media URL!");
+                        a.out.error("AAK failed to find media URL!");
                         networkErrorCounter += 1;
                     }
                     //Update flag
                     networkBusy = false;
                 },
                 onerror() {
-                    a.out.error("uBlock Protector failed to load media JSON!");
+                    a.out.error("AAK failed to load media JSON!");
                     networkErrorCounter += 0.5;
                     //Update flag
                     networkBusy = false;
@@ -2869,8 +2990,8 @@ if (a.domCmp(["diarioinformacion.com"])) {
 if (a.domCmp(["cnbeta.com"])) {
     a.readOnly("JB", () => { });
 }
-if (a.domCmp(["themarker.com", "haaretz.co.il"])) {
-    a.win.AdBlockUtil = {};
+if (a.domCmp(["haaretz.com", "haaretz.co.li", "themarker.com"])) {
+    a.noAccess("AdBlockUtil");
 }
 if (a.domCmp(["pipocas.tv"])) {
     a.cookie("popup_user_login", "yes");
@@ -3425,7 +3546,7 @@ if (a.domCmp(["viafree.no", "viafree.dk", "viafree.se", "tvplay.skaties.lv", "pl
                 parser(result.responseText);
             },
             onerror() {
-                a.out.error("uBlock Protector failed to find media URL!");
+                a.out.error("AAK failed to find media URL!");
             },
         });
     };
@@ -3439,7 +3560,7 @@ if (a.domCmp(["viafree.no", "viafree.dk", "viafree.se", "tvplay.skaties.lv", "pl
                 throw "Media URL Not Found";
             }
         } catch (err) {
-            a.out.error("uBlock Protector failed to find media URL!");
+            a.out.error("AAK failed to find media URL!");
             return;
         }
         //Check source and type
@@ -3454,7 +3575,7 @@ if (a.domCmp(["viafree.no", "viafree.dk", "viafree.se", "tvplay.skaties.lv", "pl
             source = streams.medium;
             type = streams.medium.startsWith("rtmp") ? "rtmp/mp4" : "application/f4m+xml";
         } else {
-            a.out.error("uBlock Protector failed to find media URL!");
+            a.out.error("AAK failed to find media URL!");
             return;
         }
         if (a.config.debugMode) {
@@ -4016,8 +4137,7 @@ if (a.domCmp(["filmy.to", "histock.info"])) {
     };
 }
 if (a.domCmp(["flashx.tv"])) {
-    //Issue: https://github.com/jspenguin2017/uBlockProtector/issues/130
-    a.filter("document.addEventListener", a.matchMethod.RegExp, /^(mousedown|keydown|contextmenu)$/);
+    a.filter("addEventListener", a.matchMethod.stringExact, "keydown", "window.document");
 }
 if (a.domCmp(["multiup.org", "multiup.eu"])) {
     a.cookie("visit", "1");
@@ -4270,11 +4390,11 @@ if (a.domCmp(["canalplus.fr"])) {
                         throw "Media URL Not Found";
                     }
                 } catch (err) {
-                    a.out.error("uBlock Protector failed to find media URL!");
+                    a.out.error("AAK failed to find media URL!");
                 }
             },
             onerror() {
-                a.out.error("uBlock Protector failed to load media JSON!");
+                a.out.error("AAK failed to load media JSON!");
             },
         });
     };
@@ -4452,156 +4572,6 @@ if (a.domCmp(["dailyuploads.net"])) {
 if (a.domCmp(["buickforums.com"])) {
     a.bait("div", "#TestAdBlock", true);
 }
-if (a.config.debugMode && a.domCmp(["itv.com"])) {
-    //Test link: https://www.itv.com/hub/take-me-out/1a8716a0089
-    //===DEBUG CODE===
-    //Need to add the API domain to XMLHttpRequest white list
-    //Can find the URL of the media file and subtitle file
-    const videoJS = (sources, types, subtitles, width, height) => {
-        return ""; //Insert videoJS payload here...
-    };
-    a.ready(() => {
-        //Find the player element
-        const playerElem = a.doc.getElementById("video");
-        if (!playerElem) {
-            a.out.error("uBlock Protector failed to find video player element!");
-            return;
-        }
-        //Find the media URL
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: playerElem.getAttribute("data-video-playlist"),
-            headers: {
-                "hmac": playerElem.getAttribute("data-video-hmac").toUpperCase(),
-                "Accept": "application/vnd.itv.vod.playlist.v2+json",
-                "Content-Type": "application/json",
-            },
-            data: `{"user":{"itvUserId":"","entitlements":[],"token":""},"device":{"manufacturer":"Chrome","m` +
-            `odel":"59","os":{"name":"Windows NT","version":"10.0","type":"desktop"}},"client":{"version":"4.` +
-            `1","id":"browser"},"variantAvailability":{"featureset":{"min":["mpeg-dash","clearkey","outband-w` +
-            `ebvtt"],"max":["mpeg-dash","clearkey","outband-webvtt"]},"platformTag":"dotcom"}}`,
-            onload(response) {
-                //Parse response
-                let data;
-                try {
-                    data = JSON.parse(response.responseText);
-                    data = data.Playlist.Video;
-                    if (!data.MediaFiles) {
-                        throw "Media URL Not Found";
-                    }
-                } catch (err) {
-                    a.out.error("uBlock Protector failed to find media URL!");
-                    return;
-                }
-                //Build media source
-                let sources = [], types = [], subtitles = [];
-                for (let i = 0; i < data.MediaFiles.length; i++) {
-                    sources.push(data.Base + data.MediaFiles[i].Href);
-                    //The payload requests that only "mpeg-dash" format to be sent
-                    //Below is the MIME type of this format
-                    types.push("application/dash+xml");
-                }
-                if (data.Subtitles) {
-                    for (let i = 0; i < data.Subtitles.length; i++) {
-                        //The subtitle format is "outband-webvtt"
-                        subtitles.push(data.Base + data.Subtitles[i].Href);
-                    }
-                }
-                //===Debug Log===
-                a.out.log(data);
-                a.out.log(sources);
-                a.out.log(types);
-                a.out.log(subtitles);
-                //===End Log===
-                //Replace player
-                const width = a.$(".stage__player-wrapper").width();
-                const height = a.$(".stage__player-wrapper").height();
-                a.$(".stage__player-wrapper").html(videoJS(sources, types, subtitles, width, height));
-            },
-            onerror() {
-                a.out.error("uBlock Protector failed to find media URL!");
-            },
-        });
-    });
-}
-if (a.config.debugMode && a.domCmp(["viasport.fi"])) {
-    //===DEBUG CODE===
-    let isInBackground = false;
-    const idMatcher = /\/(\d+)/;
-    const videoJS = (source, type, width, height) => {
-        height = 500;
-        return `<iframe srcdoc='<html><head><link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.5/al` +
-            `t/video-js-cdn.min.css" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/video.j` +
-            `s/5.10.5/video.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib` +
-            `-hls/3.1.0/videojs-contrib-hls.min.js"><\/script><style type="text/css">html, body{padding:0; margin` +
-            `:0;}.vjs-default-skin{color:#eee}.vjs-default-skin .vjs-play-progress,.vjs-default-skin .vjs-volume-` +
-            `level{background-color:#eee}.vjs-default-skin .vjs-big-play-button,.vjs-default-skin .vjs-control-ba` +
-            `r{background:rgba(0,0,0,.2)}.vjs-default-skin .vjs-slider{background:rgba(0,0,0,.3)}</style></head><` +
-            `body><video id="uBlock_Protector_Video_Player" class="video-js vjs-default-skin" controls preload="a` +
-            `uto" width="${width}" height="${height}"><source src="${source}" type="${type}"></video><script>vide` +
-            `ojs("uBlock_Protector_Video_Player")<\/script></body></html>' width="${width}" height="${height}" fr` +
-            `ameborder="0" scrolling="no" allowfullscreen="true"></iframe>`;
-    };
-    const handler = () => {
-        if (isInBackground) {
-            a.setTimeout(handler, 1000);
-            return;
-        }
-        //Find video ID
-        let id;
-        try {
-            id = a.win.__STATE__.dataSources.article[0].videos[0].data.mediaGuid;
-            if (!id) {
-                throw "Media ID Not Found";
-            }
-        } catch (err) {
-            a.setTimeout(handler, 1000);
-            return;
-        }
-        //Request data JSON
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: `https://viasport.mtg-api.com/stream-links/viasport/web/se/clear-media-guids/${id}/streams`,
-            onload(result) {
-                if (a.config.debugMode) {
-                    a.out.info("Response received:");
-                    a.out.info(result.responseText);
-                }
-                parser(result.responseText);
-            },
-            onerror() {
-                a.out.error("uBlock Protector failed to find media URL!");
-            },
-        });
-    };
-    const parser = (data) => {
-        //Parse response
-        let url;
-        try {
-            const parsedData = JSON.parse(data);
-            url = parsedData.embedded.prioritizedStreams[0].links.stream.href;
-            if (!url) {
-                throw "Media URL Not Found";
-            }
-        } catch (err) {
-            a.out.error("uBlock Protector failed to find media URL!");
-            return;
-        }
-        //Replace player
-        const player = a.$(".thumbnail-video");
-        const height = player.height();
-        const width = player.width();
-        //===Debug Only===
-        //Nuke the document because something keeps replacing my player
-        a.win.stop();
-        a.doc.body.innerHTML = videoJS(url, "application/x-mpegURL", width, height);
-        //===Debug Only===
-    };
-    //Start
-    handler();
-    a.on("focus", () => { isInBackground = false; });
-    a.on("blur", () => { isInBackground = true; });
-}
 if (a.domCmp(["realkana.com"])) {
     a.generic.FuckAdBlock("HooAdBlock", "hooAdBlock");
 }
@@ -4640,12 +4610,8 @@ if (a.domCmp(["cutwin.com", "cut-urls.com", "adbull.me", "xess.pro", "clik.pw", 
     a.bait("div", "#test-block", true);
     a.timewarp("setInterval", a.matchMethod.stringExact, "1000");
 }
-if (a.domCmp(["adshort.co", "linksh.top", "adshorte.com"])) {
-    a.bait("div", "#test-block", true);
-    a.noAccess("_pop");
+if (a.domCmp(["adshort.co", "linksh.top", "adshorte.com", "coinb.ink", "gratisjuegos.co"])) {
     a.noAccess("F3Z9");
-    a.filter("open");
-    a.timewarp("setInterval", a.matchMethod.stringExact, "1000");
 }
 if (a.domCmp(["gamersclub.com.br", "uploadboy.com", "vidoza.net", "videohelp.com"])) {
     a.generic.adsjsV2();
@@ -4711,7 +4677,7 @@ if (a.domCmp(["vvvvid.it"])) {
                 };
                 const func = window.String(window.vvvvid.models.PlayerObj.prototype.startAdv);
                 if (!re.test(func)) {
-                    window.console.error("AAK failed to set up VVVVID uBlock Origin detector defuser!");
+                    window.console.error("AAK failed to set up VVVVID detector defuser!");
                 }
                 //That variable name feels like a trap
                 //https://github.com/Robotex/KAADIVVVV/issues/16
@@ -4726,9 +4692,8 @@ if (a.domCmp(["nekopoi.bid"])) {
     a.readOnly("isAdsDisplayed", true);
 }
 if (a.domCmp(["wunderground.com"])) {
-    a.readOnly("window.noAdBlocker", "no");
+    a.readOnly("noAdBlocker", "no");
 }
-
 if (a.domCmp(["short.am"])) {
     if (location.pathname !== "/") {
         a.readOnly("RunAds", undefined);
@@ -4782,6 +4747,711 @@ if (a.domCmp(["cbs.com"])) {
         });
     }
 }
+if (a.domCmp(["cdn-surfline.com"])) {
+    a.filter("setTimeout", a.matchMethod.string, "ad blocker");
+    a.ready(() => {
+        a.inject(() => {
+            "use strict";
+            window.doFallBackonAdError = () => { };
+        });
+    });
+}
+if (a.domCmp(["zimuku.net"])) {
+    a.readOnly("isAdEnabled", true);
+}
+if (a.domCmp(["timesofindia.indiatimes.com"])) {
+    a.ready(() => {
+        setTimeout(() => {
+            if (location.href.includes("interstitial")) {
+                a.cookie("nsIstial_Cook", "1");
+                a.cookie("ns", "1");
+                location.href = "https://timesofindia.indiatimes.com/";
+            }
+        }, 300);
+    });
+}
+if (a.domCmp(["anonymousemail.me"])) {
+    a.beforeScript((script) => {
+        if (script.textContent && script.textContent.includes("anonymousemail.me/adblock.php")) {
+            script.remove();
+        }
+    });
+}
+if (a.domCmp(["solowrestling.com"])) {
+    a.readOnly("bloq", 1);
+}
+if (a.domCmp(["arenavision.us"])) {
+    a.noAccess("H7WWWW");
+}
+if (a.domCmp(["wowtoken.info"])) {
+    const re = /fail\(\);/g;
+    a.beforeScript((script) => {
+        if (script.src && script.src.includes("/js/main.js")) {
+            $.request({
+                method: "GET",
+                url: script.src,
+            }, (data) => {
+                a.inject(data.replace(re, "true;"), true);
+            }, () => {
+                console.error("AAK failed to patch main script!");
+            });
+            script.remove();
+        }
+    });
+}
+if (a.domCmp(["wifihack.me"])) {
+    a.noAccess("AdBlocked");
+}
+if (a.domCmp(["gntai.xyz"])) {
+    a.readOnly("showAds", true);
+}
+if (a.domCmp(["viasatsport.se", "viasport.fi", "tv3sport.dk", "viasport.no"])) {
+    a.inject(() => {
+        "use strict";
+        const observer = new window.MutationObserver(() => {
+            const videos = window.document.querySelectorAll("video.blurred");
+            for (let i = 0; i < videos.length; i++) {
+                videos[i].classList.remove("blurred");
+            }
+            const buttons = window.document.querySelectorAll(".vjs-overlay-message-close-button");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].click();
+            }
+            if (window.videoPlayers instanceof window.Object) {
+                for (let key in window.videoPlayers) {
+                    try {
+                        window.videoPlayers[key]._player.trigger("hideOverlayBlur");
+                    } catch (err) { }
+                }
+            }
+        });
+        observer.observe(window.document, {
+            childList: true,
+            subtree: true,
+        });
+    });
+}
+if (a.domCmp(["graphiq-stories.graphiq.com"])) {
+    a.loopback((ignored, url) => {
+        if (url.startsWith("/ad?")) {
+            return "window.FTBAds.blocking = false;";
+        }
+    });
+}
+if (a.domCmp(["graphiq-stories.graphiq.com"])) {
+    a.loopback((ignored, url) => {
+        if (url.startsWith("/ad?")) {
+            return "window.FTBAds.blocking = false;";
+        }
+    });
+}
+if (a.domCmp(["nontonanime.org"])) {
+    a.readOnly("ADBLOCK", true);
+}
+if (a.domCmp(["tuba.pl"])) {
+    a.readOnly("adsOk", true);
+}
+if (a.domCmp(["wetter3.de"])) {
+    a.readOnly("karte1", 18);
+}
+if (a.domCmp(["webnovel.com"])) {
+    //Issue: https://github.com/jspenguin2017/uBlockProtector/issues/457
+    const bookExtractor = /\/book\/([^/]+)/;
+    let isInBackground = false;
+    const scanner = () => {
+        if (isInBackground) {
+            return;
+        }
+        $(".cha-content._lock").each((lock) => {
+            //Remove flag
+            lock.classList.remove("_lock");
+            //Remove video
+            const video = lock.closest(".chapter_content").querySelector(".lock-video");
+            if (video) {
+                video.remove();
+            }
+            //Let user know what is happening
+            const contentElem = lock.querySelector(".cha-words");
+            contentElem.insertAdjacentHTML("beforeend", "<p style='opacity:0.5;'>" +
+                "AAK is fetching the rest of this chapter, this can take up to 30 seconds.</p>");
+            //Get IDs
+            const bookID = bookExtractor.exec(location.href)[1];
+            const chapterID = lock.querySelector("[data-cid]").dataset.cid;
+            //Check if I got IDs
+            if (!bookID || !chapterID) {
+                return;
+            }
+            //Get cookie
+            const cookie = encodeURIComponent(a.cookie("_csrfToken"));
+            //Get token
+            $.ajax({
+                method: "GET",
+                url: `https://www.webnovel.com/apiajax/chapter/GetChapterContentToken?_csrfToken=` +
+                `${cookie}&bookId=${bookID}&chapterId=${chapterID}`,
+            }).done((data) => {
+                try {
+                    let token = JSON.parse(data).data.token;
+                    token = encodeURIComponent(token);
+                    fetchChapter(cookie, token, contentElem);
+                } catch (err) {
+                    console.error("AAK failed to find chapter token!");
+                }
+            }).fail(() => {
+                console.error("AAK failed to find chapter token!");
+            });
+        });
+    };
+    const fetchChapter = (cookie, token, contentElem) => {
+        const tick = () => {
+            $.ajax({
+                method: "GET",
+                url: `https://www.webnovel.com/apiajax/chapter/GetChapterContentByToken?_csrfToken=` +
+                `${cookie}&token=${token}`,
+            }).done((data) => {
+                try {
+                    const content = JSON.parse(data).data.content.trim();
+                    if (content) {
+                        drawChapter(content, contentElem);
+                    } else {
+                        setTimeout(tick, 2000);
+                    }
+                } catch (err) {
+                    setTimeout(tick, 2000);
+                }
+            }).fail(() => {
+                setTimeout(tick, 2000);
+            });
+        };
+        tick();
+    };
+    const drawChapter = (content, contentElem) => {
+        const lines = content.split("\n");
+        contentElem.innerHTML = "";
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) {
+                continue;
+            }
+            const p = document.createElement("p");
+            p.textContent = line;
+            contentElem.append(p);
+        }
+    };
+    setInterval(scanner, 1000);
+    a.on("focus", () => { isInBackground = false; });
+    a.on("blur", () => { isInBackground = true; });
+}
+if (a.domCmp(["falter.at"])) {
+    a.noAccess("showFalterGif");
+}
+if (a.domCmp(["ur.ly", "urly.mobi"])) {
+    const re = /\?ref=.*/;
+    a.onInsert((node) => {
+        if (node.id === "skip_button1") {
+            stop();
+            location.href = node.href.replace(re, "?href=https://google.com/");
+        }
+    });
+}
+if (a.domCmp(["shutterdowner.com"])) {
+    a.bait("div", "#zagshutter");
+}
+if (a.domCmp(["gpro.net"])) {
+    a.ready(() => {
+        $("#blockblockA").parent().parent().remove();
+    });
+}
+if (a.domCmp(["vsports.pt"])) {
+    a.readOnly("adblockDetecter", true);
+}
+if (a.domCmp(["sledujufilmy.cz"])) {
+    a.readOnly("ads_ok", true);
+}
+if (a.domCmp(["bildungsspender.de"])) {
+    a.readOnly("werbeblocker", true);
+}
+if (a.domCmp(["pseudo-flaw.net"])) {
+    a.readOnly("stopBlock", () => { });
+}
+if (a.domCmp(["clasicotas.org"])) {
+    a.filter("addEventListener", a.matchMethod.stringExact, "mouseup", "window.document");
+}
+if (a.domCmp(["mwpaste.com"])) {
+    a.css("#downbloq { display:none; } .hidebloq { display:block; }");
+    a.ready(() => {
+        a.inject(() => {
+            "use strict";
+            const blocks = window.document.querySelectorAll(".hidebloq");
+            for (let i = 0; i < blocks.length; i++) {
+                blocks[i].innerHTML = window.atob(blocks[i].textContent);
+            }
+        });
+    });
+}
+if (a.domCmp(["portel.pl"])) {
+    a.readOnly("blokowanko", false);
+}
+if (a.domCmp(["mangacanblog.com"])) {
+    a.readOnly("adblock", 1);
+}
+if (a.domCmp(["aargauerzeitung.ch", "badenertagblatt.ch", "basellandschaftlichezeitung.ch", "bzbasel.ch",
+    "limmattalerzeitung.ch", "solothurnerzeitung.ch", "grenchnertagblatt.ch", "oltnertagblatt.ch"])) {
+    a.filter("setTimeout", a.matchMethod.string, "[native code]");
+}
+if (a.domCmp(["qoshe.com"])) {
+    a.readOnly("adBlockAlertShown", true);
+    a.filter("setTimeout", a.matchMethod.string, "adBlockFunction()");
+}
+if (a.domCmp(["spiegel.de"])) {
+    a.generic.FuckAdBlock("ABB", "abb");
+}
+if (a.domCmp(["tvnow.de"])) {
+    a.replace(() => {
+        if (url.includes("/v3/movies/")) {
+            this.addEventListener("readystatechange", () => {
+                if (this.readyState === 4) {
+                    try {
+                        let payload = window.JSON.parse(this.responseText);
+                        payload.ignoreAd = true;
+                        payload.noad = true;
+                        payload.geoblocked = false;
+                        payload.free = true;
+                        payload.blockadeText = "0";
+                        payload.format.enableAd = false;
+                        payload.format.hasFreeEpisodes = true;
+                        payload.format.isGeoBlocked = false;
+                        replace(this, window.JSON.stringify(payload));
+                    } catch (err) { }
+                }
+            });
+        }
+    });
+}
+if (a.domCmp(["acortar.net", "acortalo.net", "vellenger.com", "infobae.net"])) {
+    a.on("load", () => {
+        a.inject(() => {
+            "use strict";
+            let btn = window.document.querySelector(".linkhidder");
+            if (btn) {
+                const fallback = btn.onclick || (() => { });
+                btn.onclick = () => {
+                    try {
+                        window.location.href = window.href[window.href.length - 1];
+                    } catch (err) {
+                        fallback();
+                    }
+                };
+            }
+        });
+    });
+}
+if (a.domCmp(["peliculasmega.info"])) {
+    a.css(".linkhidder { display:none; } a[class*='hidden_'] { display:block; }");
+}
+if (a.domCmp(["identi.li"])) {
+    a.css(".linkhidder { display:none; } div[id^='hidden_'] { display:block; }");
+    a.cookie("BetterJsPop0", "1");
+    a.ready(() => {
+        a.inject(() => {
+            "use strict";
+            //Type 1
+            const blocks = window.document.querySelectorAll(".info_bbc");
+            for (let i = 0; i < blocks.length; i++) {
+                if (!blocks[i].firstChild.tagName) {
+                    const links = window.GibberishAES.dec(blocks[i].textContent, window.hash);
+                    blocks[i].innerHTML = window.linkify(links);
+                    blocks[i].style.display = "block";
+                    blocks[i].parentNode.previousSibling.remove();
+                }
+            }
+            //Type 2
+            if (window.$) {
+                window.$("div #decrypt.myjdownloader").unbind("click").click(function () {
+                    window._decrypt.fnID = "jdownloader";
+                    window._decrypt.fnURL = this.getAttribute("href");
+                    window._decrypt.objeto = null;
+                    window._decrypt.open();
+                });
+            }
+        });
+    });
+}
+if (a.domCmp(["kiss.com.tw"])) {
+    a.bait("div", "#ads");
+}
+if (a.domCmp(["nbcsports.com", "knowyourmeme.com"])) {
+    a.readOnly("adblockDetect", () => { });
+}
+if (a.domCmp(["moviemakeronline.com"])) {
+    a.readOnly("abNoticeShowed", true);
+}
+if (a.domInc(["10co"])) {
+    a.bait("div", "#myTestAd", true);
+    a.timewarp("setInterval", a.matchMethod.stringExact, "1000");
+}
+if (a.domCmp(["uptostream.com"])) {
+    a.readOnly("check", () => {
+        "use strict";
+        window.$("#apbplus").css("display", "none");
+        window.$("#vid").css("display", "block");
+        window.$("#cred").css("display", "block");
+    });
+}
+if (a.domCmp(["adageindia.in", "bombaytimes.com", "businessinsider.in", "gizmodo.in", "iamgujarat.com", "idiva.com",
+    "in.techradar.com", "indiatimes.com", "lifehacker.co.in", "mensxp.com", "samayam.com", "gadgetsnow.com"])) {
+    //Part 1
+    a.inject(() => {
+        "use strict";
+        const magic = "a" + window.Math.random().toString(36).substring(2);
+        const reScript = /typeof otab == 'function'/;
+        const reComment = /\d{5,} \d{1,2}/;
+        const getter = () => {
+            let script;
+            {
+                let temp = [...window.document.querySelectorAll(`script:not([src]):not([${magic}])`)];
+                if (window.document.currentScript && !window.document.currentScript.hasAttribute(magic)) {
+                    temp.unshift(window.document.currentScript);
+                }
+                if (!temp.length) {
+                    return true;
+                }
+                for (let i = 0; i < temp.length; i++) {
+                    temp[i].setAttribute(magic, 1);
+                    if (reScript.test(temp[i].textContent)) {
+                        script = temp[i];
+                        break;
+                    }
+                }
+            }
+            if (!script) {
+                return true;
+            }
+            {
+                const previous = script.previousSibling;
+                let temp = previous;
+                while (temp = temp.previousSibling) {
+                    if (temp.nodeType === window.Node.COMMENT_NODE && reComment.test(temp.data)) {
+                        previous.style.setProperty("display", "none", "important");
+                        return false;
+                    }
+                }
+            }
+        };
+        window.Object.defineProperty(window, "trev", {
+            configurable: false,
+            set() { },
+            get() {
+                let r;
+                let i = 0;
+                do {
+                    try {
+                        r = getter();
+                    } catch (err) {
+                        //window.console.error(err);
+                    }
+                } while (!r && (++i) < 100);
+                return null;
+            },
+        });
+        window.addEventListener("load", () => {
+            void window.trev;
+        });
+    });
+    //Part 2
+    let isInBackground = false;
+    const reStart = /^\/[a-z_]+\.cms/;
+    const reEnd = /^ \d{5,} \d{1,2} $/;
+    const adsHidder = (node) => {
+        if (!document.body || isInBackground) {
+            return;
+        }
+        let iterator = document.createTreeWalker(document.body, NodeFilter.SHOW_COMMENT);
+        let comment;
+        while (comment = iterator.nextNode()) {
+            if (reStart.test(comment.data)) {
+                let toHide = [];
+                let previous = comment;
+                while (previous = previous.previousSibling) {
+                    if (previous.nodeType === Node.COMMENT_NODE && reEnd.test(previous.data)) {
+                        if (toHide.length < 15) {
+                            for (let i = 0; i < toHide.length; i++) {
+                                try {
+                                    toHide[i].style.setProperty("display", "none", "important");
+                                } catch (err) { }
+                            }
+                        }
+                        break;
+                    }
+                    toHide.push(previous);
+                }
+            }
+        }
+    };
+    a.setInterval(adsHidder, 1000);
+    a.on("focus", () => { isInBackground = false; });
+    a.on("blur", () => { isInBackground = true; });
+}
+if (a.domCmp(["aternos.org"])) {
+    a.filter("setTimeout", a.matchMethod.string, ".ad-detect");
+}
+if (a.domCmp(["webcafe.bg"])) {
+    a.readOnly("bDetect", false);
+}
+if (a.domCmp(["telecinco.es", "cuatro.com", "divinity.es", "factoriadeficcion.com", "energytv.es", "bemad.es",
+    "eltiempohoy.es", "mtmad.es"])) {
+    //Issue: https://github.com/jspenguin2017/uBlockProtector/issues/448
+    a.inject(() => {
+        "use strict";
+        const err = new TypeError("Failed to execute 'getElementById' on 'Document': 'adsFooter' is not a valid ID.");
+        const original = window.document.getElementById;
+        window.document.getElementById = (id, ...rest) => {
+            if (id === "adsFooter") {
+                throw err;
+            } else {
+                return original.call(window.document, id, ...rest);
+            }
+        }
+    })
+}
+if (a.domCmp(["mitele.es"])) {
+    //Issue: https://github.com/jspenguin2017/uBlockProtector/issues/448
+    a.inject(() => {
+        "use strict";
+        window.google = {};
+    });
+}
+if (a.domCmp(["docer.pl"])) {
+    a.readOnly("ads_unblocked", true);
+    a.ready(() => {
+        $("#square-1").css("width", "1px");
+    });
+}
+if (a.domCmp(["samehadaku.net"])) {
+    a.readOnly("tieE3", true);
+}
+if (a.domCmp(["booogle.net", "nsspot.net"])) {
+    a.readOnly("gadb", false);
+}
+if (a.domCmp(["kbb.com"])) {
+    a.inject(() => {
+        "use strict";
+        const v = window.Object.freeze({
+            init() { },
+            start() { },
+        });
+        window.KBB = {};
+        window.Object.defineProperty(window.KBB, "Abb", {
+            configurable: false,
+            set() { },
+            get() {
+                return v;
+            },
+        });
+    });
+}
+if (a.domCmp(["gp.se", "bohuslaningen.se", "hallandsposten.se", "hn.se", "stromstadstidning.se", "ttela.se"])) {
+    a.inject(() => {
+        "use strict";
+        window.scrollTo = () => { };
+        window.burtApi = {
+            stopTracking() { },
+            connect() { },
+            annotate() { },
+            startTracking() { },
+            trackById() {
+                return {
+                    connect() { },
+                };
+            },
+        };
+        window._adform = {
+            readTags() { },
+        };
+    });
+}
+if (a.domCmp(["playok.com", "kurnik.pl"])) {
+    a.filter("getElementById", a.matchMethod.stringExact, "abp", "window.document");
+}
+if (a.domCmp(["explosm.net"])) {
+    a.readOnly("showads", true);
+}
+if (a.domCmp(["videacesky.cz"])) {
+    a.filter("setTimeout", a.matchMethod.string, "/dialog/adblock/");
+}
+if (a.domCmp(["playrust.io"])) {
+    a.onInsert((node) => {
+        if (node.textContent && node.textContent.includes("Advertising enables us")) {
+            node.remove();
+        }
+    });
+}
+if (a.domCmp(["linkshrink.net"])) {
+    //Skip glitchy timer caused by blocking popup
+    //Based on AdsBypasser
+    //License: https://github.com/adsbypasser/adsbypasser/blob/master/LICENSE
+    const matcher = /revC\("([^"]+)"\)/;
+    a.ready(() => {
+        let match;
+        const scripts = document.querySelectorAll("script");
+        //Start from end as the script tend to be at the end
+        for (let i = scripts.length - 1; i >= 0; i--) {
+            if (match = matcher.exec(scripts[i].textContent)) {
+                location.pathname = "/" + atob(match[1]);
+                break;
+            }
+        }
+    });
+}
+if (a.domCmp(["gamekit.com"])) {
+    a.filter("setInterval", a.matchMethod.string, "a-d-block-popup");
+}
+if (a.domCmp(["dilidili.wang"])) {
+    a.filter("addEventListener", a.matchMethod.stringExact, "DOMNodeInserted", "window.document");
+    a.antiCollapse("innerHTML", (elem) => elem === window.document.body);
+}
+if (a.domCmp(["gamejolt.net"])) {
+    a.onInsert((node) => {
+        if (node && node.innerHTML && node.innerHTML.includes("View ad.")) {
+            node.querySelector("h3").remove();
+            node.querySelector("p").remove();
+        }
+    });
+}
+if (a.domCmp(["haber1903.com"])) {
+    a.filter("setTimeout", a.matchMethod.string, "adblock");
+    a.noAccess("EnableRightClick");
+}
+
+if (a.domCmp(["rule34hentai.net"])) {
+    a.inject(() => {
+        "use strict";
+        window.base_href = "";
+    });
+}
+if (a.domCmp(["paksociety.com"])) {
+    a.css("html, body { overflow:scroll; }");
+}
+if (a.domCmp(["tlz.de"])) {
+    a.filter("addEventListener", a.matchMethod.string, `document.getElementById("ad-container")`,
+        "window.document");
+}
+if (a.domCmp(["cellmapper.net"])) {
+    a.filter("alert", a.matchMethod.string, "Please disable ad-block");
+}
+if (a.domCmp(["1tv.ru"])) {
+    a.inject(() => {
+        "use strict";
+        //Stage 1
+        const fakeAntiblock = {
+            opts: {
+                url: "",
+                detectOnStart: false,
+                indicatorName: "",
+                resources: [],
+            },
+            readyState: "ready",
+            detected: false,
+            ready(f) {
+                window.setTimeout(f, 10, false);
+                return this;
+            },
+            detect(f) {
+                window.setTimeout(f.cb, 10, false, this);
+                return this;
+            }
+        };
+        window.EUMP = {};
+        window.Object.defineProperty(window.EUMP, "antiblock", {
+            configurable: false,
+            set() { },
+            get() {
+                return fakeAntiblock;
+            }
+        });
+        //Stage 2
+        const original = window.XMLHttpRequest;
+        window.XMLHttpRequest = function (...args) {
+            const wrapped = new (window.Function.prototype.bind.apply(original, args));
+            const _open = wrapped.open;
+            wrapped.open = function (...args) {
+                if (args.length > 1 && args[1].startsWith("//v.adfox.ru/")) {
+                    this.withCredentials = false;
+                }
+                return _open.apply(wrapped, args);
+            };
+            return wrapped;
+        };
+    });
+}
+if (a.domCmp(["viz.com"])) {
+    a.readOnly("show_dfp_preroll", false);
+}
+if (a.domCmp(["vod.pl"])) {
+    a.onInsert((node) => {
+        if (node.tagName !== "SCRIPT" && node.innerText && node.innerText.includes("Prosimy, odblokuj wy\u015Bwietlanie reklam")) {
+            node.remove();
+        }
+    });
+}
+if (a.domCmp(["onet.pl", "komputerswiat.pl"])) {
+    a.beforeScript((script) => {
+        if (script.id === "adsinit") {
+            script.remove();
+        }
+    });
+}
+if (a.domCmp(["oddreaders.com"])) {
+    a.css(".onp-sl-blur-area { filter:none; }");
+    a.onInsert((node) => {
+        if (node.querySelector && node.querySelector("img[src='http://oddreaders.com/wp-content/uploads/2017/07/" +
+            "A-Publisher-Approach-to-Adblock-Users.png'")) {
+            node.remove();
+        }
+    });
+}
+if (a.domCmp(["giallozafferano.it"])) {
+    a.filter("setTimeout", a.matchMethod.string, "adblock alert");
+}
+if (a.domCmp(["gry.wp.pl", "maketecheasier.com"])) {
+    a.filter("atob");
+}
+if (a.domCmp(["di.fm", "jazzradio.com"])) {
+    a.loopback((ignored, url) => {
+        if (url.startsWith("https://pubads.g.doubleclick.net/")) {
+            return `<?xml version="1.0" encoding="UTF-8"?>
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+</VAST>`;
+        }
+    });
+}
+if (a.domCmp(["itv.com"])) {
+    a.loopback((ignored, url) => {
+        if (url.startsWith("https://tom.itv.com/itv/tserver/size=")) {
+            return `<?xml version="1.0" encoding="utf-8"?>
+<VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd">
+</VAST>`;
+        }
+    });
+}
+if (a.domCmp(["digitalpoint.com"])) {
+    a.ready(() => {
+        a.inject(() => {
+            "use strict";
+            window.DigitalPoint._General.blockMessage = () => { };
+        });
+    });
+}
+if (a.domCmp(["ohmymag.com", "ohmymag.com.br", "ohmymag.de", "gentside.com", "gentside.com.br",
+    "maxisciences.com"])) {
+    a.readOnly("adblockPopup", `{
+        IS_BLOCKED: false,
+        init() { },
+        removeAdblockPopup() { },
+    }`);
+}
+if (a.domCmp(["yiv.com"])) {
+    a.cookie("AdBlockMessage", "yes");
+}
 
 /*=============
 | uBO Runtime |
@@ -4826,7 +5496,7 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "google_analytics_com_ga": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\t//\n\tvar Gaq = function() {\n\t\t;\n\t};\n\tGaq.prototype.Na = noopfn;\n\tGaq.prototype.O = noopfn;\n\tGaq.prototype.Sa = noopfn;\n\tGaq.prototype.Ta = noopfn;\n\tGaq.prototype.Va = noopfn;\n\tGaq.prototype._createAsyncTracker = noopfn;\n\tGaq.prototype._getAsyncTracker = noopfn;\n\tGaq.prototype._getPlugin = noopfn;\n\tGaq.prototype.push = function(a) {\n\t\tif ( typeof a === 'function' ) {\n\t\t\ta(); return;\n\t\t}\n\t\tif ( Array.isArray(a) === false ) {\n\t\t\treturn;\n\t\t}\n\t\t// https://twitter.com/catovitch/status/776442930345218048\n\t\t// https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._link\n\t\tif ( a[0] === '_link' && typeof a[1] === 'string' ) {\n\t\t\twindow.location.assign(a[1]);\n\t\t}\n\t\t// https://github.com/gorhill/uBlock/issues/2162\n\t\tif ( a[0] === '_set' && a[1] === 'hitCallback' && typeof a[2] === 'function' ) {\n\t\t\ta[2]();\n\t\t}\n\t};\n\t//\n\tvar tracker = (function() {\n\t\tvar out = {};\n\t\tvar api = [\n\t\t\t'_addIgnoredOrganic _addIgnoredRef _addItem _addOrganic',\n\t\t\t'_addTrans _clearIgnoredOrganic _clearIgnoredRef _clearOrganic',\n\t\t\t'_cookiePathCopy _deleteCustomVar _getName _setAccount',\n\t\t\t'_getAccount _getClientInfo _getDetectFlash _getDetectTitle',\n\t\t\t'_getLinkerUrl _getLocalGifPath _getServiceMode _getVersion',\n\t\t\t'_getVisitorCustomVar _initData _link _linkByPost',\n\t\t\t'_setAllowAnchor _setAllowHash _setAllowLinker _setCampContentKey',\n\t\t\t'_setCampMediumKey _setCampNameKey _setCampNOKey _setCampSourceKey',\n\t\t\t'_setCampTermKey _setCampaignCookieTimeout _setCampaignTrack _setClientInfo',\n\t\t\t'_setCookiePath _setCookiePersistence _setCookieTimeout _setCustomVar',\n\t\t\t'_setDetectFlash _setDetectTitle _setDomainName _setLocalGifPath',\n\t\t\t'_setLocalRemoteServerMode _setLocalServerMode _setReferrerOverride _setRemoteServerMode',\n\t\t\t'_setSampleRate _setSessionTimeout _setSiteSpeedSampleRate _setSessionCookieTimeout',\n\t\t\t'_setVar _setVisitorCookieTimeout _trackEvent _trackPageLoadTime',\n\t\t\t'_trackPageview _trackSocial _trackTiming _trackTrans',\n\t\t\t'_visitCode'\n\t\t].join(' ').split(/\s+/);\n\t\tvar i = api.length;\n\t\twhile ( i-- ) {\n\t\t\tout[api[i]] = noopfn;\n\t\t}\n\t\tout._getLinkerUrl = function(a) {\n\t\t\treturn a;\n\t\t};\n\t\treturn out;\n\t})();\n\t//\n\tvar Gat = function() {\n\t\t;\n\t};\n\tGat.prototype._anonymizeIP = noopfn;\n\tGat.prototype._createTracker = noopfn;\n\tGat.prototype._forceSSL = noopfn;\n\tGat.prototype._getPlugin = noopfn;\n\tGat.prototype._getTracker = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackerByName = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackers = noopfn;\n\tGat.prototype.aa = noopfn;\n\tGat.prototype.ab = noopfn;\n\tGat.prototype.hb = noopfn;\n\tGat.prototype.la = noopfn;\n\tGat.prototype.oa = noopfn;\n\tGat.prototype.pa = noopfn;\n\tGat.prototype.u = noopfn;\n\tvar gat = new Gat();\n\twindow._gat = gat;\n\t//\n\tvar gaq = new Gaq();\n\t(function() {\n\t\tvar aa = window._gaq || [];\n\t\tif ( Array.isArray(aa) ) {\n\t\t\twhile ( aa[0] ) {\n\t\t\t\tgaq.push(aa.shift());\n\t\t\t}\n\t\t}\n\t})();\n\twindow._gaq = gaq.qf = gaq;\n})();\n\ngoogle-analytics.com/analytics.js application/javascript\n(function() {\n\t// https://developers.google.com/analytics/devguides/collection/analyticsjs/\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\t//\n\tvar Tracker = function() {\n\t\t;\n\t};\n\tvar p = Tracker.prototype;\n\tp.get = noopfn;\n\tp.set = noopfn;\n\tp.send = noopfn;\n\t//\n\tvar gaName = window.GoogleAnalyticsObject || 'ga';\n\tvar ga = function() {\n\t\tvar len = arguments.length;\n\t\tif ( len === 0 ) {\n\t\t\treturn;\n\t\t}\n\t\tvar f = arguments[len-1];\n\t\tif ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\t\t\tf.hitCallback();\n\t\t} catch (ex) {\n\t\t}\n\t};\n\tga.create = function() {\n\t\treturn new Tracker();\n\t};\n\tga.getByName = noopnullfn;\n\tga.getAll = function() {\n\t\treturn [];\n\t};\n\tga.remove = noopfn;\n\twindow[gaName] = ga;\n})();\n\ngoogle-analytics.com/inpage_linkid.js application/javascript\n(function() {\n\twindow._gaq = window._gaq || {\n\t\tpush: function() {\n\t\t\t;\n\t\t}\n\t};\n})();\n\n# https://github.com/gorhill/uBlock/issues/2480\n# https://developers.google.com/analytics/devguides/collection/gajs/experiments#cxjs\ngoogle-analytics.com/cx/api.js application/javascript\n(function() {\n\tvar noopfn = function() {\n\t};\n\twindow.cxApi = {\n\t\tchooseVariation: function() {\n\t\t\treturn 0;\n\t\t},\n\t\tgetChosenVariation: noopfn,\n\t\tsetAllowHash: noopfn,\n\t\tsetChosenVariation: noopfn,\n\t\tsetCookiePath: noopfn,\n\t\tsetDomainName: noopfn\n\t\t};\n})();\n\n# Ubiquitous googletagservices.com: not blocked by EasyPrivacy.\n# \"Tags are tiny bits of website code that let you measure traffic and\n# \"visitor behavior\"\ngoogletagservices.com/gpt.js application/javascript\n(function() {\n\tvar p;\n\t// https://developers.google.com/doubleclick-gpt/reference\n\tvar noopfn = function() {\n\t\t;\n\t}.bind();\n\tvar noopthisfn = function() {\n\t\treturn this;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\tvar nooparrayfn = function() {\n\t\treturn [];\n\t};\n\tvar noopstrfn = function() {\n\t\treturn '';\n\t};\n\t//\n\tvar companionAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tenableSyncLoading: noopfn,\n\t\tsetRefreshUnfilledSlots: noopfn\n\t};\n\tvar contentService = {\n\t\taddEventListener: noopthisfn,\n\t\tsetContent: noopfn\n\t};\n\tvar PassbackSlot = function() {\n\t\t;\n\t};\n\tp = PassbackSlot.prototype;\n\tp.display = noopfn;\n\tp.get = noopnullfn;\n\tp.set = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setTagForChildDirectedTreatment = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\tp.updateTargetingFromMap = noopthisfn;\n\tvar pubAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tclear: noopfn,\n\t\tclearCategoryExclusions: noopthisfn,\n\t\tclearTagForChildDirectedTreatment: noopthisfn,\n\t\tclearTargeting: noopthisfn,\n\t\tcollapseEmptyDivs: noopfn,\n\t\tdefineOutOfPagePassback: function() { return new PassbackSlot(); },\n\t\tdefinePassback: function() { return new PassbackSlot(); },\n\t\tdisableInitialLoad: noopfn,\n\t\tdisplay: noopfn,\n\t\tenableAsyncRendering: noopfn,\n\t\tenableSingleRequest: noopfn,\n\t\tenableSyncRendering: noopfn,\n\t\tenableVideoAds: noopfn,\n\t\tget: noopnullfn,\n\t\tgetAttributeKeys: nooparrayfn,\n\t\tgetSlots: nooparrayfn,\n\t\trefresh: noopfn,\n\t\tset: noopthisfn,\n\t\tsetCategoryExclusion: noopthisfn,\n\t\tsetCentering: noopfn,\n\t\tsetCookieOptions: noopthisfn,\n\t\tsetLocation: noopthisfn,\n\t\tsetPublisherProvidedId: noopthisfn,\n\t\tsetTagForChildDirectedTreatment: noopthisfn,\n\t\tsetTargeting: noopthisfn,\n\t\tsetVideoContent: noopthisfn,\n\t\tupdateCorrelator: noopfn\n\t};\n\tvar SizeMappingBuilder = function() {\n\t\t;\n\t};\n\tp = SizeMappingBuilder.prototype;\n\tp.addSize = noopthisfn;\n\tp.build = noopnullfn;\n\tvar Slot = function() {\n\t\t;\n\t};\n\tp = Slot.prototype;\n\tp.addService = noopthisfn;\n\tp.clearCategoryExclusions = noopthisfn;\n\tp.clearTargeting = noopthisfn;\n\tp.defineSizeMapping = noopthisfn;\n\tp.get = noopnullfn;\n\tp.getAdUnitPath = nooparrayfn;\n\tp.getAttributeKeys = nooparrayfn;\n\tp.getCategoryExclusions = nooparrayfn;\n\tp.getDomId = noopstrfn;\n\tp.getSlotElementId = noopstrfn;\n\tp.getSlotId = noopthisfn;\n\tp.getTargeting = nooparrayfn;\n\tp.getTargetingKeys = nooparrayfn;\n\tp.set = noopthisfn;\n\tp.setCategoryExclusion = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setCollapseEmptyDiv = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\t//\n\tvar gpt = window.googletag || {};\n\tvar cmd = gpt.cmd || [];\n\tgpt.apiReady = true;\n\tgpt.cmd = [];\n\tgpt.cmd.push = function(a) {\n\t\ttry {\n\t\t\ta();\n\t\t} catch (ex) {\n\t\t}\n\t\treturn 1;\n\t};\n\tgpt.companionAds = function() { return companionAdsService; };\n\tgpt.content = function() { return contentService; };\n\tgpt.defineOutOfPageSlot = function() { return new Slot(); };\n\tgpt.defineSlot = function() { return new Slot(); };\n\tgpt.destroySlots = noopfn;\n\tgpt.disablePublisherConsole = noopfn;\n\tgpt.display = noopfn;\n\tgpt.enableServices = noopfn;\n\tgpt.getVersion = noopstrfn;\n\tgpt.pubads = function() { return pubAdsService; };\n\tgpt.pubadsReady = true;\n\tgpt.setAdIframeTitle = noopfn;\n\tgpt.sizeMapping = function() { return new SizeMappingBuilder(); };\n\twindow.googletag = gpt;\n\twhile ( cmd.length !== 0 ) {\n\t\tgpt.cmd.push(cmd.shift());\n\t}\n})();";
+            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\t//\n\tvar Gaq = function() {\n\t\t;\n\t};\n\tGaq.prototype.Na = noopfn;\n\tGaq.prototype.O = noopfn;\n\tGaq.prototype.Sa = noopfn;\n\tGaq.prototype.Ta = noopfn;\n\tGaq.prototype.Va = noopfn;\n\tGaq.prototype._createAsyncTracker = noopfn;\n\tGaq.prototype._getAsyncTracker = noopfn;\n\tGaq.prototype._getPlugin = noopfn;\n\tGaq.prototype.push = function(a) {\n\t\tif ( typeof a === 'function' ) {\n\t\t\ta(); return;\n\t\t}\n\t\tif ( Array.isArray(a) === false ) {\n\t\t\treturn;\n\t\t}\n\t\t// https://twitter.com/catovitch/status/776442930345218048\n\t\t// https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._link\n\t\tif ( a[0] === '_link' && typeof a[1] === 'string' ) {\n\t\t\twindow.location.assign(a[1]);\n\t\t}\n\t\t// https://github.com/gorhill/uBlock/issues/2162\n\t\tif ( a[0] === '_set' && a[1] === 'hitCallback' && typeof a[2] === 'function' ) {\n\t\t\ta[2]();\n\t\t}\n\t};\n\t//\n\tvar tracker = (function() {\n\t\tvar out = {};\n\t\tvar api = [\n\t\t\t'_addIgnoredOrganic _addIgnoredRef _addItem _addOrganic',\n\t\t\t'_addTrans _clearIgnoredOrganic _clearIgnoredRef _clearOrganic',\n\t\t\t'_cookiePathCopy _deleteCustomVar _getName _setAccount',\n\t\t\t'_getAccount _getClientInfo _getDetectFlash _getDetectTitle',\n\t\t\t'_getLinkerUrl _getLocalGifPath _getServiceMode _getVersion',\n\t\t\t'_getVisitorCustomVar _initData _link _linkByPost',\n\t\t\t'_setAllowAnchor _setAllowHash _setAllowLinker _setCampContentKey',\n\t\t\t'_setCampMediumKey _setCampNameKey _setCampNOKey _setCampSourceKey',\n\t\t\t'_setCampTermKey _setCampaignCookieTimeout _setCampaignTrack _setClientInfo',\n\t\t\t'_setCookiePath _setCookiePersistence _setCookieTimeout _setCustomVar',\n\t\t\t'_setDetectFlash _setDetectTitle _setDomainName _setLocalGifPath',\n\t\t\t'_setLocalRemoteServerMode _setLocalServerMode _setReferrerOverride _setRemoteServerMode',\n\t\t\t'_setSampleRate _setSessionTimeout _setSiteSpeedSampleRate _setSessionCookieTimeout',\n\t\t\t'_setVar _setVisitorCookieTimeout _trackEvent _trackPageLoadTime',\n\t\t\t'_trackPageview _trackSocial _trackTiming _trackTrans',\n\t\t\t'_visitCode'\n\t\t].join(' ').split(/\s+/);\n\t\tvar i = api.length;\n\t\twhile ( i-- ) {\n\t\t\tout[api[i]] = noopfn;\n\t\t}\n\t\tout._getLinkerUrl = function(a) {\n\t\t\treturn a;\n\t\t};\n\t\treturn out;\n\t})();\n\t//\n\tvar Gat = function() {\n\t\t;\n\t};\n\tGat.prototype._anonymizeIP = noopfn;\n\tGat.prototype._createTracker = noopfn;\n\tGat.prototype._forceSSL = noopfn;\n\tGat.prototype._getPlugin = noopfn;\n\tGat.prototype._getTracker = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackerByName = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackers = noopfn;\n\tGat.prototype.aa = noopfn;\n\tGat.prototype.ab = noopfn;\n\tGat.prototype.hb = noopfn;\n\tGat.prototype.la = noopfn;\n\tGat.prototype.oa = noopfn;\n\tGat.prototype.pa = noopfn;\n\tGat.prototype.u = noopfn;\n\tvar gat = new Gat();\n\twindow._gat = gat;\n\t//\n\tvar gaq = new Gaq();\n\t(function() {\n\t\tvar aa = window._gaq || [];\n\t\tif ( Array.isArray(aa) ) {\n\t\t\twhile ( aa[0] ) {\n\t\t\t\tgaq.push(aa.shift());\n\t\t\t}\n\t\t}\n\t})();\n\twindow._gaq = gaq.qf = gaq;\n})();\n\ngoogle-analytics.com/analytics.js application/javascript\n(function() {\n\t// https://developers.google.com/analytics/devguides/collection/analyticsjs/\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\t//\n\tvar Tracker = function() {\n\t\t;\n\t};\n\tvar p = Tracker.prototype;\n\tp.get = noopfn;\n\tp.set = noopfn;\n\tp.send = noopfn;\n\t//\n\tvar w = window,\n\t\tgaName = w.GoogleAnalyticsObject || 'ga';\n\tvar ga = function() {\n\t\tvar len = arguments.length;\n\t\tif ( len === 0 ) {\n\t\t\treturn;\n\t\t}\n\t\tvar f = arguments[len-1];\n\t\tif ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\t\t\tf.hitCallback();\n\t\t} catch (ex) {\n\t\t}\n\t};\n\tga.create = function() {\n\t\treturn new Tracker();\n\t};\n\tga.getByName = noopnullfn;\n\tga.getAll = function() {\n\t\treturn [];\n\t};\n\tga.remove = noopfn;\n\tw[gaName] = ga;\n\t// https://github.com/gorhill/uBlock/issues/3075\n\tvar dl = w.dataLayer;\n\tif ( dl instanceof Object && dl.hide instanceof Object && typeof dl.hide.end === 'function' ) {\n\t\tdl.hide.end();\n\t}\n})();\n\ngoogle-analytics.com/inpage_linkid.js application/javascript\n(function() {\n\twindow._gaq = window._gaq || {\n\t\tpush: function() {\n\t\t\t;\n\t\t}\n\t};\n})();\n\n# https://github.com/gorhill/uBlock/issues/2480\n# https://developers.google.com/analytics/devguides/collection/gajs/experiments#cxjs\ngoogle-analytics.com/cx/api.js application/javascript\n(function() {\n\tvar noopfn = function() {\n\t};\n\twindow.cxApi = {\n\t\tchooseVariation: function() {\n\t\t\treturn 0;\n\t\t},\n\t\tgetChosenVariation: noopfn,\n\t\tsetAllowHash: noopfn,\n\t\tsetChosenVariation: noopfn,\n\t\tsetCookiePath: noopfn,\n\t\tsetDomainName: noopfn\n\t\t};\n})();\n\n# Ubiquitous googletagservices.com: not blocked by EasyPrivacy.\n# \"Tags are tiny bits of website code that let you measure traffic and\n# \"visitor behavior\"\ngoogletagservices.com/gpt.js application/javascript\n(function() {\n\tvar p;\n\t// https://developers.google.com/doubleclick-gpt/reference\n\tvar noopfn = function() {\n\t\t;\n\t}.bind();\n\tvar noopthisfn = function() {\n\t\treturn this;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\tvar nooparrayfn = function() {\n\t\treturn [];\n\t};\n\tvar noopstrfn = function() {\n\t\treturn '';\n\t};\n\t//\n\tvar companionAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tenableSyncLoading: noopfn,\n\t\tsetRefreshUnfilledSlots: noopfn\n\t};\n\tvar contentService = {\n\t\taddEventListener: noopthisfn,\n\t\tsetContent: noopfn\n\t};\n\tvar PassbackSlot = function() {\n\t\t;\n\t};\n\tp = PassbackSlot.prototype;\n\tp.display = noopfn;\n\tp.get = noopnullfn;\n\tp.set = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setTagForChildDirectedTreatment = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\tp.updateTargetingFromMap = noopthisfn;\n\tvar pubAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tclear: noopfn,\n\t\tclearCategoryExclusions: noopthisfn,\n\t\tclearTagForChildDirectedTreatment: noopthisfn,\n\t\tclearTargeting: noopthisfn,\n\t\tcollapseEmptyDivs: noopfn,\n\t\tdefineOutOfPagePassback: function() { return new PassbackSlot(); },\n\t\tdefinePassback: function() { return new PassbackSlot(); },\n\t\tdisableInitialLoad: noopfn,\n\t\tdisplay: noopfn,\n\t\tenableAsyncRendering: noopfn,\n\t\tenableSingleRequest: noopfn,\n\t\tenableSyncRendering: noopfn,\n\t\tenableVideoAds: noopfn,\n\t\tget: noopnullfn,\n\t\tgetAttributeKeys: nooparrayfn,\n\t\tgetTargeting: noopfn,\n\t\tgetTargetingKeys: nooparrayfn,\n\t\tgetSlots: nooparrayfn,\n\t\trefresh: noopfn,\n\t\tset: noopthisfn,\n\t\tsetCategoryExclusion: noopthisfn,\n\t\tsetCentering: noopfn,\n\t\tsetCookieOptions: noopthisfn,\n\t\tsetForceSafeFrame: noopthisfn,\n\t\tsetLocation: noopthisfn,\n\t\tsetPublisherProvidedId: noopthisfn,\n\t\tsetSafeFrameConfig: noopthisfn,\n\t\tsetTagForChildDirectedTreatment: noopthisfn,\n\t\tsetTargeting: noopthisfn,\n\t\tsetVideoContent: noopthisfn,\n\t\tupdateCorrelator: noopfn\n\t};\n\tvar SizeMappingBuilder = function() {\n\t\t;\n\t};\n\tp = SizeMappingBuilder.prototype;\n\tp.addSize = noopthisfn;\n\tp.build = noopnullfn;\n\tvar Slot = function() {\n\t\t;\n\t};\n\tp = Slot.prototype;\n\tp.addService = noopthisfn;\n\tp.clearCategoryExclusions = noopthisfn;\n\tp.clearTargeting = noopthisfn;\n\tp.defineSizeMapping = noopthisfn;\n\tp.get = noopnullfn;\n\tp.getAdUnitPath = nooparrayfn;\n\tp.getAttributeKeys = nooparrayfn;\n\tp.getCategoryExclusions = nooparrayfn;\n\tp.getDomId = noopstrfn;\n\tp.getSlotElementId = noopstrfn;\n\tp.getSlotId = noopthisfn;\n\tp.getTargeting = nooparrayfn;\n\tp.getTargetingKeys = nooparrayfn;\n\tp.set = noopthisfn;\n\tp.setCategoryExclusion = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setCollapseEmptyDiv = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\t//\n\tvar gpt = window.googletag || {};\n\tvar cmd = gpt.cmd || [];\n\tgpt.apiReady = true;\n\tgpt.cmd = [];\n\tgpt.cmd.push = function(a) {\n\t\ttry {\n\t\t\ta();\n\t\t} catch (ex) {\n\t\t}\n\t\treturn 1;\n\t};\n\tgpt.companionAds = function() { return companionAdsService; };\n\tgpt.content = function() { return contentService; };\n\tgpt.defineOutOfPageSlot = function() { return new Slot(); };\n\tgpt.defineSlot = function() { return new Slot(); };\n\tgpt.destroySlots = noopfn;\n\tgpt.disablePublisherConsole = noopfn;\n\tgpt.display = noopfn;\n\tgpt.enableServices = noopfn;\n\tgpt.getVersion = noopstrfn;\n\tgpt.pubads = function() { return pubAdsService; };\n\tgpt.pubadsReady = true;\n\tgpt.setAdIframeTitle = noopfn;\n\tgpt.sizeMapping = function() { return new SizeMappingBuilder(); };\n\twindow.googletag = gpt;\n\twhile ( cmd.length !== 0 ) {\n\t\tgpt.cmd.push(cmd.shift());\n\t}\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5337,7 +6007,28 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "abort_current_inline_script": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar target = '{{1}}';\n\tif ( target === '' || target === '{{1}}' ) { return; }\n\tvar needle = '{{2}}', reText = '.?';\n\tif ( needle !== '' && needle !== '{{2}}' ) {\n\t\treText = /^\/.+\/$/.test(needle)\n\t\t\t? needle.slice(1,-1)\n\t\t\t: needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tvar re = new RegExp(reText);\n\tvar chain = target.split('.');\n\tvar owner = window, prop;\n\tfor (;;) {\n\t\tprop = chain.shift();\n\t\tif ( chain.length === 0 ) { break; }\n\t\towner = owner[prop];\n\t\tif ( owner instanceof Object === false ) { return; }\n\t}\n\tvar desc = Object.getOwnPropertyDescriptor(owner, prop);\n\tif ( desc && desc.get !== undefined ) { return; }\n\tvar magic = String.fromCharCode(Date.now() % 26 + 97) +\n\t\t\t\tMath.floor(Math.random() * 982451653 + 982451653).toString(36);\n\tvar value = owner[prop];\n\tvar validate = function() {\n\t\tvar e = document.currentScript;\n\t\tif ( e instanceof HTMLScriptElement && e.src === '' && re.test(e.textContent) ) {\n\t\t\tthrow new ReferenceError(magic);\n\t\t}\n\t};\n\tObject.defineProperty(owner, prop, {\n\t\tget: function() {\n\t\t\tvalidate();\n\t\t\treturn value;\n\t\t},\n\t\tset: function(a) {\n\t\t\tvalidate();\n\t\t\tvalue = a;\n\t\t}\n\t});\n\tvar oe = window.onerror;\n\twindow.onerror = function(msg) {\n\t\tif ( typeof msg === 'string' && msg.indexOf(magic) !== -1 ) {\n\t\t\treturn true;\n\t\t}\n\t\tif ( oe instanceof Function ) {\n\t\t\treturn oe.apply(this, arguments);\n\t\t}\n\t}.bind();\n})();\n";
+            var injectFunc = "(function() {\n\tvar target = '{{1}}';\n\tif ( target === '' || target === '{{1}}' ) { return; }\n\tvar needle = '{{2}}', reText = '.?';\n\tif ( needle !== '' && needle !== '{{2}}' ) {\n\t\treText = /^\/.+\/$/.test(needle)\n\t\t\t? needle.slice(1,-1)\n\t\t\t: needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tvar re = new RegExp(reText);\n\tvar chain = target.split('.');\n\tvar owner = window, prop;\n\tfor (;;) {\n\t\tprop = chain.shift();\n\t\tif ( chain.length === 0 ) { break; }\n\t\towner = owner[prop];\n\t\tif ( owner instanceof Object === false ) { return; }\n\t}\n\tvar desc = Object.getOwnPropertyDescriptor(owner, prop);\n\tif ( desc && desc.get !== undefined ) { return; }\n\tvar magic = String.fromCharCode(Date.now() % 26 + 97) +\n\t\t\t\tMath.floor(Math.random() * 982451653 + 982451653).toString(36);\n\tvar value = owner[prop];\n\tvar validate = function() {\n\t\tvar e = document.currentScript;\n\t\tif ( e instanceof HTMLScriptElement && e.src === '' && re.test(e.textContent) ) {\n\t\t\tthrow new ReferenceError(magic);\n\t\t}\n\t};\n\tObject.defineProperty(owner, prop, {\n\t\tget: function() {\n\t\t\tvalidate();\n\t\t\treturn value;\n\t\t},\n\t\tset: function(a) {\n\t\t\tvalidate();\n\t\t\tvalue = a;\n\t\t}\n\t});\n\tvar oe = window.onerror;\n\twindow.onerror = function(msg) {\n\t\tif ( typeof msg === 'string' && msg.indexOf(magic) !== -1 ) {\n\t\t\treturn true;\n\t\t}\n\t\tif ( oe instanceof Function ) {\n\t\t\treturn oe.apply(this, arguments);\n\t\t}\n\t}.bind();\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "window_open_defuser": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar wo = window.open,\n\t\ttarget = '{{1}}',\n\t\tneedle = '{{2}}';\n\tif ( target === '' || target === '{{1}}' ) {\n\t\ttarget = false;\n\t} else {\n\t\ttarget = !(+target);\n\t}\n\tif ( needle === '' || needle === '{{2}}' ) {\n\t\tneedle = '.?';\n\t} else if ( /^\/.+\/$/.test(needle) ) {\n\t\tneedle = needle.slice(1,-1);\n\t} else {\n\t\tneedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tneedle = new RegExp(needle);\n\twindow.open = (function(a) {\n\t\tif ( needle.test(a) === target ) {\n\t\t\treturn wo.apply(window, arguments);\n\t\t}\n\t}).bind(window);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "adfly_defuser": (...arguments) => {
+            var injectFunc = "(function() {\n\t// Based on AdsBypasser\n\t// License:\n\t// https://github.com/adsbypasser/adsbypasser/blob/master/LICENSE\n\tvar isDigit = /^\d$/;\n\tvar handler = function(encodedURL) {\n\t\tvar var1 = \"\", var2 = \"\", i;\n\t\tfor (i = 0; i < encodedURL.length; i++) {\n\t\t\tif (i % 2 === 0) {\n\t\t\t\tvar1 = var1 + encodedURL.charAt(i);\n\t\t\t} else {\n\t\t\t\tvar2 = encodedURL.charAt(i) + var2;\n\t\t\t}\n\t\t}\n\t\tvar data = (var1 + var2).split(\"\");\n\t\tfor (i = 0; i < data.length; i++) {\n\t\t\tif (isDigit.test(data[i])) {\n\t\t\t\tfor (var ii = i + 1; ii < data.length; ii++) {\n\t\t\t\t\tif (isDigit.test(data[ii])) {\n\t\t\t\t\t\tvar temp = parseInt(data[i],10) ^ parseInt(data[ii],10);\n\t\t\t\t\t\tif (temp < 10) {\n\t\t\t\t\t\t\tdata[i] = temp.toString();\n\t\t\t\t\t\t}\n\t\t\t\t\t\ti = ii;\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tdata = data.join(\"\");\n\t\tvar decodedURL = window.atob(data).slice(16, -16);\n\t\twindow.stop();\n\t\twindow.onbeforeunload = null;\n\t\twindow.location.href = decodedURL;\n\t};\n\ttry {\n\t\tvar val;\n\t\tvar flag = true;\n\t\twindow.Object.defineProperty(window, \"ysmm\", {\n\t\t\tconfigurable: false,\n\t\t\tset: function(value) {\n\t\t\t\tif (flag) {\n\t\t\t\t\tflag = false;\n\t\t\t\t\ttry {\n\t\t\t\t\t\tif (typeof value === \"string\") {\n\t\t\t\t\t\t\thandler(value);\n\t\t\t\t\t\t}\n\t\t\t\t\t} catch (err) { }\n\t\t\t\t}\n\t\t\t\tval = value;\n\t\t\t},\n\t\t\tget: function() {\n\t\t\t\treturn val;\n\t\t\t}\n\t\t});\n\t} catch (err) {\n\t\twindow.console.error(\"Failed to set up Adfly bypasser!\");\n\t}\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "disable_newtab_links": (...arguments) => {
+            var injectFunc = "(function() {\n\tdocument.addEventListener('click', function(ev) {\n\t\tvar target = ev.target;\n\t\twhile ( target !== null ) {\n\t\t\tif ( target.localName === 'a' && target.hasAttribute('target') ) {\n\t\t\t\tev.stopPropagation();\n\t\t\t\tev.preventDefault();\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\ttarget = target.parentNode;\n\t\t}\n\t});\n})();\n";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5351,16 +6042,19 @@ var ubo = (function() {
 | uBO Generated Website Rules |
 ==============================*/
 
-if (a.domCmp(["filmvf.net","hentaifr.net","jeu.info","tuxboard.com","xstory-fr.com"])) {
+if (a.domCmp(["hentaifr.net","jeu.info","tuxboard.com","xstory-fr.com"])) {
     ubo["goyavelab_defuser"]();
 }
 if (a.domCmp(["washingtonpost.com"])) {
     ubo["wpredirect_defuser"]();
 }
-if (a.domCmp(["4-liga.com","aachener-nachrichten.de","aachener-zeitung.de","abendzeitung-muenchen.de","airliners.de","ajaxshowtime.com","allgemeine-zeitung.de","allaboutphones.nl","arcor.de","ariva.de","astronews.com","aussenwirtschaftslupe.de","auto-motor-und-sport.de","auto-service.de","autobild.de","autoextrem.de","autorevue.at","baby-vornamen.de","bafoeg-aktuell.de","bigfm.de","bikerszene.de","boerse-online.de","boerse.de","boersennews.de","brieffreunde.de","buerstaedter-zeitung.de","caravaning.de","cavallo.de","clever-tanken.de","computerbild.de","computerworld.nl","comunio.de","deine-tierwelt.de","dhd24.com","digitalfernsehen.de","dnn.de","donnerwetter.de","e-hausaufgaben.de","eatsmarter.de","echo-online.de","elektrobike-online.com","e-mountainbike.com","epochtimes.de","express.de","fanfiktion.de","fid-gesundheitswissen.de","finanzen.net","finya.de","focus.de","football365.fr","formel1.de","frag-mutti.de","fremdwort.de","frustfrei-lernen.de","fussballdaten.de","gala.de","gamersglobal.de","gameswelt.at","gameswelt.de","gartendialog.de","gartenlexikon.de","gelnhaeuser-tageblatt.de","general-anzeiger-bonn.de","genialetricks.de","gesundheit.de","gevestor.de","giessener-anzeiger.de","gipfelbuch.ch","golem.de","gusto.at","gut-erklaert.de","gutfuerdich.co","hamburg.de","hartziv.org","hausgarten.net","haz.de","heftig.de","heilpraxisnet.de","heise.de","hochheimer-zeitung.de","hofheimer-zeitung.de","hoerzu.de","iban-rechner.de","inside-handy.de","investor-verlag.de","juraforum.de","kabeleins.de","kicker.de","kindergeld.info","kindergeld.org","klettern.de","klettern-magazin.de","kreis-anzeiger.de","lablue.*","lampertheimer-zeitung.de","landwirt.com","laut.de","lauterbacher-anzeiger.de","lesfoodies.com","liga3-online.de","likemag.com","ln-online.de","lustaufsleben.at","lustich.de","lvz.de","lz.de","macwelt.de","main-spitze.de","mathepower.com","maz-online.de","medisite.fr","mehr-tanken.de","mein-kummerkasten.de","mercato365.com","messen.de","metal-hammer.de","motorbasar.de","motorradonline.de","motorsport-total.com","motortests.de","mountainbike-magazin.de","moviejones.de","mt.de","musikexpress.de","netzwelt.de","neuepresse.de","neueroeffnung.info","news.at","news.de","newsbreak24.de","nickles.de","nw.de","oberhessische-zeitung.de","onvista.de","op-marburg.de","outdoor-magazin.com","outdoorchannel.de","paradisi.de","pc-magazin.de","pcgames.de","pcgameshardware.de","pcwelt.de","pferde.de","pixelio.de","pkw-forum.de","planetsnow.de","play3.de","playfront.de","pons.com","prad.de","profil.at","promobil.de","prosieben.de","prosiebenmaxx.de","psychic.de","quoka.de","ran.de","readmore.de","rechtslupe.de","rhein-main-presse.de","roadbike.de","roemische-zahlen.net","rollingstone.de","rp-online.de","rugby365.fr","runnersworld.de","safelist.eu","sat1.de","sat1gold.de","serienjunkies.de","shz.de","sixx.de","skodacommunity.de","spiegel.de","spielen.de","spielfilm.de","sportal.de","sport365.fr","spox.com","szene1.at","szene38.de","taschenhirn.de","testedich.*","the-voice-of-germany.de","tichyseinblick.de","tierfreund.co","transfermarkt.de","trend.at","truckscout24.de","tv-media.at","tvdigital.de","tvinfo.de","tvspielfilm.de","tvtoday.de","unicum.de","unterhalt.net","usinger-anzeiger.de","usp-forum.de","vienna.at","virtualnights.com","webfail.com","webwereld.nl","weristdeinfreund.de","weser-kurier.de","wetter.com","wetteronline.*","wiesbadener-kurier.de","wiesbadener-tagblatt.de","wintotal.de","winboard.org","windows-7-forum.net","wize.life","wn.de","wohngeld.org","woman.at","womenshealth.de","wormser-zeitung.de","woxikon.de","yachtrevue.at"])) {
+if (a.domCmp(["4-liga.com","4players.de","9monate.de","aachener-nachrichten.de","aachener-zeitung.de","abendzeitung-muenchen.de","airliners.de","ajaxshowtime.com","allgemeine-zeitung.de","allaboutphones.nl","antenne.de","arcor.de","areadvd.de","areamobile.de","ariva.de","astronews.com","aussenwirtschaftslupe.de","auto-motor-und-sport.de","auto-service.de","autobild.de","autoextrem.de","autopixx.de","autorevue.at","baby-vornamen.de","bafoeg-aktuell.de","berliner-kurier.de","berliner-zeitung.de","bigfm.de","bikerszene.de","boerse-online.de","boerse.de","boersennews.de","brieffreunde.de","buerstaedter-zeitung.de","buffed.de","caravaning.de","cavallo.de","chefkoch.de","clever-tanken.de","computerbild.de","computerhilfen.de","computerworld.nl","comunio.de","connect.de","dbna.de","deine-tierwelt.de","dhd24.com","digitalfernsehen.de","dnn.de","donnerwetter.de","e-hausaufgaben.de","eatsmarter.de","echo-online.de","elektrobike-online.com","e-mountainbike.com","epochtimes.de","express.de","f1maximaal.nl","fanfiktion.de","fettspielen.de","fid-gesundheitswissen.de","finanztreff.de","finya.de","focus.de","football365.fr","formel1.de","frag-mutti.de","fremdwort.de","frustfrei-lernen.de","fussballdaten.de","gala.de","gamersglobal.de","gamesaktuell.de","gamestar.de","gameswelt.at","gameswelt.de","gamezone.de","gartendialog.de","gartenlexikon.de","gelnhaeuser-tageblatt.de","general-anzeiger-bonn.de","genialetricks.de","gesundheit.de","gevestor.de","giessener-anzeiger.de","gipfelbuch.ch","gmuender-tagespost.de","golem.de","gusto.at","gut-erklaert.de","gutfuerdich.co","hamburg.de","hardwareluxx.de","hartziv.org","hausgarten.net","haz.de","heftig.de","heilpraxisnet.de","heise.de","hochheimer-zeitung.de","hofheimer-zeitung.de","hoerzu.de","iban-rechner.de","immobilienscout24.de","ingame.de","inside-handy.de","investor-verlag.de","jpgames.de","juraforum.de","kabeleins.de","kamelle.de","kicker.de","kindergeld.info","kindergeld.org","klettern.de","klettern-magazin.de","kochbar.de","kreis-anzeiger.de","ksta.de","lablue.*","lachainemeteo.com","lampertheimer-zeitung.de","landwirt.com","laut.de","lauterbacher-anzeiger.de","leckerschmecker.me","lesfoodies.com","levif.be","lifeline.de","liga3-online.de","likemag.com","ln-online.de","lustaufsleben.at","lustich.de","lvz.de","lz.de","macwelt.de","main-spitze.de","mathepower.com","maz-online.de","medisite.fr","mehr-tanken.de","mein-kummerkasten.de","mein-wahres-ich.de","menshealth.de","mercato365.com","messen.de","metal-hammer.de","metalflirt.de","modhoster.de","mopo.de","motor-talk.de","motorbasar.de","motorradonline.de","motorsport-total.com","motortests.de","mountainbike-magazin.de","moviejones.de","moviepilot.de","mt.de","mtb-news.de","musikexpress.de","musikradar.de","mz-web.de","netzwelt.de","neuepresse.de","neueroeffnung.info","news.at","news.de","newsbreak24.de","nickles.de","nicknight.de","nnn.de","notebookchat.com","noz.de","nw.de","nwzonline.de","oberhessische-zeitung.de","onvista.de","op-marburg.de","outdoor-magazin.com","outdoorchannel.de","paradisi.de","pc-magazin.de","pcgames.de","pcgameshardware.de","pcwelt.de","pferde.de","pietsmiet.de","pixelio.de","pkw-forum.de","planetsnow.de","play3.de","playfront.de","pnn.de","pons.com","prad.de","prignitzer.de","profil.at","promipool.de","promobil.de","prosieben.de","prosiebenmaxx.de","psychic.de","quoka.de","ran.de","readmore.de","rechtslupe.de","rhein-main-presse.de","rimondo.com","roadbike.de","roemische-zahlen.net","rollingstone.de","rot-blau.com","rp-online.de","rugby365.fr","rundschau-online.de","runnersworld.de","safelist.eu","sat1.de","sat1gold.de","schwaebische-post.de","serienjunkies.de","shz.de","sixx.de","skodacommunity.de","spiegel.de","spielen.de","spielfilm.de","sportal.de","sport365.fr","spox.com","svz.de","szene1.at","szene38.de","tagesspiegel.de","taschenhirn.de","testedich.*","the-voice-of-germany.de","tichyseinblick.de","tierfreund.co","tiervermittlung.de","transfermarkt.de","trend.at","truckscout24.de","tv-media.at","tvdigital.de","tvinfo.de","tvspielfilm.de","tvtoday.de","unicum.de","unterhalt.net","usinger-anzeiger.de","usp-forum.de","videogameszone.de","vienna.at","virtualnights.com","webfail.com","webwereld.nl","welt.de","weristdeinfreund.de","werkzeug-news.de","weser-kurier.de","wetter.com","wetteronline.*","wiesbadener-kurier.de","wiesbadener-tagblatt.de","wintotal.de","winboard.org","windows-7-forum.net","wize.life","wn.de","wohngeld.org","woman.at","womenshealth.de","wormser-zeitung.de","woxikon.de","yachtrevue.at"])) {
     ubo["uabinject_defuser"]();
 }
-if (a.domCmp(["100percentfedup.com","activistpost.com","addictinginfo.*","alfonzorachel.com","allenbwest.com","allenwestrepublic.com","allthingsvegas.com","barbwire.com","bestfunnyjokes4u.com","bighealthreport.com","bugout.news","bulletsfirst.net","buzzlamp.com","celebrity-gossip.net","cheatsheet.com","clashdaily.com","collapse.news","comicallyincorrect.com","conservativetribune.com","constitution.com","craigjames.com","creepybasement.com","cyberwar.news","dailyheadlines.net","dailysurge.com","damnlol.com","deneenborelli.com","eaglerising.com","evil.news","faithit.com","fitnessconnoisseur.com","foreverymom.com","freedom.news","freedomdaily.com","freedomforce.com","freedomoutpost.com","glitch.news","godfatherpolitics.com","gopocalypse.org","guardianlv.com","guns.news","hautereport.com","hispolitica.com","ifyouonlynews.com","instigatornews.com","janmorganmedia.com","joeforamerica.com","juicerhead.com","justdiy.com","keepandbear.com","lastresistance.com","legalinsurrection.com","liberty.news","libertyunyielding.com","lidblog.com","millionpictures.co","natural.news","naturalblaze.com","naturalsociety.com","opednews.com","patriotoutdoornews.com","politicaloutcast.com","politichicks.com","practicallyviral.com","profitconfidential.com","quirlycues.com","realmomsrealreviews.com","redhotchacha.com","redmaryland.com","reverbpress.com","reviveusa.com","shark-tank.com","shedthoselbs.com","slender.news","sonsoflibertymedia.com","stupid.news","techconsumer.com","technobuffalo.com","theblacksphere.net","theboredmind.com","thegatewaypundit.com","thelastlineofdefense.org","themattwalshblog.com","thepoke.co.uk","therealside.com","tosavealife.com","twisted.news","usherald.com","videogamesblogger.com","viralnova.com","visiontoamerica.com","wakingtimes.com","westernjournalism.com","wnd.com","xtribune.com","youngcons.com"])) {
+if (a.domCmp(["gamepro.de","gamestar.de"])) {
+    ubo["abort_on_property_write"]("uabInject");
+}
+if (a.domCmp(["100percentfedup.com","activistpost.com","addictinginfo.*","alfonzorachel.com","allenbwest.com","allenwestrepublic.com","allthingsvegas.com","barbwire.com","bestfunnyjokes4u.com","bighealthreport.com","bugout.news","bulletsfirst.net","buzzlamp.com","celebrity-gossip.net","cheatsheet.com","clashdaily.com","collapse.news","comicallyincorrect.com","conservativetribune.com","constitution.com","craigjames.com","creepybasement.com","cyberwar.news","dailyheadlines.net","dailysurge.com","damnlol.com","deneenborelli.com","eaglerising.com","evil.news","faithit.com","fitnessconnoisseur.com","foreverymom.com","freedom.news","freedomdaily.com","freedomforce.com","freedomoutpost.com","glitch.news","godfatherpolitics.com","gopocalypse.org","guardianlv.com","guns.news","hautereport.com","hispolitica.com","ifyouonlynews.com","instigatornews.com","janmorganmedia.com","joeforamerica.com","juicerhead.com","justdiy.com","keepandbear.com","knowledgedish.com","lastresistance.com","legalinsurrection.com","liberty.news","libertyunyielding.com","lidblog.com","millionpictures.co","moneyversed.com","natural.news","naturalblaze.com","naturalsociety.com","opednews.com","patriotoutdoornews.com","pjmedia.com","politicaloutcast.com","politichicks.com","practicallyviral.com","profitconfidential.com","quirlycues.com","realmomsrealreviews.com","redhotchacha.com","redmaryland.com","reverbpress.com","reviveusa.com","shark-tank.com","shedthoselbs.com","slender.news","sonsoflibertymedia.com","stupid.news","techconsumer.com","technobuffalo.com","theblacksphere.net","theboredmind.com","thegatewaypundit.com","thelastlineofdefense.org","themattwalshblog.com","thepoke.co.uk","therealside.com","tosavealife.com","twisted.news","usherald.com","videogamesblogger.com","viralnova.com","visiontoamerica.com","wakingtimes.com","westernjournalism.com","wnd.com","xtribune.com","youngcons.com"])) {
     ubo["abort_current_inline_script"]("setTimeout","MBoxAdMain");
 }
 if (a.domCmp(["extremetube.com","pornhub.com","primewire.*","redtube.*","spankwire.com","tube8.*","youporn.com","youporngay.com"])) {
@@ -5369,8 +6063,11 @@ if (a.domCmp(["extremetube.com","pornhub.com","primewire.*","redtube.*","spankwi
 if (a.domCmp(["forbes.com"])) {
     ubo["forbes_defuser"]();
 }
-if (a.domCmp(["oload.tv","openload.co","streamango.com"])) {
+if (a.domCmp(["oload.info","oload.stream","oload.tv","openload.co","streamango.com"])) {
     ubo["openload_co"]();
+}
+if (a.domCmp(["streamango.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
 }
 if (a.domCmp(["kissanime.*"])) {
     ubo["kissanime_defuser"]();
@@ -5381,7 +6078,7 @@ if (a.domCmp(["kisscartoon.*"])) {
 if (a.domCmp(["animes-mangas-ddl.com","best-movies.info","bnonews.com","crazymeds.us","d-h.st","hulkusc.com","ip-address.org","megapanda.net","nplay.com","playlivenewz.com","sadeempc.com","upload.so","uploadshub.com","userscdn.com","yourvideohost.com"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["filmvf.net","filmstreaming-hd.com","gaara-fr.com","gaytube.com","gum-gum-streaming.com","hentaifr.net","hentaihaven.org","narutoshippudenvf.com","thebadbuzz.com","tuxboard.com","xstory-fr.com"])) {
+if (a.domCmp(["filmstreaming-hd.com","gaara-fr.com","gaytube.com","gum-gum-streaming.com","hentaifr.net","hentaihaven.org","narutoshippudenvf.com","thebadbuzz.com","tuxboard.com","xstory-fr.com"])) {
     ubo["phenv_defuser"]();
 }
 if (a.domCmp(["lemonde.fr"])) {
@@ -5402,17 +6099,8 @@ if (a.domCmp(["navigaweb.net"])) {
 if (a.domCmp(["sembilhete.tv"])) {
     ubo["fuckadblock_js_3_2_0"]();
 }
-if (a.domCmp(["chip.de"])) {
-    ubo["abort_current_inline_script"]("String.fromCharCode","InstallTrigger");
-}
 if (a.domCmp(["pornhub.com"])) {
     ubo["pornhub_sanitizer"]();
-}
-if (a.domCmp(["wired.com"])) {
-    ubo["setTimeout_defuser"]("Bait");
-}
-if (a.domCmp(["vipleague.sx"])) {
-    ubo["overlay_buster"]();
 }
 if (a.domCmp(["etc.se"])) {
     ubo["overlay_buster"]();
@@ -5432,9 +6120,6 @@ if (a.domCmp(["allmusic.com","sidereel.com"])) {
 if (a.domCmp(["opensubtitles.org"])) {
     ubo["abort_current_inline_script"]("atob");
 }
-if (a.domCmp(["fullpremiums.com"])) {
-    ubo["overlay_buster"]();
-}
 if (a.domCmp(["videowood.tv"])) {
     ubo["videowood_tv"]();
 }
@@ -5444,7 +6129,7 @@ if (a.domCmp(["generation-nt.com"])) {
 if (a.domCmp(["livenewschat.eu"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["pornhub.com","xtube.com","youporn.com"])) {
+if (a.domCmp(["pornhub.com","xtube.com"])) {
     ubo["abort_on_property_write"]("AdDelivery");
 }
 if (a.domCmp(["pornhub.com"])) {
@@ -5453,13 +6138,16 @@ if (a.domCmp(["pornhub.com"])) {
 if (a.domCmp(["pornhub.com"])) {
     ubo["csp"]("img-src 'self' *; media-src 'self' *");
 }
+if (a.domCmp(["youjizz.com"])) {
+    ubo["abort_on_property_write"]("nb");
+}
 if (a.domCmp(["mangas-fr.com"])) {
     ubo["__$dc_defuser"]();
 }
 if (a.domCmp(["merriam-webster.com"])) {
     ubo["abort_on_property_write"]("adonisHash");
 }
-if (a.domCmp(["adf.ly","q.gs"])) {
+if (a.domCmp(["q.gs"])) {
     ubo["adf_ly"]();
 }
 if (a.domCmp(["dpstream.net"])) {
@@ -5483,7 +6171,7 @@ if (a.domCmp(["bhaskar.com","divyabhaskar.co.in"])) {
 if (a.domCmp(["thesimsresource.com"])) {
     ubo["thesimsresource_com"]();
 }
-if (a.domCmp(["4players.de","buffed.de","chip.de","erdbeerlounge.de","gamesaktuell.de","gamezone.de","gamona.de","giga.de","golem.de","kicker.de","kino.de","pcgames.de","pcgameshardware.de","spielaffe.de","spieletipps.de","t-online.de","videogameszone.de","welt.de"])) {
+if (a.domCmp(["4players.de","brigitte.de","buffed.de","chip.de","erdbeerlounge.de","gamesaktuell.de","gamezone.de","gamona.de","giga.de","gmx.net","golem.de","kicker.de","kino.de","myspass.de","pcgames.de","pcgameshardware.de","spielaffe.de","spieletipps.de","t-online.de","videogameszone.de","web.de","welt.de"])) {
     ubo["golem_de"]();
 }
 if (a.domCmp(["aranzulla.it"])) {
@@ -5499,9 +6187,6 @@ if (a.domCmp(["123bay.*","inbypass.*","tormirror.*","tpb.*","unlockme.*","yts.ag
     ubo["noeval"]();
 }
 if (a.domCmp(["imgpile.com"])) {
-    ubo["bab_defuser"]();
-}
-if (a.domCmp(["700mbmovies.com"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["happy-hack.ru"])) {
@@ -5535,13 +6220,7 @@ if (a.domCmp(["userscloud.com"])) {
     ubo["abort_on_property_write"]("open");
 }
 if (a.domCmp(["jpost.com"])) {
-    ubo["upmanager_defuser"]();
-}
-if (a.domCmp(["jpost.com"])) {
-    ubo["nowebrtc"]();
-}
-if (a.domCmp(["technobuffalo.com"])) {
-    ubo["upmanager_defuser"]();
+    ubo["abort_current_inline_script"]("atob","TextDecoder");
 }
 if (a.domCmp(["wetteronline.de"])) {
     ubo["wetteronline_de"]();
@@ -5612,9 +6291,6 @@ if (a.domCmp(["alltube.tv"])) {
 if (a.domCmp(["cityam.com","investmentweek.co.uk","professionaladviser.com","techworld.com","theinquirer.net"])) {
     ubo["r3z_defuser"]();
 }
-if (a.domCmp(["cineforest.com"])) {
-    ubo["bab_defuser"]();
-}
 if (a.domCmp(["lasprovincias.es"])) {
     ubo["ideal_es"]();
 }
@@ -5645,10 +6321,10 @@ if (a.domCmp(["linkneverdie.com"])) {
 if (a.domCmp(["v3.co.uk"])) {
     ubo["r3z_defuser"]();
 }
-if (a.domCmp(["italiashare.info"])) {
+if (a.domCmp(["italiashare.life"])) {
     ubo["abort_on_property_read"]("adblock");
 }
-if (a.domCmp(["italiashare.info"])) {
+if (a.domCmp(["italiashare.life"])) {
     ubo["nowebrtc"]();
 }
 if (a.domCmp(["mio.to"])) {
@@ -5660,41 +6336,26 @@ if (a.domCmp(["mio.to"])) {
 if (a.domCmp(["techsupportpk.com"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["mindgamer.com"])) {
-    ubo["bab_defuser"]();
-}
 if (a.domCmp(["criminalcasetools.com"])) {
     ubo["bab_defuser"]();
-}
-if (a.domCmp(["anime-joy.tv"])) {
-    ubo["noeval"]();
 }
 if (a.domCmp(["vidtodo.com"])) {
     ubo["nowebrtc"]();
 }
 if (a.domCmp(["vidtodo.com"])) {
-    ubo["abort_on_property_write"]("Fingerprint2");
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["vidtodo.com"])) {
-    ubo["abort_on_property_write"]("N2y9");
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["ahzahg6ohb.com","ay8ou8ohth.com"])) {
     ubo["abort_on_property_read"]("adsShowPopup1");
-}
-if (a.domCmp(["yairworkshop.com"])) {
-    ubo["bab_defuser"]();
-}
-if (a.domCmp(["lepoint.fr"])) {
-    ubo["noeval"]();
 }
 if (a.domCmp(["golem.de","tweaktown.com"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
 if (a.domCmp(["geektime.co.il"])) {
     ubo["setTimeout_defuser"]("adObjects");
-}
-if (a.domCmp(["streamflix.org"])) {
-    ubo["bab_defuser"]();
 }
 if (a.domCmp(["uploadocean.com"])) {
     ubo["bab_defuser"]();
@@ -5723,7 +6384,7 @@ if (a.domCmp(["uploads.to"])) {
 if (a.domCmp(["wikia.com"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["123movies.net","2ddl.*","buzzfil.net","clicknupload.org","eztv.*","go4up.com","icefilms.info","mac-torrents.com","pdf-giant.com","readmanga.today","sportshd.me","streamfilmzzz.com","streamzzz.online","thevideobee.to","torrentz2.*","uploading.site","uptobox.com","yts.ag","yts.gs"])) {
+if (a.domCmp(["123movies.net","2ddl.*","arabseed.tv","buzzfil.net","clicknupload.org","ddlvalley.me","entervideo.net","eztv.*","filmvf.cc","ganool.se","go4up.com","icefilms.info","igg-games.com","letmewatchthis.ac","mac-torrents.com","mkvcage.com","openload.ch","pdf-giant.com","readmanga.today","sawlive.tv","sportshd.me","streamfilmzzz.com","streamzzz.online","thevideobee.to","torrentz2.*","tny.ec","uploading.site","uptobox.com","yts.ag","yts.gs","yts.am"])) {
     ubo["nowebrtc"]();
 }
 if (a.domCmp(["gamer.com.tw"])) {
@@ -5735,8 +6396,11 @@ if (a.domCmp(["nextinpact.com"])) {
 if (a.domCmp(["androidcentral.com","connectedly.com","crackberry.com","imore.com","teslacentral.com","vrheads.com","windowscentral.com"])) {
     ubo["abort_on_property_write"]("adonisHash");
 }
-if (a.domCmp(["ack.net","allkpop.com","audioholics.com","barnstablepatriot.com","britannica.com","businessnewsdaily.com","cantonrep.com","capecodtimes.com","champion.gg","cheeseheadtv.com","closerweekly.com","collegehumor.com","columbiatribune.com","csgolounge.com","destructoid.com","dispatch.com","dorkly.com","dota2lounge.com","enterprisenews.com","fayobserver.com","fhm.com","firstforwomen.com","flexonline.com","gainesville.com","gastongazette.com","geekzone.co.nz","ghacks.net","goerie.com","goupstate.com","gsmarena.com","healthline.com","heraldtribune.com","houmatoday.com","intouchweekly.com","investopedia.com","j-14.com","kiplinger.com","laptopmag.com","lifeandstylemag.com","listverse.com","lolcounter.com","m-magazine.com","madamenoire.com","maketecheasier.com","mensfitness.com","metrowestdailynews.com","muscleandfitness.com","news-journalonline.com","newsarama.com","nintendoeverything.com","nwfdailynews.com","nydailynews.com","phonearena.com","pjstar.com","poconorecord.com","probuilds.net","providencejournal.com","radaronline.com","recordonline.com","sj-r.com","soapoperadigest.com","solomid.net","space.com","starnewsonline.com","teamliquid.net","telegram.com","theberry.com","thechive.com","theledger.com","thepoliticalinsider.com","tmn.today","tomsguide.com","topix.com","tuscaloosanews.com","uticaod.com","vvdailypress.com","wikia.com","womansworld.com","xda-developers.com"])) {
+if (a.domCmp(["ack.net","allkpop.com","audioholics.com","barnstablepatriot.com","boredpanda.com","britannica.com","businessnewsdaily.com","cantonrep.com","capecodtimes.com","champion.gg","cheeseheadtv.com","closerweekly.com","collegehumor.com","columbiatribune.com","cougarboard.com","csgolounge.com","destructoid.com","dispatch.com","dorkly.com","dota2lounge.com","enterprisenews.com","eternallysunny.com","fayobserver.com","fhm.com","firstforwomen.com","flexonline.com","gainesville.com","gastongazette.com","geekzone.co.nz","ghacks.net","goerie.com","goupstate.com","gsmarena.com","healthline.com","heraldtribune.com","houmatoday.com","intouchweekly.com","investopedia.com","j-14.com","kiplinger.com","laptopmag.com","lifeandstylemag.com","listverse.com","lolcounter.com","m-magazine.com","madamenoire.com","maketecheasier.com","mensfitness.com","metrowestdailynews.com","moneyversed.com","muscleandfitness.com","news-journalonline.com","newsarama.com","nintendoeverything.com","nwfdailynews.com","nydailynews.com","phonearena.com","pjstar.com","poconorecord.com","probuilds.net","providencejournal.com","radaronline.com","recordonline.com","sj-r.com","slickdeals.net","soapoperadigest.com","solomid.net","space.com","starnewsonline.com","teamliquid.net","telegram.com","theberry.com","thechive.com","theledger.com","thepoliticalinsider.com","tmn.today","tomsguide.com","topix.com","tuscaloosanews.com","uproxx.com","uticaod.com","vvdailypress.com","wikia.com","womansworld.com","xda-developers.com"])) {
     ubo["abort_on_property_write"]("adonisHash");
+}
+if (a.domCmp(["xda-developers.com"])) {
+    ubo["nowebrtc"]();
 }
 if (a.domCmp(["drudgereport.com","mashable.com"])) {
     ubo["abort_on_property_read"]("ADONIS_BOOTSTRAP_STATS");
@@ -5747,16 +6411,13 @@ if (a.domCmp(["skidrowreloaded.com"])) {
 if (a.domCmp(["business.dk"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["101greatgoals.com","allthetests.com","ancient-origins.net","biology-online.org","calcalist.co.il","convert-me.com","eurweb.com","globes.co.il","grammarist.com","jerusalemonline.com","mako.co.il","nysun.com","reshet.tv","roadracerunner.com","textsfromlastnight.com","trifind.com","walla.co.il","x17online.com","yad2.co.il","ynet.co.il","yocore.com"])) {
-    ubo["abort_on_property_write"]("upManager");
-}
 if (a.domCmp(["fullmatchesandshows.com","motor1.com"])) {
     ubo["noeval"]();
 }
 if (a.domCmp(["phonesreview.co.uk"])) {
     ubo["csp"]("script-src 'self' * 'unsafe-inline' data:");
 }
-if (a.domCmp(["ewatchseries.to"])) {
+if (a.domCmp(["itswatchseries.to"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["javadecompilers.com"])) {
@@ -5768,23 +6429,23 @@ if (a.domCmp(["stern.de"])) {
 if (a.domCmp(["stern.de"])) {
     ubo["abort_on_property_write"]("exportz");
 }
-if (a.domCmp(["usatoday.com"])) {
+if (a.domCmp(["alphr.com","autobytel.com","brigitte.de","cesoirtv.com","chip.de","erdbeerlounge.de","gamesradar.com","huffingtonpost.co.uk","huffingtonpost.com","moviefone.com","playboy.de","theweek.co.uk","usatoday.com"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["alphr.com","autobytel.com","brigitte.de","cesoirtv.com","chip.de","erdbeerlounge.de","gamesradar.com","huffingtonpost.co.uk","huffingtonpost.com","moviefone.com","playboy.de","theweek.co.uk"])) {
-    ubo["abort_on_property_write"]("_sp_");
+if (a.domCmp(["faz.net"])) {
+    ubo["abort_current_inline_script"]("$","_sp_._networkListenerData");
 }
-if (a.domCmp(["al.com","cleveland.com","gutefrage.net","masslive.com","mlive.com","newyorkupstate.com","nj.com","nola.com","oregonlive.com","pennlive.com","silive.com","stern.de","syracuse.com"])) {
+if (a.domCmp(["20min.ch","al.com","bento.de","cleveland.com","digitalspy.com","eurogamer.de","ft.com","gala.de","gesundheitsfrage.net","gutefrage.net","masslive.com","metabomb.net","mlive.com","newyorkupstate.com","ngin-mobility.com","nj.com","nola.com","oregonlive.com","pcgamer.com","pennlive.com","radiotimes.com","silive.com","stern.de","syracuse.com"])) {
     ubo["abort_on_property_read"]("_sp_._networkListenerData");
 }
 if (a.domCmp(["gamona.de","giga.de","kino.de","spielaffe.de","spieletipps.de"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["showdramapacks.com"])) {
-    ubo["popads_net"]();
-}
 if (a.domCmp(["car.com","codeproject.com","familyhandyman.com","goldderby.com","headlinepolitics.com","html.net","indiewire.com","itpro.co.uk","marmiton.org","mymotherlode.com","nypost.com","realgm.com","tvline.com","wwd.com"])) {
     ubo["abort_on_property_write"]("_sp_");
+}
+if (a.domCmp(["codeproject.com"])) {
+    ubo["abort_on_property_read"]("retrievalService");
 }
 if (a.domCmp(["speedtest.net"])) {
     ubo["abort_on_property_read"]("_sp_");
@@ -5801,6 +6462,9 @@ if (a.domCmp(["pocketnow.com"])) {
 if (a.domCmp(["cpu-world.com"])) {
     ubo["abort_on_property_read"]("CW_AB");
 }
+if (a.domCmp(["worldfree4u.lol","worldfree4u.ws"])) {
+    ubo["popads_dummy"]();
+}
 if (a.domCmp(["eurogamer.net","rockpapershotgun.com","vg247.com"])) {
     ubo["abort_on_property_write"]("yafaIt");
 }
@@ -5813,14 +6477,23 @@ if (a.domCmp(["auto-motor-und-sport.de","womenshealth.de"])) {
 if (a.domCmp(["ddlvalley.cool","zippyshare.com"])) {
     ubo["noeval"]();
 }
-if (a.domCmp(["rarbg.to"])) {
+if (a.domCmp(["rarbg.is","rarbg.to","rarbgmirror.xyz","rarbgproxy.org"])) {
     ubo["abort_on_property_read"]("_wm3");
 }
 if (a.domCmp(["fullmatchesandshows.com","mediafire.com","newser.com","pornhub.com","rlslog.net","scienceworldreport.com","streamcloud.eu","tinypic.com"])) {
     ubo["abort_on_property_write"]("UAParser");
 }
-if (a.domCmp(["debridnet.com"])) {
-    ubo["popads_net"]();
+if (a.domCmp(["gelbooru.com"])) {
+    ubo["abort_current_inline_script"]("ExoDetector");
+}
+if (a.domCmp(["gelbooru.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["rule34.xxx"])) {
+    ubo["abort_on_property_read"]("testVar");
+}
+if (a.domCmp(["thedoujin.com","xbooru.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
 }
 if (a.domCmp(["kbb.com"])) {
     ubo["abort_on_property_read"]("KBB.DetectBlockerExtensions");
@@ -5828,7 +6501,7 @@ if (a.domCmp(["kbb.com"])) {
 if (a.domCmp(["movie-blog.org"])) {
     ubo["abort_on_property_write"]("DCVU");
 }
-if (a.domCmp(["9xbuddy.com","adf.ly","albumkings.org","ay.gy","bestfilmeshd.com","daclips.in","filescdn.com","filmuptobox.net","gomovies.es","gorillavid.in","hulkload.com","j.gs","jkanime.net","karanpc.com","microify.com","minecraft-forum.net","monova.org","opensubtitles.org","pintient.com","pirateproxy.*","psarips.com","q.gs","security-links.com","solidfiles.com","stream2watch.cc","thepiratebay.org","uploadrocket.net","uptobox.com","vidabc.com","zippyshare.com"])) {
+if (a.domCmp(["9xbuddy.com","adf.ly","albumkings.org","ay.gy","bestfilmeshd.com","bombuj.eu","crackingpatching.com","daclips.in","english-subtitles.pro","filescdn.com","filmuptobox.net","freegamesdl.net","gomovies.es","gorillavid.in","hulkload.com","j.gs","jkanime.net","karanpc.com","microify.com","minecraft-forum.net","monova.org","newmusic.trade","onmovies.to","opensubtitles.org","pintient.com","pirateproxy.*","psarips.com","q.gs","security-links.com","solidfiles.com","stream2watch.cc","thepiratebay.org","torrentexx.com","uploadrocket.net","uptobox.com","vidabc.com","zippyshare.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["watchcartoononline.io"])) {
@@ -5843,26 +6516,26 @@ if (a.domCmp(["fdesouche.com"])) {
 if (a.domCmp(["pornhub.com"])) {
     ubo["abort_on_property_write"]("isAdblockOn");
 }
+if (a.domCmp(["handelsblatt.com","wiwo.de"])) {
+    ubo["abort_current_inline_script"]("hcf_userconfig","hcf_userconfig.cgi_adb_redirect_url");
+}
 if (a.domCmp(["vivo.sx"])) {
     ubo["abort_on_property_write"]("_0x773d");
 }
 if (a.domCmp(["math-aids.com"])) {
     ubo["abort_on_property_write"]("__drizzleSettings");
 }
-if (a.domCmp(["shink.in"])) {
-    ubo["abort_on_property_read"]("blockAdBlock");
+if (a.domCmp(["shink.me"])) {
+    ubo["abort_current_inline_script"]("$","blockAdBlock");
 }
-if (a.domCmp(["shink.in"])) {
+if (a.domCmp(["shink.me"])) {
     ubo["abort_on_property_read"]("jsPopunder");
 }
-if (a.domCmp(["shink.in"])) {
-    ubo["abort_on_property_read"]("RunAds");
-}
-if (a.domCmp(["shink.in"])) {
-    ubo["abort_on_property_write"]("_pop");
-}
-if (a.domCmp(["shink.in"])) {
+if (a.domCmp(["shink.me"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["shink.me"])) {
+    ubo["popads_net"]();
 }
 if (a.domCmp(["coshurl.co"])) {
     ubo["setTimeout_defuser"]("checkAdblockUser");
@@ -5876,20 +6549,20 @@ if (a.domCmp(["putlockers.cc"])) {
 if (a.domCmp(["bicycling.com","menshealth.com","prevention.com","rodalesorganiclife.com","runnersworld.com","womenshealthmag.com"])) {
     ubo["abort_on_property_read"]("adBlockPromise");
 }
-if (a.domCmp(["addictivetips.com","androidcentral.com","chicagoreader.com","crackberry.com","cultofmac.com","imore.com","insidenova.com","mathwarehouse.com","post-gazette.com","practicalpainmanagement.com","sanfoundry.com","windowscentral.com"])) {
-    ubo["setTimeout_defuser"]("ubo","300");
+if (a.domCmp(["chicagoreader.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
 }
-if (a.domCmp(["addictivetips.com","cultofmac.com","insidenova.com","mathwarehouse.com","post-gazette.com","practicalpainmanagement.com","sanfoundry.com"])) {
-    ubo["setTimeout_defuser"]("[native code]","15000");
+if (a.domCmp(["broadwayworld.com","cultofmac.com","insidenova.com","itavisen.no","metalinjection.net","metalsucks.net","post-gazette.com","practicalpainmanagement.com","sanfoundry.com","sporcle.com","stylecaster.com"])) {
+    ubo["abort_on_property_read"]("admrlPreviewEngage");
+}
+if (a.domCmp(["androidcentral.com","crackberry.com","imore.com","windowscentral.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
 }
 if (a.domCmp(["thewindowsclub.com"])) {
-    ubo["setTimeout_defuser"]("[native code]");
+    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
 }
 if (a.domCmp(["dwrean.net"])) {
     ubo["bab_defuser"]();
-}
-if (a.domCmp(["sport1.de"])) {
-    ubo["abort_on_property_read"]("SOI_LPY");
 }
 if (a.domCmp(["kabeleins.de","prosieben.de","prosiebenmaxx.de","ran.de","sat1.de","sat1gold.de","sixx.de"])) {
     ubo["abort_on_property_write"]("SOI_LPY");
@@ -5911,9 +6584,6 @@ if (a.domCmp(["vidzi.tv"])) {
 }
 if (a.domCmp(["exrapidleech.info"])) {
     ubo["bab_defuser"]();
-}
-if (a.domCmp(["watchtvserieslive.org"])) {
-    ubo["nowebrtc"]();
 }
 if (a.domCmp(["anilinkz.io"])) {
     ubo["abort_on_property_write"]("_$_1923");
@@ -5945,17 +6615,32 @@ if (a.domCmp(["wstream.video"])) {
 if (a.domCmp(["9cartoon.me","animeflv.me"])) {
     ubo["setTimeout_defuser"]("#player","5000");
 }
-if (a.domCmp(["androidpolice.com","beliefnet.com","businessinsider.com","champions.co","comicbook.com","eurogamer.net","grubstreet.com","hotair.com","moviepilot.com","nowloading.co","parkers.co.uk","patheos.com","popculture.com","townhall.com","tvtropes.org","twitchy.com","wwg.com"])) {
+if (a.domCmp(["androidpolice.com","beliefnet.com","businessinsider.com","champions.co","comicbook.com","eurogamer.net","grubstreet.com","hotair.com","missoulian.com","moviepilot.com","nowloading.co","parkers.co.uk","patheos.com","popculture.com","thestudentroom.co.uk","townhall.com","trendblog.net","tvtropes.org","twitchy.com","watoday.com.au","wwg.com"])) {
     ubo["abort_on_property_read"]("stop");
 }
 if (a.domCmp(["tvad.me"])) {
     ubo["abort_on_property_read"]("app.adblockPop");
 }
-if (a.domCmp(["thevideo.me"])) {
+if (a.domCmp(["tvad.me","thevideo.io","thevideo.me","thevideo.us"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["thevideo.io","thevideo.us"])) {
+    ubo["abort_on_property_read"]("popHandler.init");
+}
+if (a.domCmp(["thevideo.io","thevideo.us"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["thevideo.me","thevideo.us"])) {
+    ubo["abort_current_inline_script"]("app.config.adblock_domain");
+}
+if (a.domCmp(["thevideo.me","thevideo.us"])) {
     ubo["abort_on_property_read"]("app.main.adblock");
 }
-if (a.domCmp(["thevideo.me"])) {
+if (a.domCmp(["thevideo.me","thevideo.us"])) {
     ubo["abort_on_property_read"]("MarketGidJSON");
+}
+if (a.domCmp(["thevideo.me","thevideo.us"])) {
+    ubo["addEventListener_defuser"]("click","void");
 }
 if (a.domCmp(["bq.si"])) {
     ubo["window_name_defuser"]();
@@ -5967,10 +6652,16 @@ if (a.domCmp(["randomarchive.com"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["rule34hentai.net"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["rule34hentai.net"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["cineblog.it"])) {
     ubo["noeval"]();
+}
+if (a.domCmp(["extreme-down.pro"])) {
+    ubo["abort_current_inline_script"]("firstLink","newLink");
 }
 if (a.domCmp(["vooxe.com"])) {
     ubo["abort_on_property_read"]("canRunAds");
@@ -5993,10 +6684,10 @@ if (a.domCmp(["idnes.cz"])) {
 if (a.domCmp(["iwatchonline.cr","iwatchonline.eu"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["xclusivejams.xyz"])) {
+if (a.domCmp(["xclusivejams2.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["xclusivejams.xyz"])) {
+if (a.domCmp(["xclusivejams2.com"])) {
     ubo["abort_on_property_write"]("_pop");
 }
 if (a.domCmp(["pornovore.fr"])) {
@@ -6033,9 +6724,12 @@ if (a.domCmp(["receive-sms-online.info"])) {
     ubo["abort_on_property_read"]("ga.length");
 }
 if (a.domCmp(["vidlox.tv"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["vidlox.tv"])) {
     ubo["nowebrtc"]();
 }
-if (a.domCmp(["daclips.com","imgchili.net","nextorrent.pw","nowvideo.sx","vidlox.tv","watchers.to","wholecloud.net"])) {
+if (a.domCmp(["daclips.com","imgchili.net","movpod.in","nextorrent.pw","nowvideo.sx","vidlox.tv","watchers.to","wholecloud.net"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["pcgames-download.com"])) {
@@ -6062,11 +6756,20 @@ if (a.domCmp(["rapidvideo.com"])) {
 if (a.domCmp(["rapidvideo.com"])) {
     ubo["abort_on_property_write"]("executed");
 }
+if (a.domCmp(["rapidvideo.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["rapidvideo.com"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
 if (a.domCmp(["thepiratebay.*"])) {
     ubo["abort_on_property_read"]("_wm");
 }
 if (a.domCmp(["wallpapershome.com","wallpapersite.com"])) {
     ubo["abort_on_property_read"]("canRunAds");
+}
+if (a.domCmp(["supforums.com"])) {
+    ubo["abort_on_property_read"]("adsLoaded");
 }
 if (a.domCmp(["primewire.*"])) {
     ubo["addEventListener_defuser"]("mousedown");
@@ -6080,11 +6783,26 @@ if (a.domCmp(["championat.com","gazeta.ru","lenta.ru","rambler.ru"])) {
 if (a.domCmp(["periscopel.com"])) {
     ubo["bab_defuser"]();
 }
+if (a.domCmp(["fux.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["fux.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["speedvid.net"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
 if (a.domCmp(["speedvid.net"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["streamplay.*"])) {
     ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["streamplay.*"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["streamplay.*"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["tomsguide.com"])) {
     ubo["abort_on_property_write"]("tmnramp");
@@ -6094,6 +6812,9 @@ if (a.domCmp(["daily.bhaskar.com"])) {
 }
 if (a.domCmp(["yourbittorrent.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["torrentfunk.com"])) {
+    ubo["abort_on_property_write"]("bidrev");
 }
 if (a.domCmp(["torrentfunk.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
@@ -6110,9 +6831,6 @@ if (a.domCmp(["torrentz2.*"])) {
 if (a.domCmp(["calciomercato.com"])) {
     ubo["fuckadblock_js_3_2_0"]();
 }
-if (a.domCmp(["pahe.in"])) {
-    ubo["popads_net"]();
-}
 if (a.domCmp(["informer.com"])) {
     ubo["abort_on_property_read"]("adblock_added");
 }
@@ -6128,11 +6846,8 @@ if (a.domCmp(["10-download.com"])) {
 if (a.domCmp(["torlock.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["bournemouthecho.co.uk","dailyecho.co.uk","heraldscotland.com","theargus.co.uk"])) {
+if (a.domCmp(["bournemouthecho.co.uk","dailyecho.co.uk","eveningtimes.co.uk","heraldscotland.com","lancashiretelegraph.co.uk","oxfordmail.co.uk","theargus.co.uk","thetelegraphandargus.co.uk","yorkpress.co.uk"])) {
     ubo["abort_on_property_write"]("_sp_");
-}
-if (a.domCmp(["sockshare.net"])) {
-    ubo["abort_on_property_write"]("Q8w56");
 }
 if (a.domCmp(["bittorrent.am"])) {
     ubo["bab_defuser"]();
@@ -6148,9 +6863,6 @@ if (a.domCmp(["9to5google.com","9to5mac.com","9to5toys.com","electrek.co"])) {
 }
 if (a.domCmp(["alluc.ee"])) {
     ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
-}
-if (a.domCmp(["9anime.to"])) {
-    ubo["abort_on_property_write"]("o4j1W");
 }
 if (a.domCmp(["dropapk.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
@@ -6170,14 +6882,14 @@ if (a.domCmp(["fas.li"])) {
 if (a.domCmp(["whosampled.com"])) {
     ubo["setTimeout_defuser"]("_detectAdBlocker","5000");
 }
-if (a.domCmp(["animes-mangas-ddl.net","it-times.de","linkdrop.net","wowebook.org"])) {
+if (a.domCmp(["animes-mangas-ddl.net","dslr-forum.de","it-times.de","linkdrop.net","wowebook.org"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["meta-chart.com"])) {
-    ubo["abort_current_inline_script"]("Promise");
+if (a.domCmp(["gamespot.com"])) {
+    ubo["abort_current_inline_script"]("$","sp.blocking");
 }
-if (a.domCmp(["imdb.com"])) {
-    ubo["abort_current_inline_script"]("doWithAds");
+if (a.domCmp(["meta-calculator.com","meta-chart.com"])) {
+    ubo["abort_current_inline_script"]("Promise");
 }
 if (a.domCmp(["hdfilme.tv"])) {
     ubo["abort_on_property_read"]("x3B5W");
@@ -6194,9 +6906,6 @@ if (a.domCmp(["newser.com"])) {
 if (a.domCmp(["newser.com"])) {
     ubo["abort_on_property_read"]("oio");
 }
-if (a.domCmp(["colourlovers.com","genfb.com","kshowonline.com","tbc.tetrisfb.com"])) {
-    ubo["abort_current_inline_script"]("btoa","upManager");
-}
 if (a.domCmp(["knowyourmeme.com"])) {
     ubo["abort_on_property_write"]("upManager");
 }
@@ -6206,8 +6915,8 @@ if (a.domCmp(["spiegel.de"])) {
 if (a.domCmp(["cloudwebcopy.com"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["thevideo.me"])) {
-    ubo["addEventListener_defuser"]("click","void");
+if (a.domCmp(["9anime.*"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["serienstream.to"])) {
     ubo["abort_current_inline_script"]("document.readyState","/(?:\\x[0-9a-f]{2}){20}/");
@@ -6220,6 +6929,12 @@ if (a.domCmp(["watchcartoonsonline.eu"])) {
 }
 if (a.domCmp(["web2.0calc.com"])) {
     ubo["abort_on_property_read"]("doads");
+}
+if (a.domCmp(["torrentdownloads.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["torrentexx.com"])) {
+    ubo["abort_on_property_write"]("_pop");
 }
 if (a.domCmp(["streamlive.to"])) {
     ubo["abort_current_inline_script"]("parseInt","charAt");
@@ -6237,13 +6952,10 @@ if (a.domCmp(["imgsrc.ru"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["iptvbin.com"])) {
-    ubo["abort_current_inline_script"]("document.getElementById","DOMNodeRemoved");
+    ubo["abort_on_property_write"]("Math.floor");
 }
 if (a.domCmp(["allboxing.ru"])) {
     ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
-}
-if (a.domCmp(["video-download.online"])) {
-    ubo["abort_on_property_write"]("UAParser");
 }
 if (a.domCmp(["blackspigot.com"])) {
     ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
@@ -6269,35 +6981,596 @@ if (a.domCmp(["hentai2read.com"])) {
 if (a.domCmp(["zippyshare.com"])) {
     ubo["abort_current_inline_script"]("String.fromCharCode","decodeURIComponent");
 }
-if (a.domCmp(["kimcartoon.me"])) {
+if (a.domCmp(["kimcartoon.me","watchcartoononline.com"])) {
     ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
 }
-if (a.domCmp(["kimcartoon.me"])) {
+if (a.domCmp(["kimcartoon.me","watchcartoononline.com"])) {
     ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
 }
-if (a.domCmp(["dailyuploads.net"])) {
-    ubo["abort_current_inline_script"]("adbClick");
-}
-if (a.domCmp(["dailyuploads.net"])) {
+if (a.domCmp(["kimcartoon.me"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
-if (a.domCmp(["arenabg.ch","yify-movies.to"])) {
+if (a.domCmp(["dailyuploads.*"])) {
+    ubo["abort_current_inline_script"]("document.getElementById","adblockinfo");
+}
+if (a.domCmp(["dailyuploads.*"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["dailyuploads.*"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["arenabg.ch","yifymovies.to"])) {
     ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
 }
-if (a.domCmp(["ft.com"])) {
-    ubo["abort_on_property_read"]("_sp_._networkListenerData");
+if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+    ubo["abort_on_property_read"]("L4UU.R3");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me"])) {
+if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","vipleague.*"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me"])) {
+if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
     ubo["nowebrtc"]();
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me"])) {
+if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
     ubo["popads_net"]();
+}
+if (a.domCmp(["mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co"])) {
+    ubo["abort_current_inline_script"]("$","uBlock");
+}
+if (a.domCmp(["vipleague.*"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["livecamtv.me","realcam.me","seelive.me"])) {
+    ubo["abort_on_property_write"]("_pop");
 }
 if (a.domCmp(["imgking.co","imgprime.com","newpornup.com"])) {
     ubo["abort_on_property_read"]("document.createElement");
+}
+if (a.domCmp(["cs-fundamentals.com"])) {
+    ubo["setTimeout_defuser"]("adBlockerAlert","7000");
+}
+if (a.domCmp(["watchparksandrecreation.net"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["embedtvseries.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["divxatope1.com","newpct1.com","torrentlocura.com","torrentrapid.com","tumejortorrent.com"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["tumejortorrent.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["divxatope1.com","newpct1.com","torrentlocura.com","torrentrapid.com","tumejortorrent.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["divxatope1.com","newpct1.com"])) {
+    ubo["abort_on_property_read"]("R1PPPP.J");
+}
+if (a.domCmp(["newpct1.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["divxatope1.com","newpct1.com","torrentlocura.com","torrentrapid.com","tumejortorrent.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["xmoviesforyou.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["xmoviesforyou.com"])) {
+    ubo["abort_on_property_write"]("__htapop");
+}
+if (a.domCmp(["xmoviesforyou.com"])) {
+    ubo["abort_on_property_write"]("miner");
+}
+if (a.domCmp(["streamcherry.com"])) {
+    ubo["abort_on_property_write"]("_0xd959");
+}
+if (a.domCmp(["streamcherry.com"])) {
+    ubo["abort_on_property_write"]("JiLk");
+}
+if (a.domCmp(["streamcherry.com"])) {
+    ubo["abort_on_property_write"]("N5ii.M4");
+}
+if (a.domCmp(["receive-a-sms.com"])) {
+    ubo["abort_current_inline_script"]("$","showads.js");
+}
+if (a.domCmp(["kissmanga.com"])) {
+    ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
+}
+if (a.domCmp(["smps.us","steamid.eu"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["kisshentai.net"])) {
+    ubo["abort_on_property_read"]("adblock");
+}
+if (a.domCmp(["kisshentai.net"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["trendnew.ml"])) {
+    ubo["abort_current_inline_script"]("addEventListener","DivTopAd");
+}
+if (a.domCmp(["sockshare.net"])) {
+    ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
+}
+if (a.domCmp(["sockshare.net"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["sockshare.net"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["downloadhub.ws","sceper.ws"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["sceper.ws"])) {
+    ubo["abort_on_property_write"]("bidrev");
+}
+if (a.domCmp(["ikshow.net"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["wunderground.com"])) {
+    ubo["abort_on_property_write"]("_sp_");
+}
+if (a.domCmp(["putlocker.*"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["putlocker.*"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["putlocker.io"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["putlockerhd.is"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["putlockers.*"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["10fastfingers.com"])) {
+    ubo["abort_current_inline_script"]("document.createElement","decodeURIComponent");
+}
+if (a.domCmp(["ultrahorny.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["bibme.org","citationmachine.net"])) {
+    ubo["abort_on_property_read"]("canRunAds");
+}
+if (a.domCmp(["bibme.org","citationmachine.net"])) {
+    ubo["abort_on_property_read"]("SBMGlobal.run.gramCallback");
+}
+if (a.domCmp(["hdrezka.ag"])) {
+    ubo["abort_current_inline_script"]("parseInt","decodeURIComponent");
+}
+if (a.domCmp(["apkmirror.com"])) {
+    ubo["abort_on_property_write"]("ranTwice");
+}
+if (a.domCmp(["lavamovies.com"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["lavamovies.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["lavamovies.se"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["lavacdn.xyz"])) {
+    ubo["abort_on_property_write"]("F3Z9");
+}
+if (a.domCmp(["onitube.com"])) {
+    ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
+}
+if (a.domCmp(["radio.at","radio.de","radio.dk","radio.es","radio.fr","radio.it","radio.net","radio.pl","radio.pt","radio.se"])) {
+    ubo["uabinject_defuser"]();
+}
+if (a.domCmp(["mmorpg.com"])) {
+    ubo["abort_current_inline_script"]("btoa","upManager");
+}
+if (a.domCmp(["cookiesflix.com"])) {
+    ubo["addEventListener_defuser"]("load","adsense");
+}
+if (a.domCmp(["postimg.org"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["101greatgoals.com","allthetests.com","ancient-origins.net","biology-online.org","calcalist.co.il","convert-me.com","diffen.com","eurweb.com","globes.co.il","grammarist.com","jerusalemonline.com","mako.co.il","nysun.com","reshet.tv","roadracerunner.com","textsfromlastnight.com","trifind.com","walla.co.il","x17online.com","yad2.co.il","ynet.co.il","yocore.com"])) {
+    ubo["abort_on_property_write"]("upManager");
+}
+if (a.domCmp(["allpar.com","antonymsfor.com","bobshideout.com","colourlovers.com","daily-stuff.com","dietlast.com","downsub.com","emathhelp.net","genfb.com","getinmybelly.com","grammar.net","igvnews.co.uk","jspuzzles.com","kshowonline.com","nnettle.com","smartchoiceshealthyliving.com","spellcheck.net","spellweb.com","sportspickle.com","tbc.tetrisfb.com","techowiz.com","tetrisfriends.com","the4thofficial.net","thesaurus.net","tworeddots.com","usherald.com","virtualjerusalem.com"])) {
+    ubo["abort_current_inline_script"]("btoa","upManager");
+}
+if (a.domCmp(["abandonedspaces.com","blacklistednews.com","broadwayworld.com","clashdaily.com","daclips.in","gorillavid.in","movpod.in","netzwelt.de","parentztalk.com","powerofpositivity.com","spiele-umsonst.de","talkwithstranger.com","toptenz.net","vidmax.com","worldation.com"])) {
+    ubo["abort_current_inline_script"]("atob","TextDecoder");
+}
+if (a.domCmp(["footyroom.com","izzygames.com","mathwarehouse.com","meta-calculator.com","meta-chart.com","netzwelt.de","pocketnow.com","spiele-umsonst.de"])) {
+    ubo["abort_on_property_read"]("TextDecoder");
+}
+if (a.domCmp(["readcomics.website"])) {
+    ubo["abort_on_property_write"]("decodeURIComponent");
+}
+if (a.domCmp(["sankakucomplex.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["pasteca.sh"])) {
+    ubo["abort_on_property_read"]("blockAdBlock");
+}
+if (a.domCmp(["pasteca.sh"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["pasteca.sh"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["wired.com"])) {
+    ubo["setTimeout_defuser"]("Bait");
+}
+if (a.domCmp(["androidrepublic.org"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["biqle.ru"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["onhax.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["aargauerzeitung.ch"])) {
+    ubo["setTimeout_defuser"]("[native code]","3000");
+}
+if (a.domCmp(["mp4upload.com"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["mp4upload.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["userupload.net"])) {
+    ubo["abort_current_inline_script"]("document.getElementById","adblockinfo");
+}
+if (a.domCmp(["userupload.net"])) {
+    ubo["abort_current_inline_script"]("parseInt","Adblock");
+}
+if (a.domCmp(["at.wetter.com"])) {
+    ubo["abort_on_property_write"]("openLity");
+}
+if (a.domCmp(["dreamfilmhd.info"])) {
+    ubo["abort_on_property_write"]("tnAdditionalParams");
+}
+if (a.domCmp(["vkpass.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["streaming-foot.club"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["streaming-foot.club"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["streaming-foot.club"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["hdmyt.info","playerhd2.pw","streaming-foot.club"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["otakustream.tv"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["bmovies.to"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["bmovies.is","bmovies.to"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["sport.ua"])) {
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["bookfi.net"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["liens-telechargement.com"])) {
+    ubo["abort_current_inline_script"]("jQuery","desactiver");
+}
+if (a.domCmp(["liens-telechargement.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["liens-telechargement.com"])) {
+    ubo["setTimeout_defuser"]("getElementBy");
+}
+if (a.domCmp(["liens-telechargement.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["motorradonline.de","zentralplus.ch"])) {
+    ubo["fuckadblock_js_3_2_0"]();
+}
+if (a.domCmp(["business-standard.com"])) {
+    ubo["abort_current_inline_script"]("$","blockThisUrl");
+}
+if (a.domCmp(["powerthesaurus.org"])) {
+    ubo["abort_on_property_write"]("ad_abblock_ad");
+}
+if (a.domCmp(["myegy.tv"])) {
+    ubo["abort_current_inline_script"]("A","popunders");
+}
+if (a.domCmp(["myegy.tv"])) {
+    ubo["abort_on_property_write"]("H7WWWW");
+}
+if (a.domCmp(["animepahe.com","clicknupload.org","cloudy.ec","fileflares.com","mkvcage.com","newmusic.trade","nodefiles.com","pahe.in","owndrives.com","psarips.com","smallencode.com","twoddl.co","vidabc.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["brasil247.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["sendit.cloud"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["freebytecoin.cf"])) {
+    ubo["abort_current_inline_script"]("miner","isAdBlockActive");
+}
+if (a.domCmp(["4-traders.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","AdBlocker");
+}
+if (a.domCmp(["zonebourse.com"])) {
+    ubo["abort_current_inline_script"]("$","AdBlocker");
+}
+if (a.domCmp(["badcomics.it","badgames.it","badtaste.it","badtv.it"])) {
+    ubo["abort_current_inline_script"]("jQuery","adbChecked");
+}
+if (a.domCmp(["aofsoru.com"])) {
+    ubo["abort_current_inline_script"]("addEventListener","displayMessage");
+}
+if (a.domCmp(["yts.am"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["filebebo.com"])) {
+    ubo["abort_current_inline_script"]("keys","adblockinfo");
+}
+if (a.domCmp(["sarugbymag.co.za"])) {
+    ubo["abort_on_property_read"]("showAds");
+}
+if (a.domCmp(["imgadult.com","imgdrive.net","imgtaxi.com","imgwallet.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["imgadult.com","imgdrive.net","imgtaxi.com","imgwallet.com"])) {
+    ubo["abort_on_property_write"]("cticodes");
+}
+if (a.domCmp(["imgadult.com","imgdrive.net","imgtaxi.com","imgwallet.com"])) {
+    ubo["abort_on_property_write"]("imgadbpops");
+}
+if (a.domCmp(["funcinema.ga"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["onlinevideoconverter.com"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["porntrex.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["porntrex.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["yourporn.sexy"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["yourporn.sexy"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["magesy.be"])) {
+    ubo["abort_current_inline_script"]("adBlockDetected");
+}
+if (a.domCmp(["tohax.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["linx.cloud"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["linx.cloud"])) {
+    ubo["abort_on_property_read"]("document.createElement");
+}
+if (a.domCmp(["anitoonstv.com"])) {
+    ubo["abort_on_property_write"]("cicklow_XcVCCW");
+}
+if (a.domCmp(["hqq.*"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["filescdn.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["palimas.tv"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["palimas.tv"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["mangahosts.com"])) {
+    ubo["abort_current_inline_script"]("eval","AdBlock");
+}
+if (a.domCmp(["mangahosts.com"])) {
+    ubo["setTimeout_defuser"]("testDisplay","3000");
+}
+if (a.domCmp(["journalstar.com"])) {
+    ubo["abort_current_inline_script"]("document.createElement","m80fg");
+}
+if (a.domCmp(["wrestlingtalk.org"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["adbull.me","adyou.me"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["adyou.me","srt.am"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["srt.am"])) {
+    ubo["abort_on_property_read"]("RunAds");
+}
+if (a.domCmp(["srt.am"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["srt.am"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adf.ly","atomcurve.com","atominik.com","auto-login-xxx.com","ay.gy","babblecase.com","bitigee.com","bluenik.com","casualient.com","coginator.com","cogismith.com","dataurbia.com","download.replaymod.com","gamecopyworld.click","go.awanpc.me","j.gs","kaitect.com","kializer.com","kibuilder.com","kimechanic.com","microify.com","mmoity.com","picocurl.com","pintient.com","q.gs","quainator.com","quamiller.com","queuecosm.bid","riffhold.com","skamason.com","sostieni.ilwebmaster21.com","tinyical.com","tinyium.com","twineer.com","viahold.com","vializer.com","viwright.com","yabuilder.com","yamechanic.com","yoalizer.com","yobuilder.com","yoineer.com"])) {
+    ubo["adfly_defuser"]();
+}
+if (a.domCmp(["igram.im"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["arconaitv.us"])) {
+    ubo["abort_on_property_read"]("ab_detection");
+}
+if (a.domCmp(["alotporn.com","bobs-tube.com","dreamamateurs.com","eroxia.com","porndoe.com","pornozot.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["alotporn.com"])) {
+    ubo["abort_on_property_write"]("__htapop");
+}
+if (a.domCmp(["dreamamateurs.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["sheshaft.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["sheshaft.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["hdporn.net"])) {
+    ubo["abort_on_property_read"]("exoOpts");
+}
+if (a.domCmp(["watchmyexgf.net"])) {
+    ubo["abort_on_property_read"]("prPuShown");
+}
+if (a.domCmp(["hclips.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["clik.pw"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["urle.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["urle.co"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adbilty.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["l2s.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adshort.im"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adshort.im"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adshort.im"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["up-4ever.com"])) {
+    ubo["abort_on_property_read"]("adsDisabled");
+}
+if (a.domCmp(["keezmovies.com"])) {
+    ubo["abort_on_property_write"]("ppAb");
+}
+if (a.domCmp(["keezmovies.com"])) {
+    ubo["abort_on_property_write"]("raSettings");
+}
+if (a.domCmp(["tube8.com"])) {
+    ubo["abort_on_property_write"]("AdDelivery");
+}
+if (a.domCmp(["tube8.com"])) {
+    ubo["abort_on_property_write"]("IS_ADBLOCK");
+}
+if (a.domCmp(["tube8.com"])) {
+    ubo["abort_on_property_write"]("loadAdFromHeaderTab");
+}
+if (a.domCmp(["tv-porinternet.com"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["tv-porinternet.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["tv-porinternet.com"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["tv-porinternet.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["tmearn.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["foxurl.net"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["foxurl.net"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["3rabshort.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cutw.in"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cutw.in"])) {
+    ubo["abort_on_property_write"]("adss");
+}
+if (a.domCmp(["cutw.in"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["hdpornt.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["simply-hentai.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["simply-hentai.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["daporn.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["tgpdog.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["4tube.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["4tube.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["mp3cut.net"])) {
+    ubo["abort_on_property_write"]("ab_detected");
+}
+if (a.domCmp(["mofosex.com"])) {
+    ubo["abort_on_property_write"]("ppAb");
+}
+if (a.domCmp(["mofosex.com"])) {
+    ubo["abort_on_property_write"]("raSettings");
+}
+if (a.domCmp(["pornerbros.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["pornerbros.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["thaivisa.com"])) {
+    ubo["abort_current_inline_script"]("$","adBlockEnabled");
+}
+if (a.domCmp(["hdpass.net"])) {
+    ubo["disable_newtab_links"]();
+}
+if (a.domCmp(["beeg.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["pichaloca.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["pornodoido.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["kinox.*"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["kinox.*"])) {
+    ubo["abort_current_inline_script"]("adcashMacros");
+}
+if (a.domCmp(["rapidvideo.com"])) {
+    ubo["abort_on_property_write"]("decodeURIComponent");
 }
 if (a.domCmp(["pythonjobshq.com"])) {
     ubo["abort_on_property_read"]("Keen");
@@ -6311,7 +7584,10 @@ if (a.domCmp(["sectorsatoshi-negro.website","sectorsatoshi-rosa.website","sector
 if (a.domCmp(["blockadblock.com","futbolchile.net","freeomovie.com","appdrop.net","skmedix.pl","yalujailbreak.net","cloudwebcopy.com","milaulas.com","tout-bon.com","sznpaste.net","linkdrop.net","themeslide.com"])) {
     ubo["bab_defuser"]();
 }
-if (a.domCmp(["android-zone.ws","cmacapps.com","l2network.eu","animes-mangas-ddl.net","fuckingsession.com","klartext-ne.de","forumcoin.win","androidemulator.in","forumcoin.win"])) {
+if (a.domCmp(["android-zone.ws","cmacapps.com","l2network.eu","animes-mangas-ddl.net","fuckingsession.com","klartext-ne.de","forumcoin.win","androidemulator.in","forumcoin.win","arenavision.ru","gulshankumar.net"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["arenavision.in","arenavision.us","discudemy.com","practicetestgeeks.com","iptvbin.com","imojado.org","xossip.com","adyou.me","funcinema.ga","ddlfr.pw","freecoursesonline.us"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["themarker.com","nachrichten.at"])) {
@@ -6332,9 +7608,6 @@ if (a.domCmp(["ps4news.com"])) {
 if (a.domCmp(["finalservers.net"])) {
     ubo["abort_on_property_read"]("_gunggo");
 }
-if (a.domCmp(["linkneverdie.com"])) {
-    ubo["setTimeout_defuser"]("#wrapper");
-}
 if (a.domCmp(["ally.sh","al.ly"])) {
     ubo["popads_net"]();
 }
@@ -6344,7 +7617,7 @@ if (a.domCmp(["filechoco.net","keezmovies.com","raptu.com","afreesms.com"])) {
 if (a.domCmp(["bracknellnews.co.uk"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["pwn.pl","vendiscuss.net"])) {
+if (a.domCmp(["pwn.pl","vendiscuss.net","rufootballtv.org"])) {
     ubo["abort_on_property_read"]("adblock");
 }
 if (a.domCmp(["animeid.io","jkanime.co","gogoanime.ch","chiaanime.co","animeflv.co"])) {
@@ -6353,7 +7626,7 @@ if (a.domCmp(["animeid.io","jkanime.co","gogoanime.ch","chiaanime.co","animeflv.
 if (a.domCmp(["savetodrive.net"])) {
     ubo["setTimeout_defuser"]("ad");
 }
-if (a.domCmp(["rarbgmirror.com","swfchan.net","swfchan.com","zippyshare.com"])) {
+if (a.domCmp(["rarbgmirror.com","swfchan.net","swfchan.com","zippyshare.com","leech.ae","vizer.tv"])) {
     ubo["abort_on_property_read"]("open");
 }
 if (a.domCmp(["wordsense.eu"])) {
@@ -6398,9 +7671,6 @@ if (a.domCmp(["dailyuploads.net"])) {
 if (a.domCmp(["sznpaste.net"])) {
     ubo["abort_on_property_write"]("_pop");
 }
-if (a.domCmp(["leech.ae"])) {
-    ubo["abort_on_property_read"]("open");
-}
 if (a.domCmp(["wiwo.de","handelsblatt.com"])) {
     ubo["abort_on_property_read"]("AdController");
 }
@@ -6437,7 +7707,10 @@ if (a.domCmp(["insurancenewsnet.com","advisornews.com"])) {
 if (a.domCmp(["zeperfs.com"])) {
     ubo["noeval_if"]("AdBlock");
 }
-if (a.domCmp(["mashable.com"])) {
+if (a.domCmp(["userupload.net","firstonetv.net"])) {
+    ubo["noeval_if"]("Adblock");
+}
+if (a.domCmp(["mashable.com","niezalezna.pl"])) {
     ubo["noeval_if"]("adblock");
 }
 if (a.domCmp(["iptvultra.com"])) {
@@ -6446,23 +7719,29 @@ if (a.domCmp(["iptvultra.com"])) {
 if (a.domCmp(["receivesmsonline.net"])) {
     ubo["abort_current_inline_script"]("elms");
 }
-if (a.domCmp(["gulmeklazim.com"])) {
-    ubo["setTimeout_defuser"]("adblock");
-}
 if (a.domCmp(["peugeot-metropolis.de"])) {
     ubo["abort_current_inline_script"]("$","#gandalfads");
 }
 if (a.domCmp(["androidsage.com"])) {
     ubo["abort_on_property_read"]("blckad");
 }
-if (a.domCmp(["stern.de"])) {
+if (a.domCmp(["stern.de","bento.de","pcgamer.com"])) {
     ubo["abort_on_property_read"]("_sp_.mms");
 }
 if (a.domCmp(["cwseed.com"])) {
     ubo["abort_on_property_read"]("wc.url");
 }
-if (a.domCmp(["prevention.com"])) {
+if (a.domCmp(["prevention.com","avoiderrors.net","gulmeklazim.com"])) {
     ubo["setTimeout_defuser"]("adblock");
+}
+if (a.domCmp(["getfree-bitcoin.com"])) {
+    ubo["setTimeout_defuser"]("Adblock");
+}
+if (a.domCmp(["estrenos10.com"])) {
+    ubo["setTimeout_defuser"]("AdBlock");
+}
+if (a.domCmp(["programinadresi.com"])) {
+    ubo["setTimeout_defuser"]("adBlock");
 }
 if (a.domCmp(["kshowes.net"])) {
     ubo["abort_current_inline_script"]("setTimeout","Im.offsetHeight<=0");
@@ -6476,8 +7755,89 @@ if (a.domCmp(["imleagues.com"])) {
 if (a.domCmp(["digitalinformationworld.com"])) {
     ubo["abort_on_property_read"]("adsbygoogle");
 }
-if (a.domCmp(["flashx.tv"])) {
+if (a.domCmp(["mangashost.net","mangashost.com"])) {
+    ubo["setTimeout_defuser"]("ads160left");
+}
+if (a.domCmp(["attorz.com"])) {
+    ubo["abort_on_property_write"]("isAdBlocked");
+}
+if (a.domCmp(["resourcepacks24.de"])) {
+    ubo["setTimeout_defuser"]("google_jobrunner");
+}
+if (a.domCmp(["literaturcafe.de"])) {
+    ubo["setTimeout_defuser"]("blockStatus");
+}
+if (a.domCmp(["maisgasolina.com"])) {
+    ubo["setTimeout_defuser"]("window.google_jobrunner");
+}
+if (a.domCmp(["alemdarleech.com"])) {
+    ubo["abort_on_property_read"]("koddostu_com_adblock_yok");
+}
+if (a.domCmp(["oload.info"])) {
+    ubo["noeval_if"]("stopOver");
+}
+if (a.domCmp(["crash-aerien.news"])) {
+    ubo["abort_on_property_read"]("noPub");
+}
+if (a.domCmp(["pornhub.com"])) {
+    ubo["abort_on_property_read"]("userABMessage");
+}
+if (a.domCmp(["slader.com"])) {
+    ubo["abort_on_property_read"]("sladerAbm");
+}
+if (a.domCmp(["jacquieetmicheltv.net"])) {
+    ubo["abort_on_property_read"]("is_adblocked");
+}
+if (a.domCmp(["livesport.ws"])) {
+    ubo["abort_on_property_read"]("document.avp_ready");
+}
+if (a.domCmp(["backin.net"])) {
+    ubo["setTimeout_defuser"]("/myadz|adblock/");
+}
+if (a.domCmp(["mejorescanales.com"])) {
+    ubo["abort_on_property_read"]("jQuery.adblock");
+}
+if (a.domCmp(["gr8forte.org"])) {
+    ubo["abort_on_property_read"]("clickNS");
+}
+if (a.domCmp(["flashx.tv","flashx.to"])) {
     ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["programminginsider.com"])) {
+    ubo["addEventListener_defuser"]("load","ad-blocker");
+}
+if (a.domCmp(["locopelis.com"])) {
+    ubo["abort_on_property_write"]("adbClick");
+}
+if (a.domCmp(["nbc.com"])) {
+    ubo["abort_on_property_read"]("mps._ab");
+}
+if (a.domCmp(["eurogamer.de"])) {
+    ubo["abort_on_property_read"]("_sp_.msg.displayMessage");
+}
+if (a.domCmp(["onvasortir.com"])) {
+    ubo["abort_on_property_read"]("adBlockDetected");
+}
+if (a.domCmp(["kryminalnapolska.pl"])) {
+    ubo["abort_on_property_read"]("ai_adb_detected");
+}
+if (a.domCmp(["nakednepaligirl.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["doublemesh.com"])) {
+    ubo["setTimeout_defuser"]("ads");
+}
+if (a.domCmp(["crockolinks.com"])) {
+    ubo["addEventListener_defuser"]("mousedown");
+}
+if (a.domCmp(["fakeporn.tv"])) {
+    ubo["setTimeout_defuser"]("innerText");
+}
+if (a.domCmp(["fakeporn.tv"])) {
+    ubo["abort_on_property_write"]("prPuShown");
+}
+if (a.domCmp(["bigbtc.win"])) {
+    ubo["abort_on_property_read"]("ad_block_test");
 }
 if (a.domCmp(["eurogamer.net"])) {
     ubo["abort_on_property_read"]("stop");
