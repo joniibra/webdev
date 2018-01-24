@@ -1,4 +1,4 @@
-[uBlock Origin 1.14.8]
+[uBlock Origin 1.15.0]
 ! Title: Joni Ibra ® Custom Filter for uBlock Origin
 ! Author: joniibra
 ! Version: 1.000
@@ -2777,3 +2777,66 @@ filehippo.com##.right-footer-menu.footer-menu
 masnico.website/*
 195.154.52.94###close-fixedban
 195.154.52.94###close-teaser
+github.com/*/heroes/*.svg
+github.com/*/modules/site/*.svg
+github.com/images/*/integrators/*.png
+github.com/images/*/customers/*.png
+github.com/*/modules/*/logos/*.png
+deskgram.org##.ad.post-box
+deskgram.org##.ads.abox
+lapor.go.id##.list-buttons
+ksp.go.id###crestashareiconincontent
+forumkristen.com###smflogo2
+forumkristen.com##.fb_iframe_widget
+forumkristen.com##.fb-like
+emsc-csem.org/service/application/img/*.png
+emsc-csem.org/service/application/img/*.jpg
+emsc-csem.org/*/slides/*.jpg
+emsc-csem.org###share-buttons
+google.org##.share
+1f76e29aaec7bfff53e.com/*
+deskgram.org##.share-icons
+getpocket.com##.action_share
+kitabisa.com/*/image__main-banner.*
+kitabisa.com##[class="slide-img"]
+kitabisa.com##[class="mobile-hide zakat-banner__main-banner"]
+kitabisa.com##[class="desktop-hide zakat-banner__main-banner"]
+static6.com/*/new-login-cover-c230758c818fa879a1ff204043d71d9b58f06f956a3b553ccd0e2b37ae689ad3.jpg
+static6.com/*/assets/application_add_on-91336f4b2579f6b953b1a0c856d791fd43ed7191b4948fd199bbb9aa9b30b029.js
+soompi.io##[id="background_video"]
+soompi.io/*/slack/*.webm
+soompi.io/*/slack/*.mp4
+soompi.io/*/soompislack.webm
+soompi.io/*/soompislack.mp4
+soompi.io/*/soompislack.png
+vidio.com##.social-share-toggle
+vidio.com##.user-header__button-share
+twitch.tv/*/about.mp4
+twitch.tv/*/about0.mp4
+twitch.tv/*/about1.mp4
+twitch.tv/*/about2.mp4
+twitch.tv/*/about3.mp4
+twitch.tv/*/about4.mp4
+linkedin.com##.pv-app-promo-section
+rakuten.co.jp/*
+viki.com##[class="rakuten-banner-auto-resize"]
+viki.com##[class="page-footer-rakuten-banner hide-on-mobile"]
+viki.com##[class="page-footer-rakuten-partners-table"]
+viki.com##[class="page-footer-section page-footer-rakuten-partners"]
+viki.com##.mod-advertisement-label
+viki.com##.mod-advertisement-mod
+viki.io/*/static/vikipass/*.jpg
+viki.io/*/static/vikipass/*.png
+viki.io/*/banners/*.png
+viki.io/*/banners/*.jpg
+viki.io/*/static/community/*.jpg
+viki.io/*/static/community/*.png
+viki.io/cms-uploads/*/*.mp4
+viki.com##[data-react-class="VideoHeaderLoader"]
+viki.com##[class="VideoHeaderLoader"]
+viki.com##[class="header-video"]
+techpowerup.com##.message-avatar-wrapper
+techpowerup.com##.shareButtons
+techpowerup.com##.shareButtons--iconic
+techpowerup.com##.p-header-logo
+techpowerup.com##.p-header-logo--image
