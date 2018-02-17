@@ -10,6 +10,7 @@
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
 @@||pbs.twimg.com/profile_images/*/$image
+@@||twimg.com/profile_images/*/$image
 @@||marketplace.atlassian.com/$document
 @@||data.edinburghopendata.info^$document
 @@||kissanime.co/$document
@@ -1392,10 +1393,6 @@ twimg.com/b/front_page/*.jpg
 twimg.com/b/front_page/*.bmp
 twimg.com/b/front_page/*.gif
 twimg.com/b/front_page/*.png
-pbs.twimg.com/profile_images/*/*.png
-pbs.twimg.com/profile_images/*/*.jpg
-pbs.twimg.com/profile_images/*/*.bmp
-pbs.twimg.com/profile_images/*/*.gif
 twimg.com/profile_banners/*
 twitter.com/*/*.jpg
 twitter.com/*/*.png
