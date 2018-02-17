@@ -10,12 +10,11 @@
 ! RegExpVisualizer http://www.regexper.com/
 ! Licence: https://cdn.rawgit.com/joniibra/webdev/adblock/LICENSE
 ! *** customfilter.txt ***
-@@||data.edinburghopendata.info^$document
 @@||marketplace.atlassian.com/$document
+@@||data.edinburghopendata.info^$document
 @@||kissanime.co/$document
 @@||seputar.kisefx.com/$document
 @@||bisnisoptimal.com/$document
-@@||twistedshape.blogspot.co.id/$document
 @@||lagu-pujian.blogspot.com/$document
 @@||tickmill-ib.blogspot.com/$document
 @@||introducing-broker.blogspot.com/$document
@@ -1141,8 +1140,8 @@ bukalapak.com##[class="c-brand c-brand--logo"]
 linkedin.com##[id="ember1186"]
 linkedin.com##[class="mn-abi-form__content--promo"]
 linkedin.com##[class="mn-abi-form__container container-with-shadow"]
-www.4shared.com##[class="footer-button btn-yt hidden-xs pull-right"]
-www.4shared.com##[class="footer-button btn-gp hidden-xs pull-right"]
+4shared.com##[class="footer-button btn-yt hidden-xs pull-right"]
+4shared.com##[class="footer-button btn-gp hidden-xs pull-right"]
 guru3d.com##[class="adblock_top_middle"]
 guru3d.com##[class="logo"]
 lepatek.com##[id="FLASH_VIEW"]
@@ -1401,9 +1400,13 @@ my.forexmart.com/assets/images/fxlogonew.svg
 */post-bg.jpeg
 */post-bg.gif
 twimg.com/b/front_page/*.jpg
-twimg.com/b/front_page/*.png
 twimg.com/b/front_page/*.bmp
 twimg.com/b/front_page/*.gif
+twimg.com/b/front_page/*.png
+pbs.twimg.com/profile_images/*/*.png
+pbs.twimg.com/profile_images/*/*.jpg
+pbs.twimg.com/profile_images/*/*.bmp
+pbs.twimg.com/profile_images/*/*.gif
 nanokomputer.id/modules/pm_advancedbackgroundchanger/uploads/slides/*
 nanokomputer.id/modules/pm_advancedbackgroundchanger/*
 nanokomputer.id/modules/custombanners/views/img/uploads/*
@@ -1411,10 +1414,10 @@ nanokomputer.id/modules/custombanners/views/img/*
 nanokomputer.id/modules/custombanners/views/*
 nanokomputer.id/modules/custombanners/*
 */WebTraider_970x80.swf
-www.skidrowgames.net/wp-content/themes/SGTHEME/images/*.jpg
-www.techpowerup.com/dfglkhjnertiur/*
-www.techpowerup.com/*/315.png
-www.techpowerup.com/*/cffdab1d.jpg
+skidrowgames.net/wp-content/themes/SGTHEME/images/*.jpg
+techpowerup.com/dfglkhjnertiur/*
+techpowerup.com/*/315.png
+techpowerup.com/*/cffdab1d.jpg
 animeworldbd.com/wp-content/uploads/2015/07/itachi_mangekuo_sharingan_by_djgspee-d3w87xw.jpg
 */donate2.jpg
 */logo-AWB1.png
@@ -2096,9 +2099,6 @@ twitter.com/*/*.jpg
 twitter.com/*/*.png
 twitter.com/*/*.gif
 twitter.com/*/*.mp4
-twimg.com/*/*.jpg
-twimg.com/*/*.png
-twimg.com/*/*.gif
 twimg.com/*/*.mp4
 leejeans-ap.com/*/bg_locations.*
 leejeans-ap.com/*/bg_stores.*
