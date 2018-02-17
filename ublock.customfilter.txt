@@ -9,8 +9,9 @@
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
-@@||data.edinburghopendata.info^$document
+@@||pbs.twimg.com/profile_images/*/$image
 @@||marketplace.atlassian.com/$document
+@@||data.edinburghopendata.info^$document
 @@||kissanime.co/$document
 @@||seputar.kisefx.com/$document
 @@||bisnisoptimal.com/$document
@@ -28,10 +29,10 @@
 @@||mp3down-load.info/$document
 @@||joniibra.blogspot.com/$document
 @@||ibank.klikbca.com/$document
-@@||www.investing.com/$document
+@@||investing.com/$document
 @@||bloginfoinsurances.blogspot.com/$document
 @@||doridro.com/forum/$document
-@@||www.arabloads.net/$document
+@@||arabloads.net/$document
 @@||codexpcgames.com/$document
 @@||www.gametop.com/*/download.html$document
 @@||www.gametop.com/*/download-free-games/*/$document
@@ -92,7 +93,6 @@ filehippo.com##DIV[id="program-items"][class="hidden-xs hidden-sm"]
 filehippo.com##A[href="http://www.outbrain.com/what-is/default/en"]
 valid.x86.fr##DIV[class="widget-block widget-advert-970"]
 gigapurbalingga.gq##IFRAME[id="aswift_1"][name="aswift_1"]
-filehippo.com##DIV[id="ad-slot-1"]
 graphics-cards.specout.com##DIV[id="ad-atf-top-sq"][class="card-sec detail-section ad active ddc-section-ad rendered ad-has-rendered"]
 graphics-cards.specout.com##DIV[class="ddc-td ddc-td-728"]
 graphics-cards.specout.com##DIV[class="ddc-td ddc-td-728-info"]
@@ -108,16 +108,17 @@ valid.canardpc.com##DIV[class="widget-block widget-advert-728"]
 valid.canardpc.com##DIV[class="widget-block widget-advert-970"]
 gamestation.id##DIV[class="col-md-12"]
 soehoe.id##DIV[id="logoBlock"]
-filehippo.com##IMG[src="http://cache.filehippo.com/img/new/splash.gif"]
+soehoe.id##DIV[class="gritter-item"]
 apk.koplayer.com##DIV[class="rightSClass"]
 apk.koplayer.com##P[class="contPen clearfix"]
 sourceforge.net##DIV[id="rbox-t2m"][class="trc_rbox_div trc_rbox_border_elm"]
 sourceforge.net##DIV[id="newsletter-floating"][class="goth-form"]
+filehippo.com##DIV[id="ad-slot-1"]
+filehippo.com##IMG[src="http://cache.filehippo.com/img/new/splash.gif"]
 filehippo.com##DIV[class="col-md-4 nopadding"]
 filehippo.com##DIV[class="ob-widget-header"]
 filehippo.com##DIV[id="related-software"][class="clearfix"]
 filehippo.com##DIV[class="download-page-col1-content download-confirmation-text-additional"]
-soehoe.id##DIV[class="gritter-item"]
 mail.ru##DIV[class="games games_miltiformat"]
 mail.ru##DIV[class="news__list__item__wrap"]
 mail.ru##DIV[id="news"][class="news"]
@@ -137,18 +138,6 @@ tradersocia.com##DIV[class="tp-loader spinner2"]
 tradersocia.com##DIV[class="tp-arr-imgholder"]
 tradersocia.com##DIV[class="slider-revolution"]
 tradersocia.com##DIV[class="tp-revslider-mainul"]
-tekno.liputan6.com##DIV[class="read-page--engagement"]
-video.liputan6.com##DIV[class="newsletter newsletter_desktop-aside"]
-tekno.liputan6.com##LI[class="footer-slim__network-item"]
-tekno.liputan6.com##DIV[class="popular"]
-tekno.liputan6.com##SPAN[class="desktop--header__title-text"]
-tekno.liputan6.com##UL[class="footer-slim__socmed-list"]
-tekno.liputan6.com##SECTION[id="site-index"][class="footer-slim"]
-tekno.liputan6.com##IMG[class="navbar--top--logo__image"]
-tekno.liputan6.com##DIV[class="navbar--top--search"]
-tekno.liputan6.com##DIV[class="read-page--aside-social-share"]
-tekno.liputan6.com##DIV[class="baca-juga"]
-tekno.liputan6.com##DIV[class="newsletter newsletter_desktop-aside"]
 solidfiles.com##ARTICLE[class="box premium-promo"]
 solidfiles.com##DIV[class="bnr-1476272170 lead"]
 solidfiles.com##IFRAME[name="f241f99dccdfa68"]
@@ -188,12 +177,6 @@ my.newforex.com##IMG[src="/assets/images/logo2.png"]
 my.newforex.com##IMG[src="/assets/images/secure.png"]
 my.newforex.com##DIV[class="logo_footer"]
 forexmart.com##DIV[class="img-responsive"]
-twitter.com##DIV[id="page-container"][class="AppContent wrapper wrapper-download"]
-twitter.com##DIV[class="front-image"]
-twitter.com##DIV[class="front-bg"]
-twitter.com##DIV[class="background-companion-tweets"]
-twitter.com##DIV[class="front-welcome-text"]
-twitter.com##DIV[class="front-welcome"]
 forexwinners.ru##DIV[class="ei-slider-loading"]
 getgreenshot.org##IMG[class="header"]
 getgreenshot.org##IMG[class="rating-badges"]
@@ -286,7 +269,7 @@ yahoo.com##DIV[class="dmRosMBAdBorder"]
 yahoo.com##DIV[class="dmRosMBAdHeader"]
 yahoo.com##DIV[class="dmRosMBAdHelpTextDiv"]
 yahoo.com##DIV[class="dmRosMBAdHelpText"]
-search.yahoo.com##DIV[id="browserExtensionPromotion"][class="hidden"]
+yahoo.com##DIV[id="browserExtensionPromotion"][class="hidden"]
 yahoo.com##DIV[class="ginsuAd"]
 yahoo.com##DIV[class="hd"]
 yahoo.com##DIV[class="bd"]
@@ -353,6 +336,7 @@ shopee.co.id##DIV[class="footer__app-download-wrapper"]
 chatwing.com##IMG[id="intro"]
 chatwing.com##DIV[id="app"]
 id.ipanelonline.com##IMG[src="/images/panel/kr/common/logo.gif"]
+ipanelonline.com/*/logo.gif
 download.id##IMG[src="https://download.id/kotakalong.gif"]
 tomsguide.com##DIV[data-parser="psPreview"]
 tomshardware.com##DIV[data-parser="psPreview"]
@@ -396,14 +380,14 @@ traforet.com##a[class="tr-1"]
 tapochek.net##P[id="guest-dl-tip"]
 zona.ru##DIV[class="logo-text"]
 zona.ru##DIV[class="more-info-row"]
-www.apkxmod.com##DIV[id="logo"]
-www.foxpush.com##SECTION[id="hero4"]
-www.apkxmod.com##DIV[class="header clearfix"]
-www.apkxmod.com##DIV[id="foxpush_subscribe"]
-www.apkxmod.com##DIV[class="code-block code-block-2"]
-www.apkxmod.com##IMG[src="https://www.apkxmod.com/wp-content/uploads/apkxmod-small-1.png"]
-www.apkxmod.com##DIV[class="code-block code-block-1"]
-www.apkxmod.com##A[href="http://www.apk-manager.net/media_button.*"]
+apkxmod.com##DIV[id="logo"]
+foxpush.com##SECTION[id="hero4"]
+apkxmod.com##DIV[class="header clearfix"]
+apkxmod.com##DIV[id="foxpush_subscribe"]
+apkxmod.com##DIV[class="code-block code-block-2"]
+apkxmod.com##IMG[src="https://www.apkxmod.com/wp-content/uploads/apkxmod-small-1.png"]
+apkxmod.com##DIV[class="code-block code-block-1"]
+apkxmod.com##A[href="http://www.apk-manager.net/media_button.*"]
 forexwinners.net##DIV[class="logo"]
 forexwinners.net##DIV[class="background-cover"]
 forexwinners.net##IFRAME
@@ -411,25 +395,25 @@ forexwinners.net##DIV[class="adm-attribution"]
 forexwinners.net##IMG[class="loggo-imgg"]
 kkomputer.com##IMG[class="advmulti-img"]
 kkomputer.com##IFRAME
-www.glasswire.com##IMG[class="img-android-download"]
-www.glasswire.com##DIV[id="download-share-btns-android"]
-www.glasswire.com##DIV[id="download-share-btns-icons"]
-www.glasswire.com##DIV[id="download-share-btns-email"]
-www.glasswire.com##DIV[class="b-logo-small"]
+glasswire.com##IMG[class="img-android-download"]
+glasswire.com##DIV[id="download-share-btns-android"]
+glasswire.com##DIV[id="download-share-btns-icons"]
+glasswire.com##DIV[id="download-share-btns-email"]
+glasswire.com##DIV[class="b-logo-small"]
 getgreenshot.org##DIV[class="logo"]
-www.elitepvpers.com##DIV[id="navbar_notice_38"][class="navbar_notice"]
-www.elitepvpers.com##DIV[class="navbar_notice"]
+elitepvpers.com##DIV[id="navbar_notice_38"][class="navbar_notice"]
+elitepvpers.com##DIV[class="navbar_notice"]
 epvpimg.com##IMG[src="img/logo.png"]
-www.elitepvpers.com##DIV[class="ticker"]
-www.elitepvpers.com##DIV[id="tickerwrapper"]
-www.elitepvpers.com##DIV[class="cwheadad"]
-www.elitepvpers.com##FORM[id="notices"]
-www.elitepvpers.com##TD[id="navstart"]
-www.elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/logo.png"]
-www.elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/logo_shield_new.png"]
-www.elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/pvp_white.gif"]
-www.elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/userbaraxe.png"]
-www.elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/sidebar_shield.jpg"]
+elitepvpers.com##DIV[class="ticker"]
+elitepvpers.com##DIV[id="tickerwrapper"]
+elitepvpers.com##DIV[class="cwheadad"]
+elitepvpers.com##FORM[id="notices"]
+elitepvpers.com##TD[id="navstart"]
+elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/logo.png"]
+elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/logo_shield_new.png"]
+elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/pvp_white.gif"]
+elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/userbaraxe.png"]
+elitepvpers.com##IMG[src="http://www.elitepvpers.com/images/sidebar_shield.jpg"]
 info.url.cloud.360safe.com##IFRAME[id="promotion"]
 secure.icmarkets.com##IMG[class="logo"]
 accounts.google.com##DIV[class="VYMape"]
@@ -507,7 +491,6 @@ techpowerup.com##IMG[src="https://www.techpowerup.com/dfglkhjnertiur/7af3e6c8.jp
 techpowerup.com##A[class="zyekubq"]
 techpowerup.com##A[class="mvqhlnc"]
 techpowerup.com##A[class="kbjoetgu"]
-citizen6.liputan6.com##DIV[class="baca-juga"]
 videomultidownload.com##DIV[class="loading"]
 idntimes.com##ASIDE[class="editor-picks"]
 idntimes.com##DIV[class="add-line"]
@@ -1399,13 +1382,30 @@ my.forexmart.com/assets/images/fxlogonew.svg
 */post-bg.bmp
 */post-bg.jpeg
 */post-bg.gif
+twitter.com##DIV[id="page-container"][class="AppContent wrapper wrapper-download"]
+twitter.com##DIV[class="front-image"]
+twitter.com##DIV[class="front-bg"]
+twitter.com##DIV[class="background-companion-tweets"]
+twitter.com##DIV[class="front-welcome-text"]
+twitter.com##DIV[class="front-welcome"]
 twimg.com/b/front_page/*.jpg
 twimg.com/b/front_page/*.bmp
 twimg.com/b/front_page/*.gif
+twimg.com/b/front_page/*.png
 pbs.twimg.com/profile_images/*/*.png
 pbs.twimg.com/profile_images/*/*.jpg
 pbs.twimg.com/profile_images/*/*.bmp
 pbs.twimg.com/profile_images/*/*.gif
+twimg.com/profile_banners/*
+twitter.com/*/*.jpg
+twitter.com/*/*.png
+twitter.com/*/*.gif
+twitter.com/*/*.mp4
+ton.twimg.com/insights/*/*.png
+twimg.com/*/*.jpg
+twimg.com/*/*.png
+twimg.com/*/*.gif
+twimg.com/*/*.mp4
 nanokomputer.id/modules/pm_advancedbackgroundchanger/uploads/slides/*
 nanokomputer.id/modules/pm_advancedbackgroundchanger/*
 nanokomputer.id/modules/custombanners/views/img/uploads/*
@@ -1413,10 +1413,10 @@ nanokomputer.id/modules/custombanners/views/img/*
 nanokomputer.id/modules/custombanners/views/*
 nanokomputer.id/modules/custombanners/*
 */WebTraider_970x80.swf
-www.skidrowgames.net/wp-content/themes/SGTHEME/images/*.jpg
-www.techpowerup.com/dfglkhjnertiur/*
-www.techpowerup.com/*/315.png
-www.techpowerup.com/*/cffdab1d.jpg
+skidrowgames.net/wp-content/themes/SGTHEME/images/*.jpg
+techpowerup.com/dfglkhjnertiur/*
+techpowerup.com/*/315.png
+techpowerup.com/*/cffdab1d.jpg
 animeworldbd.com/wp-content/uploads/2015/07/itachi_mangekuo_sharingan_by_djgspee-d3w87xw.jpg
 */donate2.jpg
 */logo-AWB1.png
@@ -2054,7 +2054,6 @@ hitwe.com/*/app-screen.png
 lamudi.co.id/static/cms/relaunch%20content/*
 lamudi.co.id/static/cms/static_page/*
 lamudi.co.id/images/real_estate/app-buttons/*
-twimg.com/profile_banners/*
 aduankonten.id/*/bg-aduan-konten.*
 diasporafoundation.org/assets/pages/index/*.png
 kemendagri.go.id/*/banner/*
@@ -2094,14 +2093,6 @@ asgardia.space/assets/common/img/space/pages/*.jpg
 steamstatic.com/*/groups/group_content_topbackground.png
 steamstatic.com/*/groups/content_footer_fade.png
 techpowerup.com/*/8db652d4.jpg
-twitter.com/*/*.jpg
-twitter.com/*/*.png
-twitter.com/*/*.gif
-twitter.com/*/*.mp4
-twimg.com/*/*.jpg
-twimg.com/*/*.png
-twimg.com/*/*.gif
-twimg.com/*/*.mp4
 leejeans-ap.com/*/bg_locations.*
 leejeans-ap.com/*/bg_stores.*
 dailyuploads.net/*/map.*
@@ -2762,15 +2753,27 @@ dailymail.co.uk##.vjs-control.vjs-social-controls
 dailymail.co.uk##.facebook-like-static
 sarapanpagi.org/*/theme/*/dashboard.*
 sarapanpagi.org##.inventia-sitename
+duitpintar.com##.social_shareicons
+duitpintar.com##.share_icon_container
+bareksa.com/*/umroh/images/*/$image
+tribunnews.com##.bggrey2.plr10.pt10.bor1
 liputan6.com##.bottom.read-page--social-share
 liputan6.com##.newsletter__social-media
 liputan6.com##.read-page--social-share__list
 liputan6.com##.reactions__list
 liputan6.com##.reactions__title
-duitpintar.com##.social_shareicons
-duitpintar.com##.share_icon_container
-bareksa.com/*/umroh/images/*/$image
-tribunnews.com##.bggrey2.plr10.pt10.bor1
+liputan6.com##DIV[class="baca-juga"]
+liputan6.com##DIV[class="read-page--engagement"]
+liputan6.com##DIV[class="newsletter newsletter_desktop-aside"]
+liputan6.com##LI[class="footer-slim__network-item"]
+liputan6.com##DIV[class="popular"]
+liputan6.com##SPAN[class="desktop--header__title-text"]
+liputan6.com##UL[class="footer-slim__socmed-list"]
+liputan6.com##SECTION[id="site-index"][class="footer-slim"]
+liputan6.com##IMG[class="navbar--top--logo__image"]
+liputan6.com##DIV[class="navbar--top--search"]
+liputan6.com##DIV[class="read-page--aside-social-share"]
+liputan6.com##DIV[class="newsletter newsletter_desktop-aside"]
 bitdefender.com/themes/*/images/$image
 bitdefender.com/resources/themes/*/images/$image
 filehippo.com##.ratingHeader
@@ -2957,7 +2960,6 @@ halosehat.com##.crunchify-social
 halosehat.com##.crunchify-line
 halosehat.com##.crunchify-link
 halosehat.com##.category-item-single
-ton.twimg.com/insights/*/*.png
 cerpen.co.id##.like_yellow
 cerpen.co.id###vdsShare
 cerpen.co.id##.ui_btn
