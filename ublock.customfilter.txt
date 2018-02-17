@@ -531,7 +531,6 @@ trueforex.pp.ua##DIV[class="visit_counter"]
 surv.cheetahmail.com##UL[class="mobile list-unstyled"]
 google.com##DIV[class="attachments-for-gmail__screen-feature-attachments"]
 google.com##DIV[class="attachments-for-gmail__screen"]
-twitter.com##DIV[class="flex-module import-prompt"]
 soehoe.id##P[id="pageDescription"][class="muted "]
 soehoe.id##DIV[class="secondaryContent widget WhoHasVisited_WidgetRenderer_WhoHasVisited"]
 codepen.io##DIV[class="projects-promo"]
@@ -575,7 +574,6 @@ hitwe.com##DIV[class="banner-top"]
 hitwe.com##DIV[class="glob-hide-ads-wr"]
 hitwe.com##[class="btn prof-btn-premium ps-vip-only prof-opt-btn"]
 hitwe.com##DIV[class="prof-feedback"]
-twitter.com##A[class="ProfileCard-bg js-nav"]
 metrotvnews.com##DIV[class="related extra"]
 xlagu.com##A[href="http://click.union.ucweb.com/index.php?service=RedirectService&pub=lianghl@songmusic&offer_id=com.vidmate.apk"]
 kaskus.co.id##A[class="btn btn-blue"]
@@ -1226,8 +1224,6 @@ faithcomesbyhearing.com##[class="container clearfix donate-revised"]
 amazon.com##[class="parbase section videofeature"]
 google.com##[class="photo-wrapper"]
 google.com##[class="section-photo-fullscreen section-photo js-parallax-image js-responsive-image loaded"]
-twitter.com##[id="device-registration-form"]
-twitter.com##[class="t1-form form-horizontal sms-form"]
 inadequal.com/*
 atlassian.com/*/*.png
 vgy.me/*/aboutus_logo.png
@@ -1383,22 +1379,29 @@ my.forexmart.com/assets/images/fxlogonew.svg
 */post-bg.bmp
 */post-bg.jpeg
 */post-bg.gif
+twitter.com##[id="device-registration-form"]
+twitter.com##[class="t1-form form-horizontal sms-form"]
+twitter.com##A[class="ProfileCard-bg js-nav"]
+twitter.com##DIV[class="flex-module import-prompt"]
 twitter.com##DIV[id="page-container"][class="AppContent wrapper wrapper-download"]
 twitter.com##DIV[class="front-image"]
 twitter.com##DIV[class="front-bg"]
 twitter.com##DIV[class="background-companion-tweets"]
 twitter.com##DIV[class="front-welcome-text"]
 twitter.com##DIV[class="front-welcome"]
+twitter.com##.StaticLoggedOutHomePage-communicationBlock
+twitter.com##.tweet[data-card2-type="promo_website"]
+twitter.com##.promoted-tweet[data-disclosure-type="promoted"]
 twimg.com/b/front_page/*.jpg
 twimg.com/b/front_page/*.bmp
 twimg.com/b/front_page/*.gif
 twimg.com/b/front_page/*.png
-twimg.com/profile_banners/*
+twimg.com/insights/*/*.png
 twitter.com/*/*.jpg
 twitter.com/*/*.png
 twitter.com/*/*.gif
 twitter.com/*/*.mp4
-ton.twimg.com/insights/*/*.png
+twimg.com/profile_banners/*
 twimg.com/*/*.jpg
 twimg.com/*/*.png
 twimg.com/*/*.gif
@@ -2975,7 +2978,6 @@ yukepo.com###share-count
 yukepo.com##iframe[src="//keepo.me/embed/quiz"]
 keepo.me/embed/quiz
 media.keepo.me/*.jpg
-twitter.com##.StaticLoggedOutHomePage-communicationBlock
 production-assets.codepen.io/assets/global/*.png
 codepen.io##.hero-404-iframe
 scontent.fcgk2-1.fna.fbcdn.net/*/t1.0-1/*/p160x160/*
