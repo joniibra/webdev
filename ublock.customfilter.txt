@@ -2416,7 +2416,7 @@ validation.sls.microsoft.com/*
 license.bluesoleil.com/*
 license2.bluesoleil.com/*
 license3.bluesoleil.com/*
-www.bluesoleil.com/*
+bluesoleil.com/*
 bluesoleil.com/*
 lmlicenses.wip4.adobe.com/*
 lm.licenses.adobe.com/*
@@ -2464,7 +2464,7 @@ artulenia.com/*
 mysuperapps.online/*
 sink.top/*year.bid/*
 topyear.bid/*
-www.thewhizmarketing.com/*
+thewhizmarketing.com/*
 seen-on-screen.thewhizmarketing.com/*
 gogamego.thewhizproducts.com/*
 thewhizproducts.com/*
