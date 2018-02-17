@@ -10,6 +10,8 @@
 ! RegExpVisualizer http://www.regexper.com/
 ! Licence: https://cdn.rawgit.com/joniibra/webdev/adblock/LICENSE
 ! *** customfilter.txt ***
+@@||pbs.twimg.com/profile_images/*/$image
+@@||twimg.com/profile_images/*/$image
 @@||marketplace.atlassian.com/$document
 @@||data.edinburghopendata.info^$document
 @@||kissanime.co/$document
@@ -188,12 +190,6 @@ my.newforex.com##IMG[src="/assets/images/logo2.png"]
 my.newforex.com##IMG[src="/assets/images/secure.png"]
 my.newforex.com##DIV[class="logo_footer"]
 forexmart.com##DIV[class="img-responsive"]
-twitter.com##DIV[id="page-container"][class="AppContent wrapper wrapper-download"]
-twitter.com##DIV[class="front-image"]
-twitter.com##DIV[class="front-bg"]
-twitter.com##DIV[class="background-companion-tweets"]
-twitter.com##DIV[class="front-welcome-text"]
-twitter.com##DIV[class="front-welcome"]
 forexwinners.ru##DIV[class="ei-slider-loading"]
 getgreenshot.org##IMG[class="header"]
 getgreenshot.org##IMG[class="rating-badges"]
@@ -547,7 +543,6 @@ trueforex.pp.ua##DIV[class="visit_counter"]
 surv.cheetahmail.com##UL[class="mobile list-unstyled"]
 google.com##DIV[class="attachments-for-gmail__screen-feature-attachments"]
 google.com##DIV[class="attachments-for-gmail__screen"]
-twitter.com##DIV[class="flex-module import-prompt"]
 soehoe.id##P[id="pageDescription"][class="muted "]
 soehoe.id##DIV[class="secondaryContent widget WhoHasVisited_WidgetRenderer_WhoHasVisited"]
 codepen.io##DIV[class="projects-promo"]
@@ -591,7 +586,6 @@ hitwe.com##DIV[class="banner-top"]
 hitwe.com##DIV[class="glob-hide-ads-wr"]
 hitwe.com##[class="btn prof-btn-premium ps-vip-only prof-opt-btn"]
 hitwe.com##DIV[class="prof-feedback"]
-twitter.com##A[class="ProfileCard-bg js-nav"]
 metrotvnews.com##DIV[class="related extra"]
 xlagu.com##A[href="http://click.union.ucweb.com/index.php?service=RedirectService&pub=lianghl@songmusic&offer_id=com.vidmate.apk"]
 kaskus.co.id##A[class="btn btn-blue"]
@@ -1242,8 +1236,6 @@ faithcomesbyhearing.com##[class="container clearfix donate-revised"]
 amazon.com##[class="parbase section videofeature"]
 google.com##[class="photo-wrapper"]
 google.com##[class="section-photo-fullscreen section-photo js-parallax-image js-responsive-image loaded"]
-twitter.com##[id="device-registration-form"]
-twitter.com##[class="t1-form form-horizontal sms-form"]
 inadequal.com/*
 atlassian.com/*/*.png
 vgy.me/*/aboutus_logo.png
@@ -1399,14 +1391,6 @@ my.forexmart.com/assets/images/fxlogonew.svg
 */post-bg.bmp
 */post-bg.jpeg
 */post-bg.gif
-twimg.com/b/front_page/*.jpg
-twimg.com/b/front_page/*.bmp
-twimg.com/b/front_page/*.gif
-twimg.com/b/front_page/*.png
-pbs.twimg.com/profile_images/*/*.png
-pbs.twimg.com/profile_images/*/*.jpg
-pbs.twimg.com/profile_images/*/*.bmp
-pbs.twimg.com/profile_images/*/*.gif
 nanokomputer.id/modules/pm_advancedbackgroundchanger/uploads/slides/*
 nanokomputer.id/modules/pm_advancedbackgroundchanger/*
 nanokomputer.id/modules/custombanners/views/img/uploads/*
@@ -2049,13 +2033,12 @@ hitwe.com/*/loginpage/*.jpg
 hitwe.com/*/loginpage/*.png
 hitwe.com/*/loginpage/*.mp4
 blogger.com/about/img/sections/millions/*
-www.nonolive.com/*/images/*.png
-www.nonolive.com/*/images/*.jpg
+nonolive.com/*/images/*.png
+nonolive.com/*/images/*.jpg
 hitwe.com/*/app-screen.png
 lamudi.co.id/static/cms/relaunch%20content/*
 lamudi.co.id/static/cms/static_page/*
 lamudi.co.id/images/real_estate/app-buttons/*
-twimg.com/profile_banners/*
 aduankonten.id/*/bg-aduan-konten.*
 diasporafoundation.org/assets/pages/index/*.png
 kemendagri.go.id/*/banner/*
@@ -2095,10 +2078,32 @@ asgardia.space/assets/common/img/space/pages/*.jpg
 steamstatic.com/*/groups/group_content_topbackground.png
 steamstatic.com/*/groups/content_footer_fade.png
 techpowerup.com/*/8db652d4.jpg
+twitter.com##[id="device-registration-form"]
+twitter.com##[class="t1-form form-horizontal sms-form"]
+twitter.com##A[class="ProfileCard-bg js-nav"]
+twitter.com##DIV[class="flex-module import-prompt"]
+twitter.com##DIV[id="page-container"][class="AppContent wrapper wrapper-download"]
+twitter.com##DIV[class="front-image"]
+twitter.com##DIV[class="front-bg"]
+twitter.com##DIV[class="background-companion-tweets"]
+twitter.com##DIV[class="front-welcome-text"]
+twitter.com##DIV[class="front-welcome"]
+twitter.com##.StaticLoggedOutHomePage-communicationBlock
+twitter.com##.tweet[data-card2-type="promo_website"]
+twitter.com##.promoted-tweet[data-disclosure-type="promoted"]
+twimg.com/b/front_page/*.jpg
+twimg.com/b/front_page/*.bmp
+twimg.com/b/front_page/*.gif
+twimg.com/b/front_page/*.png
+twimg.com/insights/*/*.png
 twitter.com/*/*.jpg
 twitter.com/*/*.png
 twitter.com/*/*.gif
 twitter.com/*/*.mp4
+twimg.com/profile_banners/*
+twimg.com/*/*.jpg
+twimg.com/*/*.png
+twimg.com/*/*.gif
 twimg.com/*/*.mp4
 leejeans-ap.com/*/bg_locations.*
 leejeans-ap.com/*/bg_stores.*
@@ -2781,8 +2786,6 @@ livemint.com###div_adblock
 imagefap.com##iframe[src="about:blank"]
 bangaloremirror.com###blwrapper
 bangaloremirror.com###blcontent
-twitter.com##.tweet[data-card2-type="promo_website"]
-twitter.com##.promoted-tweet[data-disclosure-type="promoted"]
 latribune.fr###geste_getoff
 latribune.fr##.modal-backdrop
 ||go.*.com^$domain=kickass.cd
@@ -5644,7 +5647,6 @@ halosehat.com##.crunchify-social
 halosehat.com##.crunchify-line
 halosehat.com##.crunchify-link
 halosehat.com##.category-item-single
-ton.twimg.com/insights/*/*.png
 cerpen.co.id##.like_yellow
 cerpen.co.id###vdsShare
 cerpen.co.id##.ui_btn
@@ -5663,7 +5665,6 @@ yukepo.com###share-count
 yukepo.com##iframe[src="//keepo.me/embed/quiz"]
 keepo.me/embed/quiz
 media.keepo.me/*.jpg
-twitter.com##.StaticLoggedOutHomePage-communicationBlock
 production-assets.codepen.io/assets/global/*.png
 codepen.io##.hero-404-iframe
 scontent.fcgk2-1.fna.fbcdn.net/*/t1.0-1/*/p160x160/*
