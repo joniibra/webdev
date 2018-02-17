@@ -1400,9 +1400,12 @@ my.forexmart.com/assets/images/fxlogonew.svg
 */post-bg.jpeg
 */post-bg.gif
 twimg.com/b/front_page/*.jpg
-twimg.com/b/front_page/*.png
 twimg.com/b/front_page/*.bmp
 twimg.com/b/front_page/*.gif
+pbs.twimg.com/profile_images/*/*.png
+pbs.twimg.com/profile_images/*/*.jpg
+pbs.twimg.com/profile_images/*/*.bmp
+pbs.twimg.com/profile_images/*/*.gif
 nanokomputer.id/modules/pm_advancedbackgroundchanger/uploads/slides/*
 nanokomputer.id/modules/pm_advancedbackgroundchanger/*
 nanokomputer.id/modules/custombanners/views/img/uploads/*
