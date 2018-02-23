@@ -3036,6 +3036,9 @@ wikiwand.com##.tileBg
 ###usermenu-feedback
 www.facebook.com###u_0_7
 www.facebook.com##._33ue
+chrome-extension://imilbobhamcfahccagbncamhpnbkaenm/images/darkness-icon-in-page.png$domain=mail.google.com,image
+mail.google.com###drk_settings_icon
+##.social-sharing
 facebook.com##._ihf._4bl9
 bodbot.com##.main_share_button
 bodbot.com##img[src="https://static.bodbot.com/Images/bodbotplus/sub_goal_paywall.png"]
@@ -3043,9 +3046,6 @@ bodbot.com##a[href="https://www.bodbot.com/Plus.html"]
 bodbot.com##img[src="Images/icons/email_circle.png"]
 static.bodbot.com/*/bodbotplus/$image
 bodbot.com###invite_friends_h3
-chrome-extension://imilbobhamcfahccagbncamhpnbkaenm/images/darkness-icon-in-page.png$domain=mail.google.com,image
-mail.google.com###drk_settings_icon
-##.social-sharing
 tirto.id/image/*/*.gif
 tirto.id##.share-this-horizontal
 tirto.id##.keywords
