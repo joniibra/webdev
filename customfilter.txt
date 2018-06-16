@@ -6216,3 +6216,7 @@ limitro.com###elLogo
 wikihow.com/*/thumb/*/*.*$image
 warpportal.com.topic_share
 warpportal.com##.shareButtons
+gotquestions.org##.shareaholic-share-button-container
+gotquestions.org##.mobile-apps
+gotquestions.org/*/logo-white.svg
+gotquestions.org##picture
