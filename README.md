@@ -30,7 +30,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 ### Step 2: Add Filter List
 
-* ![Subscribe from GitLab](https://github.com/fluidicon.png)(https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
+* ![Subscribe from GitLab](images/browsers/safari.png)(https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
 
 ![header](images/adblockOptions.jpg)
 
