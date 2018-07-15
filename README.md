@@ -30,7 +30,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 ### Step 2: Add Filter List
 
-* ![Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
+* [Subscribe from GitLab](https://github.com/joniibra/webdev/blob/adblock/README.md#-my-custom-filter-lists-)
 
 ![header](images/adblockOptions.jpg)
 
@@ -41,11 +41,11 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 <br />
 
 *  For AdBlock, AdBlock Plus or others ads blocker →
-> https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
+> [https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt](ubo://subscribe?location=https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fcustomfilter.txt)
 
 *  For uBlock Origin →
-> https://cdn.rawgit.com/joniibra/webdev/adblock/ublock.customfilter.txt
-ubo://subscribe?location=https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fublock.customfilter.txt&title=Nano%20filters
+> [https://cdn.rawgit.com/joniibra/webdev/adblock/ublock.customfilter.txt](ubo://subscribe?location=https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fublock.customfilter.txt)
+
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
 <br /><br />
