@@ -48,7 +48,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 <br />
 
-( This patch already included [uBlockProtectorList](https://cdn.rawgit.com/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) from [NanoDefender](http://jspenguin2017.github.io/uBlockProtector/) )
+( This patch already included [uBlockProtectorList](https://cdn.rawgit.com/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) from [NanoDefender](https://jspenguin2017.github.io/uBlockProtector/#extra-installation-steps-for-ublock-origin) )
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
