@@ -43,6 +43,8 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 *  For AdBlock, AdBlock Plus or others ads blocker →
 > [https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt](ubo://subscribe?location=https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fcustomfilter.txt)
 
+> [https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt](ubo://subscribe?location=https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt)
+
 *  For uBlock Origin →
 > [https://cdn.rawgit.com/joniibra/webdev/adblock/ublock.customfilter.txt](ubo://subscribe?location=https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fublock.customfilter.txt)
 
