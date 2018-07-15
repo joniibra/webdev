@@ -41,10 +41,14 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 <br />
 
 *  For AdBlock, AdBlock Plus or others ads blocker →
-> [https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt](ubo://subscribe?location=https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt)
+> https://cdn.rawgit.com/joniibra/webdev/adblock/customfilter.txt
 
 *  For uBlock Origin →
-> [https://cdn.rawgit.com/joniibra/webdev/adblock/ublock.customfilter.txt](https%3A%2F%2Fcdn.rawgit.com%2Fjoniibra%2Fwebdev%2Fadblock%2Fublock.customfilter.txt)
+> https://cdn.rawgit.com/joniibra/webdev/adblock/ublock.customfilter.txt
+
+<br />
+
+( This patch already included [uBlockProtectorList](https://cdn.rawgit.com/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) from [NanoDefender](http://jspenguin2017.github.io/uBlockProtector/) )
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
@@ -66,6 +70,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 #### 『 My Custom JavaScript 』
 
+*  For Violentmonkey or Tampermonkey →
 > https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
 
 <br /><br />
