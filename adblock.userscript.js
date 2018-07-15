@@ -8,7 +8,7 @@
 // @icon https://cdn.rawgit.com/joniibra/webdev/adblock/images/joniibra.png
 // @homepage https://joniibra.github.io/webdev/adblock
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
-// @updateURL https://xuhaiyang1234.gitlab.io/AAK-Cont/dist/aak-cont-script-notubo.user.js
+// @updateURL https://gitlab.com/xuhaiyang1234/AAK-Cont/blob/master/FINAL_BUILD/aak-cont-script-notubo.user.js
 // @downloadURL https://cdn.rawgit.com/joniibra/webdev/adblock/adblock.userscript.js
 // @include http://*/*
 // @include https://*/*
@@ -52,7 +52,7 @@ var a = (function(win) {
          * @type Object
          */
         about: {
-            homeURL: "https://xuhaiyang1234.gitlab.io/AAK-Cont/"
+            homeURL: "https://github.com/joniibra/webdev/edit/adblock/"
         },
          
         /**
@@ -5496,7 +5496,35 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "google_analytics_com_ga": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\t//\n\tvar Gaq = function() {\n\t\t;\n\t};\n\tGaq.prototype.Na = noopfn;\n\tGaq.prototype.O = noopfn;\n\tGaq.prototype.Sa = noopfn;\n\tGaq.prototype.Ta = noopfn;\n\tGaq.prototype.Va = noopfn;\n\tGaq.prototype._createAsyncTracker = noopfn;\n\tGaq.prototype._getAsyncTracker = noopfn;\n\tGaq.prototype._getPlugin = noopfn;\n\tGaq.prototype.push = function(a) {\n\t\tif ( typeof a === 'function' ) {\n\t\t\ta(); return;\n\t\t}\n\t\tif ( Array.isArray(a) === false ) {\n\t\t\treturn;\n\t\t}\n\t\t// https://twitter.com/catovitch/status/776442930345218048\n\t\t// https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._link\n\t\tif ( a[0] === '_link' && typeof a[1] === 'string' ) {\n\t\t\twindow.location.assign(a[1]);\n\t\t}\n\t\t// https://github.com/gorhill/uBlock/issues/2162\n\t\tif ( a[0] === '_set' && a[1] === 'hitCallback' && typeof a[2] === 'function' ) {\n\t\t\ta[2]();\n\t\t}\n\t};\n\t//\n\tvar tracker = (function() {\n\t\tvar out = {};\n\t\tvar api = [\n\t\t\t'_addIgnoredOrganic _addIgnoredRef _addItem _addOrganic',\n\t\t\t'_addTrans _clearIgnoredOrganic _clearIgnoredRef _clearOrganic',\n\t\t\t'_cookiePathCopy _deleteCustomVar _getName _setAccount',\n\t\t\t'_getAccount _getClientInfo _getDetectFlash _getDetectTitle',\n\t\t\t'_getLinkerUrl _getLocalGifPath _getServiceMode _getVersion',\n\t\t\t'_getVisitorCustomVar _initData _link _linkByPost',\n\t\t\t'_setAllowAnchor _setAllowHash _setAllowLinker _setCampContentKey',\n\t\t\t'_setCampMediumKey _setCampNameKey _setCampNOKey _setCampSourceKey',\n\t\t\t'_setCampTermKey _setCampaignCookieTimeout _setCampaignTrack _setClientInfo',\n\t\t\t'_setCookiePath _setCookiePersistence _setCookieTimeout _setCustomVar',\n\t\t\t'_setDetectFlash _setDetectTitle _setDomainName _setLocalGifPath',\n\t\t\t'_setLocalRemoteServerMode _setLocalServerMode _setReferrerOverride _setRemoteServerMode',\n\t\t\t'_setSampleRate _setSessionTimeout _setSiteSpeedSampleRate _setSessionCookieTimeout',\n\t\t\t'_setVar _setVisitorCookieTimeout _trackEvent _trackPageLoadTime',\n\t\t\t'_trackPageview _trackSocial _trackTiming _trackTrans',\n\t\t\t'_visitCode'\n\t\t].join(' ').split(/\s+/);\n\t\tvar i = api.length;\n\t\twhile ( i-- ) {\n\t\t\tout[api[i]] = noopfn;\n\t\t}\n\t\tout._getLinkerUrl = function(a) {\n\t\t\treturn a;\n\t\t};\n\t\treturn out;\n\t})();\n\t//\n\tvar Gat = function() {\n\t\t;\n\t};\n\tGat.prototype._anonymizeIP = noopfn;\n\tGat.prototype._createTracker = noopfn;\n\tGat.prototype._forceSSL = noopfn;\n\tGat.prototype._getPlugin = noopfn;\n\tGat.prototype._getTracker = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackerByName = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackers = noopfn;\n\tGat.prototype.aa = noopfn;\n\tGat.prototype.ab = noopfn;\n\tGat.prototype.hb = noopfn;\n\tGat.prototype.la = noopfn;\n\tGat.prototype.oa = noopfn;\n\tGat.prototype.pa = noopfn;\n\tGat.prototype.u = noopfn;\n\tvar gat = new Gat();\n\twindow._gat = gat;\n\t//\n\tvar gaq = new Gaq();\n\t(function() {\n\t\tvar aa = window._gaq || [];\n\t\tif ( Array.isArray(aa) ) {\n\t\t\twhile ( aa[0] ) {\n\t\t\t\tgaq.push(aa.shift());\n\t\t\t}\n\t\t}\n\t})();\n\twindow._gaq = gaq.qf = gaq;\n})();\n\ngoogle-analytics.com/analytics.js application/javascript\n(function() {\n\t// https://developers.google.com/analytics/devguides/collection/analyticsjs/\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\t//\n\tvar Tracker = function() {\n\t\t;\n\t};\n\tvar p = Tracker.prototype;\n\tp.get = noopfn;\n\tp.set = noopfn;\n\tp.send = noopfn;\n\t//\n\tvar w = window,\n\t\tgaName = w.GoogleAnalyticsObject || 'ga';\n\tvar ga = function() {\n\t\tvar len = arguments.length;\n\t\tif ( len === 0 ) {\n\t\t\treturn;\n\t\t}\n\t\tvar f = arguments[len-1];\n\t\tif ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\t\t\tf.hitCallback();\n\t\t} catch (ex) {\n\t\t}\n\t};\n\tga.create = function() {\n\t\treturn new Tracker();\n\t};\n\tga.getByName = noopnullfn;\n\tga.getAll = function() {\n\t\treturn [];\n\t};\n\tga.remove = noopfn;\n\tw[gaName] = ga;\n\t// https://github.com/gorhill/uBlock/issues/3075\n\tvar dl = w.dataLayer;\n\tif ( dl instanceof Object && dl.hide instanceof Object && typeof dl.hide.end === 'function' ) {\n\t\tdl.hide.end();\n\t}\n})();\n\ngoogle-analytics.com/inpage_linkid.js application/javascript\n(function() {\n\twindow._gaq = window._gaq || {\n\t\tpush: function() {\n\t\t\t;\n\t\t}\n\t};\n})();\n\n# https://github.com/gorhill/uBlock/issues/2480\n# https://developers.google.com/analytics/devguides/collection/gajs/experiments#cxjs\ngoogle-analytics.com/cx/api.js application/javascript\n(function() {\n\tvar noopfn = function() {\n\t};\n\twindow.cxApi = {\n\t\tchooseVariation: function() {\n\t\t\treturn 0;\n\t\t},\n\t\tgetChosenVariation: noopfn,\n\t\tsetAllowHash: noopfn,\n\t\tsetChosenVariation: noopfn,\n\t\tsetCookiePath: noopfn,\n\t\tsetDomainName: noopfn\n\t\t};\n})();\n\n# Ubiquitous googletagservices.com: not blocked by EasyPrivacy.\n# \"Tags are tiny bits of website code that let you measure traffic and\n# \"visitor behavior\"\ngoogletagservices.com/gpt.js application/javascript\n(function() {\n\tvar p;\n\t// https://developers.google.com/doubleclick-gpt/reference\n\tvar noopfn = function() {\n\t\t;\n\t}.bind();\n\tvar noopthisfn = function() {\n\t\treturn this;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\tvar nooparrayfn = function() {\n\t\treturn [];\n\t};\n\tvar noopstrfn = function() {\n\t\treturn '';\n\t};\n\t//\n\tvar companionAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tenableSyncLoading: noopfn,\n\t\tsetRefreshUnfilledSlots: noopfn\n\t};\n\tvar contentService = {\n\t\taddEventListener: noopthisfn,\n\t\tsetContent: noopfn\n\t};\n\tvar PassbackSlot = function() {\n\t\t;\n\t};\n\tp = PassbackSlot.prototype;\n\tp.display = noopfn;\n\tp.get = noopnullfn;\n\tp.set = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setTagForChildDirectedTreatment = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\tp.updateTargetingFromMap = noopthisfn;\n\tvar pubAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tclear: noopfn,\n\t\tclearCategoryExclusions: noopthisfn,\n\t\tclearTagForChildDirectedTreatment: noopthisfn,\n\t\tclearTargeting: noopthisfn,\n\t\tcollapseEmptyDivs: noopfn,\n\t\tdefineOutOfPagePassback: function() { return new PassbackSlot(); },\n\t\tdefinePassback: function() { return new PassbackSlot(); },\n\t\tdisableInitialLoad: noopfn,\n\t\tdisplay: noopfn,\n\t\tenableAsyncRendering: noopfn,\n\t\tenableSingleRequest: noopfn,\n\t\tenableSyncRendering: noopfn,\n\t\tenableVideoAds: noopfn,\n\t\tget: noopnullfn,\n\t\tgetAttributeKeys: nooparrayfn,\n\t\tgetTargeting: noopfn,\n\t\tgetTargetingKeys: nooparrayfn,\n\t\tgetSlots: nooparrayfn,\n\t\trefresh: noopfn,\n\t\tset: noopthisfn,\n\t\tsetCategoryExclusion: noopthisfn,\n\t\tsetCentering: noopfn,\n\t\tsetCookieOptions: noopthisfn,\n\t\tsetForceSafeFrame: noopthisfn,\n\t\tsetLocation: noopthisfn,\n\t\tsetPublisherProvidedId: noopthisfn,\n\t\tsetSafeFrameConfig: noopthisfn,\n\t\tsetTagForChildDirectedTreatment: noopthisfn,\n\t\tsetTargeting: noopthisfn,\n\t\tsetVideoContent: noopthisfn,\n\t\tupdateCorrelator: noopfn\n\t};\n\tvar SizeMappingBuilder = function() {\n\t\t;\n\t};\n\tp = SizeMappingBuilder.prototype;\n\tp.addSize = noopthisfn;\n\tp.build = noopnullfn;\n\tvar Slot = function() {\n\t\t;\n\t};\n\tp = Slot.prototype;\n\tp.addService = noopthisfn;\n\tp.clearCategoryExclusions = noopthisfn;\n\tp.clearTargeting = noopthisfn;\n\tp.defineSizeMapping = noopthisfn;\n\tp.get = noopnullfn;\n\tp.getAdUnitPath = nooparrayfn;\n\tp.getAttributeKeys = nooparrayfn;\n\tp.getCategoryExclusions = nooparrayfn;\n\tp.getDomId = noopstrfn;\n\tp.getSlotElementId = noopstrfn;\n\tp.getSlotId = noopthisfn;\n\tp.getTargeting = nooparrayfn;\n\tp.getTargetingKeys = nooparrayfn;\n\tp.set = noopthisfn;\n\tp.setCategoryExclusion = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setCollapseEmptyDiv = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\t//\n\tvar gpt = window.googletag || {};\n\tvar cmd = gpt.cmd || [];\n\tgpt.apiReady = true;\n\tgpt.cmd = [];\n\tgpt.cmd.push = function(a) {\n\t\ttry {\n\t\t\ta();\n\t\t} catch (ex) {\n\t\t}\n\t\treturn 1;\n\t};\n\tgpt.companionAds = function() { return companionAdsService; };\n\tgpt.content = function() { return contentService; };\n\tgpt.defineOutOfPageSlot = function() { return new Slot(); };\n\tgpt.defineSlot = function() { return new Slot(); };\n\tgpt.destroySlots = noopfn;\n\tgpt.disablePublisherConsole = noopfn;\n\tgpt.display = noopfn;\n\tgpt.enableServices = noopfn;\n\tgpt.getVersion = noopstrfn;\n\tgpt.pubads = function() { return pubAdsService; };\n\tgpt.pubadsReady = true;\n\tgpt.setAdIframeTitle = noopfn;\n\tgpt.sizeMapping = function() { return new SizeMappingBuilder(); };\n\twindow.googletag = gpt;\n\twhile ( cmd.length !== 0 ) {\n\t\tgpt.cmd.push(cmd.shift());\n\t}\n})();";
+            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\t//\n\tvar Gaq = function() {\n\t\t;\n\t};\n\tGaq.prototype.Na = noopfn;\n\tGaq.prototype.O = noopfn;\n\tGaq.prototype.Sa = noopfn;\n\tGaq.prototype.Ta = noopfn;\n\tGaq.prototype.Va = noopfn;\n\tGaq.prototype._createAsyncTracker = noopfn;\n\tGaq.prototype._getAsyncTracker = noopfn;\n\tGaq.prototype._getPlugin = noopfn;\n\tGaq.prototype.push = function(a) {\n\t\tif ( typeof a === 'function' ) {\n\t\t\ta(); return;\n\t\t}\n\t\tif ( Array.isArray(a) === false ) {\n\t\t\treturn;\n\t\t}\n\t\t// https://twitter.com/catovitch/status/776442930345218048\n\t\t// https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._link\n\t\tif ( a[0] === '_link' && typeof a[1] === 'string' ) {\n\t\t\twindow.location.assign(a[1]);\n\t\t}\n\t\t// https://github.com/gorhill/uBlock/issues/2162\n\t\tif ( a[0] === '_set' && a[1] === 'hitCallback' && typeof a[2] === 'function' ) {\n\t\t\ta[2]();\n\t\t}\n\t};\n\t//\n\tvar tracker = (function() {\n\t\tvar out = {};\n\t\tvar api = [\n\t\t\t'_addIgnoredOrganic _addIgnoredRef _addItem _addOrganic',\n\t\t\t'_addTrans _clearIgnoredOrganic _clearIgnoredRef _clearOrganic',\n\t\t\t'_cookiePathCopy _deleteCustomVar _getName _setAccount',\n\t\t\t'_getAccount _getClientInfo _getDetectFlash _getDetectTitle',\n\t\t\t'_getLinkerUrl _getLocalGifPath _getServiceMode _getVersion',\n\t\t\t'_getVisitorCustomVar _initData _link _linkByPost',\n\t\t\t'_setAllowAnchor _setAllowHash _setAllowLinker _setCampContentKey',\n\t\t\t'_setCampMediumKey _setCampNameKey _setCampNOKey _setCampSourceKey',\n\t\t\t'_setCampTermKey _setCampaignCookieTimeout _setCampaignTrack _setClientInfo',\n\t\t\t'_setCookiePath _setCookiePersistence _setCookieTimeout _setCustomVar',\n\t\t\t'_setDetectFlash _setDetectTitle _setDomainName _setLocalGifPath',\n\t\t\t'_setLocalRemoteServerMode _setLocalServerMode _setReferrerOverride _setRemoteServerMode',\n\t\t\t'_setSampleRate _setSessionTimeout _setSiteSpeedSampleRate _setSessionCookieTimeout',\n\t\t\t'_setVar _setVisitorCookieTimeout _trackEvent _trackPageLoadTime',\n\t\t\t'_trackPageview _trackSocial _trackTiming _trackTrans',\n\t\t\t'_visitCode'\n\t\t].join(' ').split(/\s+/);\n\t\tvar i = api.length;\n\t\twhile ( i-- ) {\n\t\t\tout[api[i]] = noopfn;\n\t\t}\n\t\tout._getLinkerUrl = function(a) {\n\t\t\treturn a;\n\t\t};\n\t\treturn out;\n\t})();\n\t//\n\tvar Gat = function() {\n\t\t;\n\t};\n\tGat.prototype._anonymizeIP = noopfn;\n\tGat.prototype._createTracker = noopfn;\n\tGat.prototype._forceSSL = noopfn;\n\tGat.prototype._getPlugin = noopfn;\n\tGat.prototype._getTracker = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackerByName = function() {\n\t\treturn tracker;\n\t};\n\tGat.prototype._getTrackers = noopfn;\n\tGat.prototype.aa = noopfn;\n\tGat.prototype.ab = noopfn;\n\tGat.prototype.hb = noopfn;\n\tGat.prototype.la = noopfn;\n\tGat.prototype.oa = noopfn;\n\tGat.prototype.pa = noopfn;\n\tGat.prototype.u = noopfn;\n\tvar gat = new Gat();\n\twindow._gat = gat;\n\t//\n\tvar gaq = new Gaq();\n\t(function() {\n\t\tvar aa = window._gaq || [];\n\t\tif ( Array.isArray(aa) ) {\n\t\t\twhile ( aa[0] ) {\n\t\t\t\tgaq.push(aa.shift());\n\t\t\t}\n\t\t}\n\t})();\n\twindow._gaq = gaq.qf = gaq;\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "google_analytics_com_analytics": (...arguments) => {
+            var injectFunc = "(function() {\n\t// https://developers.google.com/analytics/devguides/collection/analyticsjs/\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\t//\n\tvar Tracker = function() {\n\t\t;\n\t};\n\tvar p = Tracker.prototype;\n\tp.get = noopfn;\n\tp.set = noopfn;\n\tp.send = noopfn;\n\t//\n\tvar w = window,\n\t\tgaName = w.GoogleAnalyticsObject || 'ga';\n\tvar ga = function() {\n\t\tvar len = arguments.length;\n\t\tif ( len === 0 ) {\n\t\t\treturn;\n\t\t}\n\t\tvar f = arguments[len-1];\n\t\tif ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\t\t\tf.hitCallback();\n\t\t} catch (ex) {\n\t\t}\n\t};\n\tga.create = function() {\n\t\treturn new Tracker();\n\t};\n\tga.getByName = noopnullfn;\n\tga.getAll = function() {\n\t\treturn [];\n\t};\n\tga.remove = noopfn;\n\tw[gaName] = ga;\n\t// https://github.com/gorhill/uBlock/issues/3075\n\tvar dl = w.dataLayer;\n\tif ( dl instanceof Object && dl.hide instanceof Object && typeof dl.hide.end === 'function' ) {\n\t\tdl.hide.end();\n\t}\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "google_analytics_com_inpage_linkid": (...arguments) => {
+            var injectFunc = "(function() {\n\twindow._gaq = window._gaq || {\n\t\tpush: function() {\n\t\t\t;\n\t\t}\n\t};\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "google_analytics_com_cx_api": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t};\n\twindow.cxApi = {\n\t\tchooseVariation: function() {\n\t\t\treturn 0;\n\t\t},\n\t\tgetChosenVariation: noopfn,\n\t\tsetAllowHash: noopfn,\n\t\tsetChosenVariation: noopfn,\n\t\tsetCookiePath: noopfn,\n\t\tsetDomainName: noopfn\n\t\t};\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "googletagservices_com_gpt": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar p;\n\t// https://developers.google.com/doubleclick-gpt/reference\n\tvar noopfn = function() {\n\t\t;\n\t}.bind();\n\tvar noopthisfn = function() {\n\t\treturn this;\n\t};\n\tvar noopnullfn = function() {\n\t\treturn null;\n\t};\n\tvar nooparrayfn = function() {\n\t\treturn [];\n\t};\n\tvar noopstrfn = function() {\n\t\treturn '';\n\t};\n\t//\n\tvar companionAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tenableSyncLoading: noopfn,\n\t\tsetRefreshUnfilledSlots: noopfn\n\t};\n\tvar contentService = {\n\t\taddEventListener: noopthisfn,\n\t\tsetContent: noopfn\n\t};\n\tvar PassbackSlot = function() {\n\t\t;\n\t};\n\tp = PassbackSlot.prototype;\n\tp.display = noopfn;\n\tp.get = noopnullfn;\n\tp.set = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setTagForChildDirectedTreatment = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\tp.updateTargetingFromMap = noopthisfn;\n\tvar pubAdsService = {\n\t\taddEventListener: noopthisfn,\n\t\tclear: noopfn,\n\t\tclearCategoryExclusions: noopthisfn,\n\t\tclearTagForChildDirectedTreatment: noopthisfn,\n\t\tclearTargeting: noopthisfn,\n\t\tcollapseEmptyDivs: noopfn,\n\t\tdefineOutOfPagePassback: function() { return new PassbackSlot(); },\n\t\tdefinePassback: function() { return new PassbackSlot(); },\n\t\tdisableInitialLoad: noopfn,\n\t\tdisplay: noopfn,\n\t\tenableAsyncRendering: noopfn,\n\t\tenableSingleRequest: noopfn,\n\t\tenableSyncRendering: noopfn,\n\t\tenableVideoAds: noopfn,\n\t\tget: noopnullfn,\n\t\tgetAttributeKeys: nooparrayfn,\n\t\tgetTargeting: noopfn,\n\t\tgetTargetingKeys: nooparrayfn,\n\t\tgetSlots: nooparrayfn,\n\t\trefresh: noopfn,\n\t\tset: noopthisfn,\n\t\tsetCategoryExclusion: noopthisfn,\n\t\tsetCentering: noopfn,\n\t\tsetCookieOptions: noopthisfn,\n\t\tsetForceSafeFrame: noopthisfn,\n\t\tsetLocation: noopthisfn,\n\t\tsetPublisherProvidedId: noopthisfn,\n\t\tsetSafeFrameConfig: noopthisfn,\n\t\tsetTagForChildDirectedTreatment: noopthisfn,\n\t\tsetTargeting: noopthisfn,\n\t\tsetVideoContent: noopthisfn,\n\t\tupdateCorrelator: noopfn\n\t};\n\tvar SizeMappingBuilder = function() {\n\t\t;\n\t};\n\tp = SizeMappingBuilder.prototype;\n\tp.addSize = noopthisfn;\n\tp.build = noopnullfn;\n\tvar Slot = function() {\n\t\t;\n\t};\n\tp = Slot.prototype;\n\tp.addService = noopthisfn;\n\tp.clearCategoryExclusions = noopthisfn;\n\tp.clearTargeting = noopthisfn;\n\tp.defineSizeMapping = noopthisfn;\n\tp.get = noopnullfn;\n\tp.getAdUnitPath = nooparrayfn;\n\tp.getAttributeKeys = nooparrayfn;\n\tp.getCategoryExclusions = nooparrayfn;\n\tp.getDomId = noopstrfn;\n\tp.getSlotElementId = noopstrfn;\n\tp.getSlotId = noopthisfn;\n\tp.getTargeting = nooparrayfn;\n\tp.getTargetingKeys = nooparrayfn;\n\tp.set = noopthisfn;\n\tp.setCategoryExclusion = noopthisfn;\n\tp.setClickUrl = noopthisfn;\n\tp.setCollapseEmptyDiv = noopthisfn;\n\tp.setTargeting = noopthisfn;\n\t//\n\tvar gpt = window.googletag || {};\n\tvar cmd = gpt.cmd || [];\n\tgpt.apiReady = true;\n\tgpt.cmd = [];\n\tgpt.cmd.push = function(a) {\n\t\ttry {\n\t\t\ta();\n\t\t} catch (ex) {\n\t\t}\n\t\treturn 1;\n\t};\n\tgpt.companionAds = function() { return companionAdsService; };\n\tgpt.content = function() { return contentService; };\n\tgpt.defineOutOfPageSlot = function() { return new Slot(); };\n\tgpt.defineSlot = function() { return new Slot(); };\n\tgpt.destroySlots = noopfn;\n\tgpt.disablePublisherConsole = noopfn;\n\tgpt.display = noopfn;\n\tgpt.enableServices = noopfn;\n\tgpt.getVersion = noopstrfn;\n\tgpt.pubads = function() { return pubAdsService; };\n\tgpt.pubadsReady = true;\n\tgpt.setAdIframeTitle = noopfn;\n\tgpt.sizeMapping = function() { return new SizeMappingBuilder(); };\n\twindow.googletag = gpt;\n\twhile ( cmd.length !== 0 ) {\n\t\tgpt.cmd.push(cmd.shift());\n\t}\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5510,7 +5538,7 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "googlesyndication_com_adsbygoogle": (...arguments) => {
-            var injectFunc = "(function() {\n\twindow.adsbygoogle = window.adsbygoogle || {\n\t\tpush: function() {\n\t\t}\n\t};\n})();";
+            var injectFunc = "(function() {\n\twindow.adsbygoogle = window.adsbygoogle || {\n\t\tloaded: true,\n\t\tpush: function Si() {\n\t\t\t/*\n\t\t\tclient = client || google_ad_client || google_ad_client;\n\t\t\tslotname = slotname || google_ad_slot;\n\t\t\ttag_origin = tag_origin || google_tag_origin\n\t\t\t*/\n\t\t}\n\t};\n\tvar phs = document.querySelectorAll('.adsbygoogle');\n\tvar css = 'height:1px!important;max-height:1px!important;max-width:1px!important;width:1px!important;';\n\tfor ( var i = 0; i < phs.length; i++ ) {\n\t\tvar fr = document.createElement('iframe');\n\t\tfr.id = 'aswift_' + (i+1);\n\t\tfr.style = css;\n\t\tvar cfr = document.createElement('iframe');\n\t\tcfr.id = 'google_ads_frame' + i;\n\t\tfr.appendChild(cfr);\n\t\tdocument.body.appendChild(fr);\n\t}\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5573,7 +5601,7 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "bab_defuser": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar sto = window.setTimeout,\n\t\tre = /\.bab_elementid.$/;\n\twindow.setTimeout = function(a, b) {\n\t\tif ( typeof a !== 'string' || !re.test(a) ) {\n\t\t\treturn sto(a, b);\n\t\t}\n\t}.bind(window);\n\tvar signatures = [\n\t\t['blockadblock'],\n\t\t['babasbm'],\n\t\t[/getItem\('babn'\)/],\n\t\t['getElementById','String.fromCharCode','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789','charAt','DOMContentLoaded','AdBlock','addEventListener','doScroll','fromCharCode','<<2|r>>4','sessionStorage','clientWidth','localStorage','Math','random']\n\t];\n\tvar check = function(s) {\n\t\tvar tokens, match, j, token, pos;\n\t\tfor ( var i = 0; i < signatures.length; i++ ) {\n\t\t\ttokens = signatures[i];\n\t\t\tmatch = 0;\n\t\t\tfor ( j = 0, pos = 0; j < tokens.length; j++ ) {\n\t\t\t\ttoken = tokens[j];\n\t\t\t\tpos = token instanceof RegExp ? s.search(token) : s.indexOf(token);\n\t\t\t\tif ( pos !== -1 ) { match += 1; }\n\t\t\t}\n\t\t\tif ( (match / tokens.length) >= 0.8 ) { return true; }\n\t\t}\n\t\treturn false;\n\t};\n\tvar realEval = window.eval;\n\twindow.eval = function(a) {\n\t\tif ( !check(a) ) {\n\t\t\treturn realEval(a);\n\t\t}\n\t\tvar el = document.body;\n\t\tif ( el ) {\n\t\t\tel.style.removeProperty('visibility');\n\t\t}\n\t\tel = document.getElementById('babasbmsgx');\n\t\tif ( el ) {\n\t\t\tel.parentNode.removeChild(el);\n\t\t}\n\t}.bind(window);\n})();";
+            var injectFunc = "(function() {\n\tvar sto = window.setTimeout,\n\t\tre = /\.bab_elementid.$/;\n\twindow.setTimeout = function(a, b) {\n\t\tif ( typeof a !== 'string' || !re.test(a) ) {\n\t\t\treturn sto.apply(this, arguments);\n\t\t}\n\t}.bind(window);\n\tvar signatures = [\n\t\t['blockadblock'],\n\t\t['babasbm'],\n\t\t[/getItem\('babn'\)/],\n\t\t['getElementById','String.fromCharCode','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789','charAt','DOMContentLoaded','AdBlock','addEventListener','doScroll','fromCharCode','<<2|r>>4','sessionStorage','clientWidth','localStorage','Math','random']\n\t];\n\tvar check = function(s) {\n\t\tvar tokens, match, j, token, pos;\n\t\tfor ( var i = 0; i < signatures.length; i++ ) {\n\t\t\ttokens = signatures[i];\n\t\t\tmatch = 0;\n\t\t\tfor ( j = 0, pos = 0; j < tokens.length; j++ ) {\n\t\t\t\ttoken = tokens[j];\n\t\t\t\tpos = token instanceof RegExp ? s.search(token) : s.indexOf(token);\n\t\t\t\tif ( pos !== -1 ) { match += 1; }\n\t\t\t}\n\t\t\tif ( (match / tokens.length) >= 0.8 ) { return true; }\n\t\t}\n\t\treturn false;\n\t};\n\tvar realEval = window.eval;\n\twindow.eval = function(a) {\n\t\tif ( !check(a) ) {\n\t\t\treturn realEval(a);\n\t\t}\n\t\tvar el = document.body;\n\t\tif ( el ) {\n\t\t\tel.style.removeProperty('visibility');\n\t\t}\n\t\tel = document.getElementById('babasbmsgx');\n\t\tif ( el ) {\n\t\t\tel.parentNode.removeChild(el);\n\t\t}\n\t}.bind(window);\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5636,7 +5664,14 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "disqus_com_forums___embed": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar ee = document.getElementsByTagName('script');\n\tvar i = ee.length, src;\n\twhile ( i-- ) {\n\t\tsrc = ee[i].src || '';\n\t\tif ( src === '' ) {\n\t\t\tcontinue;\n\t\t}\n\t\tif ( src.lastIndexOf('disqus.com/embed.js') === (src.length - 19) ) {\n\t\t\treturn;\n\t\t}\n\t}\n\tvar e = document.createElement('script');\n\te.async = true;\n\te.src = '//' + window.disqus_shortname + '.disqus.com/embed.js';\n\tdocument.body.appendChild(e);\n})();\n\n# Most use this one though:\ndisqus.com/embed.js application/javascript\n(function() {\n\tvar p = document.getElementById(window.disqus_container_id || 'disqus_thread');\n\tif ( p === null ) {\n\t\treturn;\n\t}\n\tvar b = document.createElement('button');\n\tb.textContent = 'Disqus blocked by uBlock Origin: click to unblock';\n\tb.type = 'button';\n\tp.appendChild(b);\n\tvar loadDisqus = function(ev) {\n\t\tb.removeEventListener('click', loadDisqus);\n\t\tp.removeChild(b);\n\t\tvar script = document.createElement('script');\n\t\tscript.async = true;\n\t\tvar t = Date.now().toString();\n\t\tscript.src = '//' + window.disqus_shortname + '.disqus.com/embed.js?_=1457540' + t.slice(-6);\n\t\tdocument.body.appendChild(script);\n\t\tev.preventDefault();\n\t\tev.stopPropagation();\n\t};\n\tb.addEventListener('click', loadDisqus);\n})();";
+            var injectFunc = "(function() {\n\tvar ee = document.getElementsByTagName('script');\n\tvar i = ee.length, src;\n\twhile ( i-- ) {\n\t\tsrc = ee[i].src || '';\n\t\tif ( src === '' ) {\n\t\t\tcontinue;\n\t\t}\n\t\tif ( src.lastIndexOf('disqus.com/embed.js') === (src.length - 19) ) {\n\t\t\treturn;\n\t\t}\n\t}\n\tvar e = document.createElement('script');\n\te.async = true;\n\te.src = '//' + window.disqus_shortname + '.disqus.com/embed.js';\n\tdocument.body.appendChild(e);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "disqus_com_embed": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar p = document.getElementById(window.disqus_container_id || 'disqus_thread');\n\tif ( p === null ) {\n\t\treturn;\n\t}\n\tvar b = document.createElement('button');\n\tb.textContent = 'Disqus blocked by uBlock Origin: click to unblock';\n\tb.type = 'button';\n\tp.appendChild(b);\n\tvar loadDisqus = function(ev) {\n\t\tb.removeEventListener('click', loadDisqus);\n\t\tp.removeChild(b);\n\t\tvar script = document.createElement('script');\n\t\tscript.async = true;\n\t\tvar t = Date.now().toString();\n\t\tscript.src = '//' + window.disqus_shortname + '.disqus.com/embed.js?_=1457540' + t.slice(-6);\n\t\tdocument.body.appendChild(script);\n\t\tev.preventDefault();\n\t\tev.stopPropagation();\n\t};\n\tb.addEventListener('click', loadDisqus);\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5657,7 +5692,28 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "sas_defuser": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar ads = {\n\t\tdisplay: noopfn,\n\t\trefresh: noopfn\n\t};\n\tObject.defineProperty(window, 'Ads', {\n\t\tget: function() {\n\t\t\treturn ads;\n\t\t},\n\t\tset: noopfn\n\t});\n})();\n\n# https://adblockplus.org/forum/viewtopic.php?f=2&t=25216#p149739\nfigaro-defuser.js application/javascript\n(function() {\n\tObject.defineProperty(window, 'adisplaynormal', {\n\t\tget: function() {\n\t\t\treturn true;\n\t\t},\n\t\tset: function() {}\n\t});\n})();\n\n# https://adblockplus.org/forum/viewtopic.php?f=2&t=25216#p149739\nlemonde-defuser.js application/javascript\n(function() {\n\tlocalStorage.setItem('lmd_me_displayed',JSON.stringify({data:true,timeout:Date.now()+31536000000}));\n})();\n\n# Good case for https://github.com/gorhill/uBlock/issues/781\nrtlfr-defuser.js application/javascript\n(function() {\n\twindow.addEventListener('load', function() {\n\t\tdocument.body.style.setProperty('overflow', 'auto');\n\t});\n})();";
+            var injectFunc = "(function() {\n\tvar noopfn = function() {\n\t\t;\n\t};\n\tvar ads = {\n\t\tdisplay: noopfn,\n\t\trefresh: noopfn\n\t};\n\tObject.defineProperty(window, 'Ads', {\n\t\tget: function() {\n\t\t\treturn ads;\n\t\t},\n\t\tset: noopfn\n\t});\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "figaro_defuser": (...arguments) => {
+            var injectFunc = "(function() {\n\tObject.defineProperty(window, 'adisplaynormal', {\n\t\tget: function() {\n\t\t\treturn true;\n\t\t},\n\t\tset: function() {}\n\t});\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "lemonde_defuser": (...arguments) => {
+            var injectFunc = "(function() {\n\tlocalStorage.setItem('lmd_me_displayed',JSON.stringify({data:true,timeout:Date.now()+31536000000}));\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "rtlfr_defuser": (...arguments) => {
+            var injectFunc = "(function() {\n\twindow.addEventListener('load', function() {\n\t\tdocument.body.style.setProperty('overflow', 'auto');\n\t});\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5713,7 +5769,21 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "noeval": (...arguments) => {
-            var injectFunc = "(function() {\n\twindow.eval = function(s) {\n\t\tconsole.log('Document tried to eval... \n' + s);\n\t}.bind(window);\n})();\n\nsilent-noeval.js application/javascript\n(function() {\n\twindow.eval = function(s) {\n\t\t;\n\t}.bind(window);\n})();\n\nnoeval-if.js application/javascript\n(function() {\n\tvar needle = '{{1}}';\n\tif ( needle === '' || needle === '{{1}}' ) {\n\t\tneedle = '.?';\n\t} else if ( needle.slice(0,1) === '/' && needle.slice(-1) === '/' ) {\n\t\tneedle = needle.slice(1,-1);\n\t} else {\n\t\tneedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tneedle = new RegExp(needle);\n\trealNoEval = window.eval;\n\twindow.eval = function(a) {\n\t\tif ( !needle.test(a.toString()) ) {\n\t\t\trealNoEval.call(window, a);\n\t\t}\n\t}.bind(window);\n})();";
+            var injectFunc = "(function() {\n\twindow.eval = function(s) {\n\t\tconsole.log('Document tried to eval... \n' + s);\n\t}.bind(window);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "silent_noeval": (...arguments) => {
+            var injectFunc = "(function() {\n\twindow.eval = function(s) {\n\t\t;\n\t}.bind(window);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "noeval_if": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar needle = '{{1}}';\n\tif ( needle === '' || needle === '{{1}}' ) {\n\t\tneedle = '.?';\n\t} else if ( needle.slice(0,1) === '/' && needle.slice(-1) === '/' ) {\n\t\tneedle = needle.slice(1,-1);\n\t} else {\n\t\tneedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tneedle = new RegExp(needle);\n\trealNoEval = window.eval;\n\twindow.eval = function(a) {\n\t\tif ( !needle.test(a.toString()) ) {\n\t\t\trealNoEval.call(window, a);\n\t\t}\n\t}.bind(window);\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -5979,7 +6049,7 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "addEventListener_logger": (...arguments) => {
-            var injectFunc = "(function() {\n\tvar z = self.EventTarget.prototype.addEventListener;\n\tself.EventTarget.prototype.addEventListener = function(a, b) {\n\t\tconsole.log('addEventListener(\"%s\", %s)', a, b.toString());\n\t\treturn z.apply(this, arguments);\n\t};\n})();";
+            var injectFunc = "(function() {\n\tvar c = console, l = c.log;\n\tvar z = self.EventTarget.prototype.addEventListener;\n\tself.EventTarget.prototype.addEventListener = function(a, b) {\n\t\tl.call(c, 'addEventListener(\"%s\", %s)', a, b.toString());\n\t\treturn z.apply(this, arguments);\n\t};\n})();";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -6028,7 +6098,28 @@ var ubo = (function() {
             a.addScript(injectFunc, a.scriptInjectMode.eval);
         },
         "disable_newtab_links": (...arguments) => {
-            var injectFunc = "(function() {\n\tdocument.addEventListener('click', function(ev) {\n\t\tvar target = ev.target;\n\t\twhile ( target !== null ) {\n\t\t\tif ( target.localName === 'a' && target.hasAttribute('target') ) {\n\t\t\t\tev.stopPropagation();\n\t\t\t\tev.preventDefault();\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\ttarget = target.parentNode;\n\t\t}\n\t});\n})();\n";
+            var injectFunc = "(function() {\n\tdocument.addEventListener('click', function(ev) {\n\t\tvar target = ev.target;\n\t\twhile ( target !== null ) {\n\t\t\tif ( target.localName === 'a' && target.hasAttribute('target') ) {\n\t\t\t\tev.stopPropagation();\n\t\t\t\tev.preventDefault();\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\ttarget = target.parentNode;\n\t\t}\n\t});\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "set_constant": (...arguments) => {
+            var injectFunc = "(function() {\n\tvar cValue = '{{2}}';\n\tif ( cValue === 'undefined' ) {\n\t\tcValue = undefined;\n\t} else if ( cValue === 'false' ) {\n\t\tcValue = false;\n\t} else if ( cValue === 'true' ) {\n\t\tcValue = true;\n\t} else if ( cValue === 'noopFunc' ) {\n\t\tcValue = function(){};\n\t} else if ( cValue === 'trueFunc' ) {\n\t\tcValue = function(){ return true; };\n\t} else if ( cValue === 'falseFunc' ) {\n\t\tcValue = function(){ return false; };\n\t} else if ( /^\d+$/.test(cValue) ) {\n\t\tcValue = parseFloat(cValue);\n\t\tif ( isNaN(cValue) ) { return; }\n\t\tif ( Math.abs(cValue) > 0x7FFF ) { return; }\n\t} else {\n\t\treturn;\n\t}\n\tvar aborted = false;\n\tvar mustAbort = function(v) {\n\t\tif ( aborted ) { return true; }\n\t\taborted = v !== undefined && cValue !== undefined && typeof v !== typeof cValue;\n\t\treturn aborted;\n\t};\n\tvar chain = '{{1}}', owner = window;\n\tvar makeProxy = function(owner, chain) {\n\t\tvar desc;\n\t\tvar pos = chain.indexOf('.');\n\t\tif ( pos === -1 ) {\n\t\t\tif ( mustAbort(owner[chain]) ) { return; }\n\t\t\tdesc = Object.getOwnPropertyDescriptor(owner, chain);\n\t\t\tif ( desc === undefined || desc.get === undefined ) {\n\t\t\t\tObject.defineProperty(owner, chain, {\n\t\t\t\t\tget: function() {\n\t\t\t\t\t\treturn cValue;\n\t\t\t\t\t},\n\t\t\t\t\tset: function(a) {\n\t\t\t\t\t\tif ( mustAbort(a) ) {\n\t\t\t\t\t\t\tcValue = a;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t}\n\t\t\treturn;\n\t\t}\n\t\tvar prop = chain.slice(0, pos),\n\t\t\tv = owner[prop];\n\t\tchain = chain.slice(pos + 1); \n\t\tif ( v !== undefined ) {\n\t\t\tmakeProxy(v, chain);\n\t\t\treturn;\n\t\t}\n\t\tdesc = Object.getOwnPropertyDescriptor(owner, prop);\n\t\tif ( desc && desc.set ) { return; }\n\t\tObject.defineProperty(owner, prop, {\n\t\t\tget: function() {\n\t\t\t\treturn v;\n\t\t\t},\n\t\t\tset: function(a) {\n\t\t\t\tv = a;\n\t\t\t\tif ( a instanceof Object ) {\n\t\t\t\t\tmakeProxy(a, chain);\n\t\t\t\t}\n\t\t\t}\n\t\t});\n\t};\n\tmakeProxy(owner, chain);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "nano_setTimeout_booster": (...arguments) => {
+            var injectFunc = "(function() {\n\t// Based on uAssets\n\t// License: https://github.com/uBlockOrigin/uAssets/blob/master/LICENSE\n\tvar z = window.setTimeout,\n\t\tneedle = '{{1}}',\n\t\tdelay = parseInt('{{2}}', 10),\n\t\tboost = parseInt('{{3}}', 10);\n\tif ( needle === '' || needle === '{{1}}' ) {\n\t\tneedle = '.?';\n\t} else if ( needle.charAt(0) === '/' && needle.slice(-1) === '/' ) {\n\t\tneedle = needle.slice(1, -1);\n\t} else {\n\t\tneedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tneedle = new RegExp(needle);\n\tif ( isNaN(delay) || !isFinite(delay) ) {\n\t\tdelay = 1000;\n\t}\n\tif ( isNaN(boost) || !isFinite(boost) ) {\n\t\tboost = 0.05;\n\t}\n\tif ( boost < 0.02 ) {\n\t\tboost = 0.02;\n\t}\n\tif ( boost > 50 ) {\n\t\tboost = 50;\n\t}\n\twindow.setTimeout = function(a, b) {\n\t\tif ( b === delay && needle.test(a.toString()) ) {\n\t\t\tb *= boost;\n\t\t}\n\t\treturn z.apply(this, arguments);\n\t}.bind(window);\n})();";
+            for (let i=0; i<10; i++) {
+                injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
+            }
+            a.addScript(injectFunc, a.scriptInjectMode.eval);
+        },
+        "nano_setInterval_booster": (...arguments) => {
+            var injectFunc = "(function() {\n\t// Based on uAssets\n\t// License: https://github.com/uBlockOrigin/uAssets/blob/master/LICENSE\n\tvar z = window.setInterval,\n\t\tneedle = '{{1}}',\n\t\tdelay = parseInt('{{2}}', 10),\n\t\tboost = parseInt('{{3}}', 10);\n\tif ( needle === '' || needle === '{{1}}' ) {\n\t\tneedle = '.?';\n\t} else if ( needle.charAt(0) === '/' && needle.slice(-1) === '/' ) {\n\t\tneedle = needle.slice(1, -1);\n\t} else {\n\t\tneedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');\n\t}\n\tneedle = new RegExp(needle);\n\tif ( isNaN(delay) || !isFinite(delay) ) {\n\t\tdelay = 1000;\n\t}\n\tif ( isNaN(boost) || !isFinite(boost) ) {\n\t\tboost = 0.05;\n\t}\n\tif ( boost < 0.02 ) {\n\t\tboost = 0.02;\n\t}\n\tif ( boost > 50 ) {\n\t\tboost = 50;\n\t}\n\twindow.setInterval = function(a, b) {\n\t\tif ( b === delay && needle.test(a.toString()) ) {\n\t\t\tb *= boost;\n\t\t}\n\t\treturn z.apply(this, arguments);\n\t}.bind(window);\n})();\n";
             for (let i=0; i<10; i++) {
                 injectFunc = injectFunc.replace(new RegExp("\\{\\{"+(i+1)+"\\}\\}", "g"), arguments[i] || "");
             }
@@ -6048,14 +6139,17 @@ if (a.domCmp(["hentaifr.net","jeu.info","tuxboard.com","xstory-fr.com"])) {
 if (a.domCmp(["washingtonpost.com"])) {
     ubo["wpredirect_defuser"]();
 }
-if (a.domCmp(["4-liga.com","4players.de","9monate.de","aachener-nachrichten.de","aachener-zeitung.de","abendzeitung-muenchen.de","airliners.de","ajaxshowtime.com","allgemeine-zeitung.de","allaboutphones.nl","antenne.de","arcor.de","areadvd.de","areamobile.de","ariva.de","astronews.com","aussenwirtschaftslupe.de","auto-motor-und-sport.de","auto-service.de","autobild.de","autoextrem.de","autopixx.de","autorevue.at","baby-vornamen.de","bafoeg-aktuell.de","berliner-kurier.de","berliner-zeitung.de","bigfm.de","bikerszene.de","boerse-online.de","boerse.de","boersennews.de","brieffreunde.de","buerstaedter-zeitung.de","buffed.de","caravaning.de","cavallo.de","chefkoch.de","clever-tanken.de","computerbild.de","computerhilfen.de","computerworld.nl","comunio.de","connect.de","dbna.de","deine-tierwelt.de","dhd24.com","digitalfernsehen.de","dnn.de","donnerwetter.de","e-hausaufgaben.de","eatsmarter.de","echo-online.de","elektrobike-online.com","e-mountainbike.com","epochtimes.de","express.de","f1maximaal.nl","fanfiktion.de","fettspielen.de","fid-gesundheitswissen.de","finanztreff.de","finya.de","focus.de","football365.fr","formel1.de","frag-mutti.de","fremdwort.de","frustfrei-lernen.de","fussballdaten.de","gala.de","gamersglobal.de","gamesaktuell.de","gamestar.de","gameswelt.at","gameswelt.de","gamezone.de","gartendialog.de","gartenlexikon.de","gelnhaeuser-tageblatt.de","general-anzeiger-bonn.de","genialetricks.de","gesundheit.de","gevestor.de","giessener-anzeiger.de","gipfelbuch.ch","gmuender-tagespost.de","golem.de","gusto.at","gut-erklaert.de","gutfuerdich.co","hamburg.de","hardwareluxx.de","hartziv.org","hausgarten.net","haz.de","heftig.de","heilpraxisnet.de","heise.de","hochheimer-zeitung.de","hofheimer-zeitung.de","hoerzu.de","iban-rechner.de","immobilienscout24.de","ingame.de","inside-handy.de","investor-verlag.de","jpgames.de","juraforum.de","kabeleins.de","kamelle.de","kicker.de","kindergeld.info","kindergeld.org","klettern.de","klettern-magazin.de","kochbar.de","kreis-anzeiger.de","ksta.de","lablue.*","lachainemeteo.com","lampertheimer-zeitung.de","landwirt.com","laut.de","lauterbacher-anzeiger.de","leckerschmecker.me","lesfoodies.com","levif.be","lifeline.de","liga3-online.de","likemag.com","ln-online.de","lustaufsleben.at","lustich.de","lvz.de","lz.de","macwelt.de","main-spitze.de","mathepower.com","maz-online.de","medisite.fr","mehr-tanken.de","mein-kummerkasten.de","mein-wahres-ich.de","menshealth.de","mercato365.com","messen.de","metal-hammer.de","metalflirt.de","modhoster.de","mopo.de","motor-talk.de","motorbasar.de","motorradonline.de","motorsport-total.com","motortests.de","mountainbike-magazin.de","moviejones.de","moviepilot.de","mt.de","mtb-news.de","musikexpress.de","musikradar.de","mz-web.de","netzwelt.de","neuepresse.de","neueroeffnung.info","news.at","news.de","newsbreak24.de","nickles.de","nicknight.de","nnn.de","notebookchat.com","noz.de","nw.de","nwzonline.de","oberhessische-zeitung.de","onvista.de","op-marburg.de","outdoor-magazin.com","outdoorchannel.de","paradisi.de","pc-magazin.de","pcgames.de","pcgameshardware.de","pcwelt.de","pferde.de","pietsmiet.de","pixelio.de","pkw-forum.de","planetsnow.de","play3.de","playfront.de","pnn.de","pons.com","prad.de","prignitzer.de","profil.at","promipool.de","promobil.de","prosieben.de","prosiebenmaxx.de","psychic.de","quoka.de","ran.de","readmore.de","rechtslupe.de","rhein-main-presse.de","rimondo.com","roadbike.de","roemische-zahlen.net","rollingstone.de","rot-blau.com","rp-online.de","rugby365.fr","rundschau-online.de","runnersworld.de","safelist.eu","sat1.de","sat1gold.de","schwaebische-post.de","serienjunkies.de","shz.de","sixx.de","skodacommunity.de","spiegel.de","spielen.de","spielfilm.de","sportal.de","sport365.fr","spox.com","svz.de","szene1.at","szene38.de","tagesspiegel.de","taschenhirn.de","testedich.*","the-voice-of-germany.de","tichyseinblick.de","tierfreund.co","tiervermittlung.de","transfermarkt.de","trend.at","truckscout24.de","tv-media.at","tvdigital.de","tvinfo.de","tvspielfilm.de","tvtoday.de","unicum.de","unterhalt.net","usinger-anzeiger.de","usp-forum.de","videogameszone.de","vienna.at","virtualnights.com","webfail.com","webwereld.nl","welt.de","weristdeinfreund.de","werkzeug-news.de","weser-kurier.de","wetter.com","wetteronline.*","wiesbadener-kurier.de","wiesbadener-tagblatt.de","wintotal.de","winboard.org","windows-7-forum.net","wize.life","wn.de","wohngeld.org","woman.at","womenshealth.de","wormser-zeitung.de","woxikon.de","yachtrevue.at"])) {
+if (a.domCmp(["4-liga.com","4players.de","9monate.de","aachener-nachrichten.de","aachener-zeitung.de","abendblatt.de","abendzeitung-muenchen.de","airliners.de","ajaxshowtime.com","allgemeine-zeitung.de","allaboutphones.nl","antenne.de","arcor.de","areadvd.de","areamobile.de","ariva.de","astronews.com","aussenwirtschaftslupe.de","auto-motor-und-sport.de","auto-service.de","autobild.de","autoextrem.de","autopixx.de","autorevue.at","baby-vornamen.de","bafoeg-aktuell.de","berliner-kurier.de","berliner-zeitung.de","bigfm.de","bikerszene.de","boerse-online.de","boerse.de","boersennews.de","brieffreunde.de","buerstaedter-zeitung.de","buffed.de","caravaning.de","cavallo.de","chefkoch.de","clever-tanken.de","computerbild.de","computerhilfen.de","computerworld.nl","comunio.de","connect.de","dbna.de","deine-tierwelt.de","derwesten.de","dhd24.com","dieblaue24.com","digitalfernsehen.de","dnn.de","donnerwetter.de","e-hausaufgaben.de","eatsmarter.de","echo-online.de","elektrobike-online.com","e-mountainbike.com","epochtimes.de","express.de","f1maximaal.nl","fanfiktion.de","fettspielen.de","fid-gesundheitswissen.de","finanztreff.de","finya.de","focus.de","football365.fr","formel1.de","frag-mutti.de","fremdwort.de","frustfrei-lernen.de","fussballdaten.de","gala.de","gamersglobal.de","gamesaktuell.de","gamestar.de","gameswelt.at","gameswelt.de","gamezone.de","gartendialog.de","gartenlexikon.de","geissblog.koeln","gelnhaeuser-tageblatt.de","general-anzeiger-bonn.de","genialetricks.de","gesundheit.de","gevestor.de","giessener-anzeiger.de","gipfelbuch.ch","gmuender-tagespost.de","golem.de","gusto.at","gut-erklaert.de","gutfuerdich.co","hamburg.de","hardwareluxx.de","hartziv.org","haus-garten-test.de","hausgarten.net","haz.de","heftig.de","heilpraxisnet.de","heise.de","hochheimer-zeitung.de","hofheimer-zeitung.de","hoerzu.de","iban-rechner.de","immobilienscout24.de","ingame.de","inside-handy.de","investor-verlag.de","jpgames.de","juraforum.de","kabeleins.de","kamelle.de","kicker.de","kindergeld.info","kindergeld.org","klettern.de","klettern-magazin.de","kochbar.de","kreis-anzeiger.de","ksta.de","lablue.*","lachainemeteo.com","lampertheimer-zeitung.de","landwirt.com","laut.de","lauterbacher-anzeiger.de","leckerschmecker.me","lesfoodies.com","levif.be","lifeline.de","liga3-online.de","likemag.com","ln-online.de","lustaufsleben.at","lustich.de","lvz.de","lz.de","macwelt.de","main-spitze.de","mathepower.com","maz-online.de","medisite.fr","mehr-tanken.de","mein-kummerkasten.de","mein-mmo.de","mein-wahres-ich.de","menshealth.de","mercato365.com","messen.de","metal-hammer.de","metalflirt.de","modhoster.de","mopo.de","morgenpost.de","motor-talk.de","motorbasar.de","motorradonline.de","motorsport-total.com","motortests.de","mountainbike-magazin.de","moviejones.de","moviepilot.de","mt.de","mtb-news.de","musikexpress.de","musikradar.de","mz-web.de","netzwelt.de","neuepresse.de","neueroeffnung.info","news.at","news.de","newsbreak24.de","nickles.de","nicknight.de","nnn.de","notebookchat.com","notebookcheck.*","noz.de","nw.de","nwzonline.de","oberhessische-zeitung.de","onlinekosten.de","onvista.de","op-marburg.de","outdoor-magazin.com","outdoorchannel.de","paradisi.de","pc-magazin.de","pcgames.de","pcgameshardware.de","pcwelt.de","pcworld.pl","pferde.de","pietsmiet.de","pixelio.de","pkw-forum.de","planetsnow.de","play3.de","playfront.de","pnn.de","pons.com","prad.de","prignitzer.de","profil.at","promipool.de","promobil.de","prosieben.de","prosiebenmaxx.de","psychic.de","quoka.de","ran.de","readmore.de","rechtslupe.de","rhein-main-presse.de","rheinische-anzeigenblaetter.de","rimondo.com","roadbike.de","roemische-zahlen.net","rollingstone.de","rot-blau.com","rp-online.de","rugby365.fr","rundschau-online.de","runnersworld.de","safelist.eu","sat1.de","sat1gold.de","schwaebische-post.de","serienjunkies.de","shz.de","sixx.de","skodacommunity.de","spiegel.de","spielen.de","spielfilm.de","sportal.de","sport365.fr","spox.com","svz.de","szene1.at","szene38.de","tagesspiegel.de","taschenhirn.de","techstage.de","testedich.*","the-voice-of-germany.de","tichyseinblick.de","tierfreund.co","tiervermittlung.de","torgranate.de","transfermarkt.at","transfermarkt.ch","transfermarkt.de","trend.at","truckscout24.de","tv-media.at","tvdigital.de","tvinfo.de","tvspielfilm.de","tvtoday.de","unicum.de","unterhalt.net","usinger-anzeiger.de","usp-forum.de","videogameszone.de","vienna.at","virtualnights.com","webfail.com","webwereld.nl","welt.de","weristdeinfreund.de","werkzeug-news.de","weser-kurier.de","wetter.*","wetteronline.*","wiesbadener-kurier.de","wiesbadener-tagblatt.de","wintotal.de","winboard.org","windows-7-forum.net","wize.life","wn.de","wohngeld.org","woman.at","womenshealth.de","wormser-zeitung.de","woxikon.de","yachtrevue.at"])) {
     ubo["uabinject_defuser"]();
 }
 if (a.domCmp(["gamepro.de","gamestar.de"])) {
     ubo["abort_on_property_write"]("uabInject");
 }
-if (a.domCmp(["100percentfedup.com","activistpost.com","addictinginfo.*","alfonzorachel.com","allenbwest.com","allenwestrepublic.com","allthingsvegas.com","barbwire.com","bestfunnyjokes4u.com","bighealthreport.com","bugout.news","bulletsfirst.net","buzzlamp.com","celebrity-gossip.net","cheatsheet.com","clashdaily.com","collapse.news","comicallyincorrect.com","conservativetribune.com","constitution.com","craigjames.com","creepybasement.com","cyberwar.news","dailyheadlines.net","dailysurge.com","damnlol.com","deneenborelli.com","eaglerising.com","evil.news","faithit.com","fitnessconnoisseur.com","foreverymom.com","freedom.news","freedomdaily.com","freedomforce.com","freedomoutpost.com","glitch.news","godfatherpolitics.com","gopocalypse.org","guardianlv.com","guns.news","hautereport.com","hispolitica.com","ifyouonlynews.com","instigatornews.com","janmorganmedia.com","joeforamerica.com","juicerhead.com","justdiy.com","keepandbear.com","knowledgedish.com","lastresistance.com","legalinsurrection.com","liberty.news","libertyunyielding.com","lidblog.com","millionpictures.co","moneyversed.com","natural.news","naturalblaze.com","naturalsociety.com","opednews.com","patriotoutdoornews.com","pjmedia.com","politicaloutcast.com","politichicks.com","practicallyviral.com","profitconfidential.com","quirlycues.com","realmomsrealreviews.com","redhotchacha.com","redmaryland.com","reverbpress.com","reviveusa.com","shark-tank.com","shedthoselbs.com","slender.news","sonsoflibertymedia.com","stupid.news","techconsumer.com","technobuffalo.com","theblacksphere.net","theboredmind.com","thegatewaypundit.com","thelastlineofdefense.org","themattwalshblog.com","thepoke.co.uk","therealside.com","tosavealife.com","twisted.news","usherald.com","videogamesblogger.com","viralnova.com","visiontoamerica.com","wakingtimes.com","westernjournalism.com","wnd.com","xtribune.com","youngcons.com"])) {
-    ubo["abort_current_inline_script"]("setTimeout","MBoxAdMain");
+if (a.domCmp(["100percentfedup.com","activistpost.com","addictinginfo.*","alfonzorachel.com","allenbwest.com","allenwestrepublic.com","allkpop.com","allthingsvegas.com","americasfreedomfighters.com","barbwire.com","bestfunnyjokes4u.com","bighealthreport.com","bugout.news","bulletsfirst.net","buzzlamp.com","celebrity-gossip.net","cheatsheet.com","clashdaily.com","collapse.news","comicallyincorrect.com","constitution.com","craigjames.com","creepybasement.com","cyberwar.news","dailyheadlines.net","dailysurge.com","damnlol.com","deneenborelli.com","eaglerising.com","evil.news","faithit.com","fitnessconnoisseur.com","foreverymom.com","freedom.news","freedomdaily.com","freedomforce.com","freedomoutpost.com","glitch.news","godfatherpolitics.com","gopocalypse.org","guardianlv.com","guns.news","hautereport.com","hispolitica.com","ifyouonlynews.com","instigatornews.com","janmorganmedia.com","joeforamerica.com","juicerhead.com","justdiy.com","keepandbear.com","knowledgedish.com","lastresistance.com","legalinsurrection.com","liberty.news","libertyunyielding.com","lidblog.com","millionpictures.co","moneyversed.com","natural.news","naturalblaze.com","naturalsociety.com","opednews.com","patriotoutdoornews.com","pjmedia.com","politicaloutcast.com","politichicks.com","practicallyviral.com","profitconfidential.com","quirlycues.com","realmomsrealreviews.com","redhotchacha.com","redmaryland.com","reverbpress.com","reviveusa.com","shark-tank.com","shedthoselbs.com","slender.news","sonsoflibertymedia.com","stupid.news","techconsumer.com","technobuffalo.com","theblacksphere.net","theboredmind.com","thefreethoughtproject.com","thegatewaypundit.com","thelastlineofdefense.org","themattwalshblog.com","thepoke.co.uk","therealside.com","tosavealife.com","twisted.news","usherald.com","videogamesblogger.com","viralnova.com","visiontoamerica.com","wakingtimes.com","westernjournalism.com","wnd.com","xtribune.com","youngcons.com"])) {
+    ubo["set_constant"]("oio","true");
+}
+if (a.domCmp(["activistpost.com"])) {
+    ubo["noeval_if"]("Aderz");
 }
 if (a.domCmp(["extremetube.com","pornhub.com","primewire.*","redtube.*","spankwire.com","tube8.*","youporn.com","youporngay.com"])) {
     ubo["pornhub_popup_defuser"]();
@@ -6066,11 +6160,20 @@ if (a.domCmp(["forbes.com"])) {
 if (a.domCmp(["oload.info","oload.stream","oload.tv","openload.co","streamango.com"])) {
     ubo["openload_co"]();
 }
+if (a.domCmp(["openload.co"])) {
+    ubo["window_open_defuser"]();
+}
 if (a.domCmp(["streamango.com"])) {
     ubo["abort_on_property_read"]("BetterJsPop");
 }
+if (a.domCmp(["streamango.com"])) {
+    ubo["window_open_defuser"]();
+}
 if (a.domCmp(["kissanime.*"])) {
     ubo["kissanime_defuser"]();
+}
+if (a.domCmp(["kissanime.ac","kissanime.co"])) {
+    ubo["set_constant"]("check_adblock","true");
 }
 if (a.domCmp(["kisscartoon.*"])) {
     ubo["noeval"]();
@@ -6153,6 +6256,12 @@ if (a.domCmp(["q.gs"])) {
 if (a.domCmp(["dpstream.net"])) {
     ubo["fuckadblock_js_3_2_0"]();
 }
+if (a.domCmp(["dpstream.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["al.ly"])) {
+    ubo["addEventListener_defuser"]("click","popunder");
+}
 if (a.domCmp(["al.ly","ally.sh"])) {
     ubo["noeval"]();
 }
@@ -6171,8 +6280,11 @@ if (a.domCmp(["bhaskar.com","divyabhaskar.co.in"])) {
 if (a.domCmp(["thesimsresource.com"])) {
     ubo["thesimsresource_com"]();
 }
-if (a.domCmp(["4players.de","brigitte.de","buffed.de","chip.de","erdbeerlounge.de","gamesaktuell.de","gamezone.de","gamona.de","giga.de","gmx.net","golem.de","kicker.de","kino.de","myspass.de","pcgames.de","pcgameshardware.de","spielaffe.de","spieletipps.de","t-online.de","videogameszone.de","web.de","welt.de"])) {
+if (a.domCmp(["4players.de","brigitte.de","buffed.de","chip.de","erdbeerlounge.de","gamesaktuell.de","gamezone.de","gamona.de","giga.de","gmx.net","golem.de","kicker.de","kino.de","myspass.de","pcgames.de","pcgameshardware.de","spiegel.de","spielaffe.de","spieletipps.de","t-online.de","thrashermagazine.com","videogameszone.de","web.de","welt.de"])) {
     ubo["golem_de"]();
+}
+if (a.domCmp(["chip.de"])) {
+    ubo["setTimeout_defuser"]("()","15000");
 }
 if (a.domCmp(["aranzulla.it"])) {
     ubo["abort_on_property_read"]("navigator.userAgent");
@@ -6255,6 +6367,9 @@ if (a.domCmp(["parentherald.com"])) {
 if (a.domCmp(["minecraftbuildinginc.com"])) {
     ubo["bab_defuser"]();
 }
+if (a.domCmp(["minecraftbuildinginc.com"])) {
+    ubo["set_constant"]("$tieE3","true");
+}
 if (a.domCmp(["360haven.com"])) {
     ubo["bab_defuser"]();
 }
@@ -6291,8 +6406,20 @@ if (a.domCmp(["alltube.tv"])) {
 if (a.domCmp(["cityam.com","investmentweek.co.uk","professionaladviser.com","techworld.com","theinquirer.net"])) {
     ubo["r3z_defuser"]();
 }
+if (a.domCmp(["imagefap.com"])) {
+    ubo["abort_on_property_read"]("Buu.serve");
+}
+if (a.domCmp(["motherless.com"])) {
+    ubo["abort_on_property_read"]("_ml_ads_ns");
+}
 if (a.domCmp(["lasprovincias.es"])) {
     ubo["ideal_es"]();
+}
+if (a.domCmp(["kickass.cd"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["kickass.cd"])) {
+    ubo["window_open_defuser"]();
 }
 if (a.domCmp(["minecrafthousedesign.com"])) {
     ubo["bab_defuser"]();
@@ -6306,11 +6433,20 @@ if (a.domCmp(["mmorpg.org.pl"])) {
 if (a.domCmp(["freethesaurus.com","thefreedictionary.com"])) {
     ubo["setTimeout_defuser"]("warn");
 }
-if (a.domCmp(["1337x.to"])) {
+if (a.domCmp(["1337x.*"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["1337x.to"])) {
+if (a.domCmp(["1337x.*"])) {
     ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["1337x.*"])) {
+    ubo["setInterval_defuser"]("system.popunder","500");
+}
+if (a.domCmp(["1337x.*"])) {
+    ubo["abort_current_inline_script"]("parseInt","MarketGidJSON");
+}
+if (a.domCmp(["1337x.*"])) {
+    ubo["abort_on_property_read"]("_0x3ad7");
 }
 if (a.domCmp(["coreimg.net"])) {
     ubo["noeval"]();
@@ -6321,11 +6457,32 @@ if (a.domCmp(["linkneverdie.com"])) {
 if (a.domCmp(["v3.co.uk"])) {
     ubo["r3z_defuser"]();
 }
-if (a.domCmp(["italiashare.life"])) {
+if (a.domCmp(["italiashare.*"])) {
     ubo["abort_on_property_read"]("adblock");
 }
-if (a.domCmp(["italiashare.life"])) {
+if (a.domCmp(["italiashare.*"])) {
+    ubo["abort_on_property_read"]("admrlPreviewEngage");
+}
+if (a.domCmp(["italiashare.*"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["italiashare.*"])) {
     ubo["nowebrtc"]();
+}
+if (a.domCmp(["italiashare.*"])) {
+    ubo["abort_on_property_write"]("BlockAdBlock");
+}
+if (a.domCmp(["italiashare.net"])) {
+    ubo["abort_on_property_write"]("checkAds");
+}
+if (a.domCmp(["italiashare.net"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["italiashare.net"])) {
+    ubo["set_constant"]("adBlock","true");
+}
+if (a.domCmp(["italiashare.net"])) {
+    ubo["abort_current_inline_script"]("adblockblock","adblocktest");
 }
 if (a.domCmp(["mio.to"])) {
     ubo["setTimeout_defuser"]("e=d()","1000");
@@ -6340,13 +6497,31 @@ if (a.domCmp(["criminalcasetools.com"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["vidtodo.com"])) {
-    ubo["nowebrtc"]();
-}
-if (a.domCmp(["vidtodo.com"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
-if (a.domCmp(["vidtodo.com"])) {
+if (a.domCmp(["vidstodo.me","vidtod.me"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["vidto.me","vidtod.me"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["vidstodo.me","vidto.me","vidtod.me","vidtodo.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["vidstodo.me","vidtod.me"])) {
+    ubo["abort_on_property_write"]("n3zz");
+}
+if (a.domCmp(["vidto.me"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["vidtodo.com","vidtod.me"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["vidto.me"])) {
+    ubo["setInterval_defuser"]("system.popunder","500");
+}
+if (a.domCmp(["vidto.me"])) {
+    ubo["window_open_defuser"]();
 }
 if (a.domCmp(["ahzahg6ohb.com","ay8ou8ohth.com"])) {
     ubo["abort_on_property_read"]("adsShowPopup1");
@@ -6384,7 +6559,7 @@ if (a.domCmp(["uploads.to"])) {
 if (a.domCmp(["wikia.com"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
-if (a.domCmp(["123movies.net","2ddl.*","arabseed.tv","buzzfil.net","clicknupload.org","ddlvalley.me","entervideo.net","eztv.*","filmvf.cc","ganool.se","go4up.com","icefilms.info","igg-games.com","letmewatchthis.ac","mac-torrents.com","mkvcage.com","openload.ch","pdf-giant.com","readmanga.today","sawlive.tv","sportshd.me","streamfilmzzz.com","streamzzz.online","thevideobee.to","torrentz2.*","tny.ec","uploading.site","uptobox.com","yts.ag","yts.gs","yts.am"])) {
+if (a.domCmp(["123movies.net","2ddl.*","arabseed.tv","buzzfil.net","clicknupload.org","ddlvalley.me","entervideo.net","eztv.*","filmvf.cc","ganool.se","go4up.com","icefilms.info","igg-games.com","letmewatchthis.ac","mac-torrents.com","mkvcage.com","openload.ch","pdf-giant.com","pelispedia.co","pelispedia.tv","readmanga.today","sawlive.tv","skidrowcrack.com","sportshd.me","streamfilmzzz.com","streamzzz.online","thevideobee.to","torrentz2.*","tny.ec","uploading.site","uptobox.com","watchers.to","yts.ag","yts.gs","yts.am"])) {
     ubo["nowebrtc"]();
 }
 if (a.domCmp(["gamer.com.tw"])) {
@@ -6396,7 +6571,7 @@ if (a.domCmp(["nextinpact.com"])) {
 if (a.domCmp(["androidcentral.com","connectedly.com","crackberry.com","imore.com","teslacentral.com","vrheads.com","windowscentral.com"])) {
     ubo["abort_on_property_write"]("adonisHash");
 }
-if (a.domCmp(["ack.net","allkpop.com","audioholics.com","barnstablepatriot.com","boredpanda.com","britannica.com","businessnewsdaily.com","cantonrep.com","capecodtimes.com","champion.gg","cheeseheadtv.com","closerweekly.com","collegehumor.com","columbiatribune.com","cougarboard.com","csgolounge.com","destructoid.com","dispatch.com","dorkly.com","dota2lounge.com","enterprisenews.com","eternallysunny.com","fayobserver.com","fhm.com","firstforwomen.com","flexonline.com","gainesville.com","gastongazette.com","geekzone.co.nz","ghacks.net","goerie.com","goupstate.com","gsmarena.com","healthline.com","heraldtribune.com","houmatoday.com","intouchweekly.com","investopedia.com","j-14.com","kiplinger.com","laptopmag.com","lifeandstylemag.com","listverse.com","lolcounter.com","m-magazine.com","madamenoire.com","maketecheasier.com","mensfitness.com","metrowestdailynews.com","moneyversed.com","muscleandfitness.com","news-journalonline.com","newsarama.com","nintendoeverything.com","nwfdailynews.com","nydailynews.com","phonearena.com","pjstar.com","poconorecord.com","probuilds.net","providencejournal.com","radaronline.com","recordonline.com","sj-r.com","slickdeals.net","soapoperadigest.com","solomid.net","space.com","starnewsonline.com","teamliquid.net","telegram.com","theberry.com","thechive.com","theledger.com","thepoliticalinsider.com","tmn.today","tomsguide.com","topix.com","tuscaloosanews.com","uproxx.com","uticaod.com","vvdailypress.com","wikia.com","womansworld.com","xda-developers.com"])) {
+if (a.domCmp(["ack.net","allkpop.com","ancient.eu","audioholics.com","barnstablepatriot.com","boredpanda.com","britannica.com","brobible.com","businessnewsdaily.com","cantonrep.com","capecodtimes.com","champion.gg","cheeseheadtv.com","closerweekly.com","collegehumor.com","columbiatribune.com","cougarboard.com","csgolounge.com","destructoid.com","dispatch.com","dorkly.com","dota2lounge.com","enterprisenews.com","eternallysunny.com","fayobserver.com","fhm.com","firstforwomen.com","flexonline.com","gainesville.com","gastongazette.com","geekzone.co.nz","ghacks.net","goerie.com","goupstate.com","gsmarena.com","healthline.com","heraldtribune.com","houmatoday.com","intouchweekly.com","investopedia.com","j-14.com","kiplinger.com","laptopmag.com","lifeandstylemag.com","liquipedia.net","listverse.com","lolcounter.com","m-magazine.com","madamenoire.com","maketecheasier.com","mensfitness.com","metrowestdailynews.com","moneyversed.com","muscleandfitness.com","news-journalonline.com","newsarama.com","nintendoeverything.com","nwfdailynews.com","nydailynews.com","ocala.com","phonearena.com","pjstar.com","poconorecord.com","probuilds.net","providencejournal.com","radaronline.com","recordonline.com","salon.com","sj-r.com","slickdeals.net","soapoperadigest.com","solomid.net","space.com","starnewsonline.com","teamliquid.net","telegram.com","theberry.com","thechive.com","theledger.com","thepoliticalinsider.com","tmn.today","tomsguide.com","topix.com","trakt.tv","tuscaloosanews.com","uproxx.com","uticaod.com","vvdailypress.com","wikia.com","winchristmas.co.uk","womansworld.com","wuxiaworld.com","xda-developers.com"])) {
     ubo["abort_on_property_write"]("adonisHash");
 }
 if (a.domCmp(["xda-developers.com"])) {
@@ -6429,13 +6604,13 @@ if (a.domCmp(["stern.de"])) {
 if (a.domCmp(["stern.de"])) {
     ubo["abort_on_property_write"]("exportz");
 }
-if (a.domCmp(["alphr.com","autobytel.com","brigitte.de","cesoirtv.com","chip.de","erdbeerlounge.de","gamesradar.com","huffingtonpost.co.uk","huffingtonpost.com","moviefone.com","playboy.de","theweek.co.uk","usatoday.com"])) {
+if (a.domCmp(["alphr.com","autobytel.com","brigitte.de","cesoirtv.com","chip.de","erdbeerlounge.de","gamesradar.com","huffingtonpost.co.uk","huffingtonpost.com","moviefone.com","playboy.de","usatoday.com"])) {
     ubo["abort_on_property_write"]("_sp_");
 }
 if (a.domCmp(["faz.net"])) {
     ubo["abort_current_inline_script"]("$","_sp_._networkListenerData");
 }
-if (a.domCmp(["20min.ch","al.com","bento.de","cleveland.com","digitalspy.com","eurogamer.de","ft.com","gala.de","gesundheitsfrage.net","gutefrage.net","masslive.com","metabomb.net","mlive.com","newyorkupstate.com","ngin-mobility.com","nj.com","nola.com","oregonlive.com","pcgamer.com","pennlive.com","radiotimes.com","silive.com","stern.de","syracuse.com"])) {
+if (a.domCmp(["20min.ch","al.com","autoexpress.co.uk","bento.de","bikeradar.com","cleveland.com","digitalspy.com","eurogamer.de","eurogamer.es","eurogamer.net","eurogamer.pt","finanzfrage.net","ft.com","gala.de","gesundheitsfrage.net","gutefrage.net","ligainsider.de","masslive.com","metabomb.net","mlive.com","muthead.com","newyorkupstate.com","ngin-mobility.com","nj.com","nola.com","oregonlive.com","pcgamer.com","pennlive.com","radiotimes.com","silive.com","stern.de","syracuse.com","theweek.co.uk"])) {
     ubo["abort_on_property_read"]("_sp_._networkListenerData");
 }
 if (a.domCmp(["gamona.de","giga.de","kino.de","spielaffe.de","spieletipps.de"])) {
@@ -6451,7 +6626,7 @@ if (a.domCmp(["speedtest.net"])) {
     ubo["abort_on_property_read"]("_sp_");
 }
 if (a.domCmp(["cwtv.com"])) {
-    ubo["abort_on_property_write"]("wallConfig");
+    ubo["noeval"]();
 }
 if (a.domCmp(["download.mokeedev.com"])) {
     ubo["setTimeout_defuser"]("alert-danger-enabled");
@@ -6459,26 +6634,26 @@ if (a.domCmp(["download.mokeedev.com"])) {
 if (a.domCmp(["pocketnow.com"])) {
     ubo["abort_on_property_read"]("InstallTrigger");
 }
-if (a.domCmp(["cpu-world.com"])) {
-    ubo["abort_on_property_read"]("CW_AB");
-}
 if (a.domCmp(["worldfree4u.lol","worldfree4u.ws"])) {
     ubo["popads_dummy"]();
 }
 if (a.domCmp(["eurogamer.net","rockpapershotgun.com","vg247.com"])) {
     ubo["abort_on_property_write"]("yafaIt");
 }
-if (a.domCmp(["linkshrink.net"])) {
-    ubo["noeval"]();
-}
-if (a.domCmp(["auto-motor-und-sport.de","womenshealth.de"])) {
+if (a.domCmp(["auto-motor-und-sport.de","caravaning.de","womenshealth.de"])) {
     ubo["abort_on_property_write"]("adblockActive");
 }
-if (a.domCmp(["ddlvalley.cool","zippyshare.com"])) {
+if (a.domCmp(["zippyshare.com"])) {
     ubo["noeval"]();
 }
 if (a.domCmp(["rarbg.is","rarbg.to","rarbgmirror.xyz","rarbgproxy.org"])) {
-    ubo["abort_on_property_read"]("_wm3");
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
+}
+if (a.domCmp(["rarbg.is","rarbg.to","rarbgmirror.xyz","rarbgproxy.org"])) {
+    ubo["setInterval_defuser"]("system.popunder","500");
+}
+if (a.domCmp(["rarbgproxy.org"])) {
+    ubo["window_open_defuser"]();
 }
 if (a.domCmp(["fullmatchesandshows.com","mediafire.com","newser.com","pornhub.com","rlslog.net","scienceworldreport.com","streamcloud.eu","tinypic.com"])) {
     ubo["abort_on_property_write"]("UAParser");
@@ -6489,11 +6664,14 @@ if (a.domCmp(["gelbooru.com"])) {
 if (a.domCmp(["gelbooru.com"])) {
     ubo["popads_dummy"]();
 }
-if (a.domCmp(["rule34.xxx"])) {
-    ubo["abort_on_property_read"]("testVar");
+if (a.domCmp(["realbooru.com","rule34.xxx"])) {
+    ubo["abort_on_property_read"]("TesTVar");
 }
 if (a.domCmp(["thedoujin.com","xbooru.com"])) {
     ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["xbooru.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
 }
 if (a.domCmp(["kbb.com"])) {
     ubo["abort_on_property_read"]("KBB.DetectBlockerExtensions");
@@ -6501,7 +6679,7 @@ if (a.domCmp(["kbb.com"])) {
 if (a.domCmp(["movie-blog.org"])) {
     ubo["abort_on_property_write"]("DCVU");
 }
-if (a.domCmp(["9xbuddy.com","adf.ly","albumkings.org","ay.gy","bestfilmeshd.com","bombuj.eu","crackingpatching.com","daclips.in","english-subtitles.pro","filescdn.com","filmuptobox.net","freegamesdl.net","gomovies.es","gorillavid.in","hulkload.com","j.gs","jkanime.net","karanpc.com","microify.com","minecraft-forum.net","monova.org","newmusic.trade","onmovies.to","opensubtitles.org","pintient.com","pirateproxy.*","psarips.com","q.gs","security-links.com","solidfiles.com","stream2watch.cc","thepiratebay.org","torrentexx.com","uploadrocket.net","uptobox.com","vidabc.com","zippyshare.com"])) {
+if (a.domCmp(["9xbuddy.com","adf.ly","albumkings.org","ay.gy","azvideo.net","bestfilmeshd.com","bombuj.eu","cloudyfiles.org","crackingpatching.com","daclips.in","english-subtitles.pro","filescdn.com","filmuptobox.net","freegamesdl.net","gomovies.es","gorillavid.in","hulkload.com","j.gs","jkanime.net","karanpc.com","livewidget.net","microify.com","minecraft-forum.net","monova.org","newmusic.trade","onmovies.to","opensubtitles.org","pintient.com","pirateproxy.*","powvideo.net","psarips.com","q.gs","security-links.com","solidfiles.com","stream2watch.cc","suprafiles.org","thepiratebay.org","torrentexx.com","uploadrocket.net","uptobox.com","vidabc.com","zippyshare.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["watchcartoononline.io"])) {
@@ -6532,6 +6710,9 @@ if (a.domCmp(["shink.me"])) {
     ubo["abort_on_property_read"]("jsPopunder");
 }
 if (a.domCmp(["shink.me"])) {
+    ubo["abort_on_property_read"]("pup");
+}
+if (a.domCmp(["shink.me"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["shink.me"])) {
@@ -6543,23 +6724,23 @@ if (a.domCmp(["coshurl.co"])) {
 if (a.domCmp(["australianfrequentflyer.com.au"])) {
     ubo["bab_defuser"]();
 }
+if (a.domCmp(["australianfrequentflyer.com.au"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
 if (a.domCmp(["putlockers.cc"])) {
     ubo["noeval"]();
 }
 if (a.domCmp(["bicycling.com","menshealth.com","prevention.com","rodalesorganiclife.com","runnersworld.com","womenshealthmag.com"])) {
     ubo["abort_on_property_read"]("adBlockPromise");
 }
-if (a.domCmp(["chicagoreader.com"])) {
-    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
-}
-if (a.domCmp(["broadwayworld.com","cultofmac.com","insidenova.com","itavisen.no","metalinjection.net","metalsucks.net","post-gazette.com","practicalpainmanagement.com","sanfoundry.com","sporcle.com","stylecaster.com"])) {
-    ubo["abort_on_property_read"]("admrlPreviewEngage");
+if (a.domCmp(["10news.com","broadwayworld.com","cultofmac.com","dailyknicks.com","gmenhq.com","insidenova.com","itavisen.no","lastnighton.com","leitesculinaria.com","metalinjection.net","metalsucks.net","onmsft.com","post-gazette.com","practicalpainmanagement.com","sanfoundry.com","sporcle.com","stylecaster.com","thedenverchannel.com","viraliq.com"])) {
+    ubo["addEventListener_defuser"]("p5","onpropertychange");
 }
 if (a.domCmp(["androidcentral.com","crackberry.com","imore.com","windowscentral.com"])) {
-    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
+    ubo["abort_current_inline_script"]("setTimeout","admrl");
 }
 if (a.domCmp(["thewindowsclub.com"])) {
-    ubo["abort_current_inline_script"]("setTimeout","admrlPreviewEngage");
+    ubo["abort_current_inline_script"]("setTimeout","admrl");
 }
 if (a.domCmp(["dwrean.net"])) {
     ubo["bab_defuser"]();
@@ -6576,11 +6757,20 @@ if (a.domCmp(["salefiles.com"])) {
 if (a.domCmp(["salefiles.com"])) {
     ubo["noeval"]();
 }
+if (a.domCmp(["salefiles.com"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
 if (a.domCmp(["vidzi.tv"])) {
     ubo["abort_on_property_read"]("head");
 }
 if (a.domCmp(["vidzi.tv"])) {
+    ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.pops2.popunderCondition");
+}
+if (a.domCmp(["vidzi.tv"])) {
     ubo["nowebrtc"]();
+}
+if (a.domCmp(["vidzi.tv"])) {
+    ubo["window_open_defuser"]();
 }
 if (a.domCmp(["exrapidleech.info"])) {
     ubo["bab_defuser"]();
@@ -6612,34 +6802,37 @@ if (a.domCmp(["myip.ms"])) {
 if (a.domCmp(["wstream.video"])) {
     ubo["abort_current_inline_script"]("setTimeout",".myads");
 }
-if (a.domCmp(["9cartoon.me","animeflv.me"])) {
+if (a.domCmp(["9cartoon.me","animeflv.co","animeflv.me"])) {
     ubo["setTimeout_defuser"]("#player","5000");
 }
-if (a.domCmp(["androidpolice.com","beliefnet.com","businessinsider.com","champions.co","comicbook.com","eurogamer.net","grubstreet.com","hotair.com","missoulian.com","moviepilot.com","nowloading.co","parkers.co.uk","patheos.com","popculture.com","thestudentroom.co.uk","townhall.com","trendblog.net","tvtropes.org","twitchy.com","watoday.com.au","wwg.com"])) {
+if (a.domCmp(["accuweather.com","androidpolice.com","beliefnet.com","billingsgazette.com","bismarcktribune.com","businessinsider.com","champions.co","comicbook.com","eurogamer.net","grubstreet.com","hotair.com","jg-tc.com","lacrossetribune.com","madison.com","magicvalley.com","missoulian.com","moviepilot.com","napavalleyregister.com","notalwaysright.com","nowloading.co","pantagraph.com","parkers.co.uk","patheos.com","popculture.com","poststar.com","qctimes.com","rapidcityjournal.com","rawstory.com","thesouthern.com","thestudentroom.co.uk","townhall.com","trendblog.net","trib.com","tucson.com","tvtropes.org","twitchy.com","watoday.com.au","wwg.com"])) {
     ubo["abort_on_property_read"]("stop");
 }
 if (a.domCmp(["tvad.me"])) {
     ubo["abort_on_property_read"]("app.adblockPop");
 }
-if (a.domCmp(["tvad.me","thevideo.io","thevideo.me","thevideo.us"])) {
+if (a.domCmp(["tvad.me","thevideo.cc","thevideo.ch","thevideo.io","thevideo.me","thevideo.us"])) {
     ubo["popads_dummy"]();
 }
-if (a.domCmp(["thevideo.io","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.ch"])) {
+    ubo["abort_current_inline_script"]("lm2","autoThreads");
+}
+if (a.domCmp(["thevideo.cc","thevideo.ch","thevideo.io","thevideo.us"])) {
     ubo["abort_on_property_read"]("popHandler.init");
 }
-if (a.domCmp(["thevideo.io","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.io","thevideo.us"])) {
     ubo["window_open_defuser"]();
 }
-if (a.domCmp(["thevideo.me","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.me","thevideo.us"])) {
     ubo["abort_current_inline_script"]("app.config.adblock_domain");
 }
-if (a.domCmp(["thevideo.me","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.me","thevideo.us"])) {
     ubo["abort_on_property_read"]("app.main.adblock");
 }
-if (a.domCmp(["thevideo.me","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.me","thevideo.us"])) {
     ubo["abort_on_property_read"]("MarketGidJSON");
 }
-if (a.domCmp(["thevideo.me","thevideo.us"])) {
+if (a.domCmp(["thevideo.cc","thevideo.me","thevideo.us"])) {
     ubo["addEventListener_defuser"]("click","void");
 }
 if (a.domCmp(["bq.si"])) {
@@ -6680,6 +6873,9 @@ if (a.domCmp(["xhamster.com"])) {
 }
 if (a.domCmp(["idnes.cz"])) {
     ubo["abort_on_property_write"]("bmone2n");
+}
+if (a.domCmp(["4chan.org"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
 }
 if (a.domCmp(["iwatchonline.cr","iwatchonline.eu"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
@@ -6735,6 +6931,12 @@ if (a.domCmp(["daclips.com","imgchili.net","movpod.in","nextorrent.pw","nowvideo
 if (a.domCmp(["pcgames-download.com"])) {
     ubo["nowebrtc"]();
 }
+if (a.domCmp(["pcgames-download.com"])) {
+    ubo["set_constant"]("niceAdsCheck","true");
+}
+if (a.domCmp(["skidrowgamesreloaded.com"])) {
+    ubo["abort_on_property_write"]("u0EE");
+}
 if (a.domCmp(["skidrowgamesreloaded.com"])) {
     ubo["popads_net"]();
 }
@@ -6764,6 +6966,9 @@ if (a.domCmp(["rapidvideo.com"])) {
 }
 if (a.domCmp(["thepiratebay.*"])) {
     ubo["abort_on_property_read"]("_wm");
+}
+if (a.domCmp(["hollaforums.com"])) {
+    ubo["abort_on_property_read"]("adsLoaded");
 }
 if (a.domCmp(["wallpapershome.com","wallpapersite.com"])) {
     ubo["abort_on_property_read"]("canRunAds");
@@ -6811,6 +7016,9 @@ if (a.domCmp(["daily.bhaskar.com"])) {
     ubo["abort_on_property_write"]("popupAdCall");
 }
 if (a.domCmp(["yourbittorrent.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["yourbittorrent.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["torrentfunk.com"])) {
@@ -6828,8 +7036,11 @@ if (a.domCmp(["torrentz2.*"])) {
 if (a.domCmp(["torrentz2.*"])) {
     ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
 }
+if (a.domCmp(["calciomercato.it"])) {
+    ubo["setTimeout_defuser"]("disabledAdBlock","10000");
+}
 if (a.domCmp(["calciomercato.com"])) {
-    ubo["fuckadblock_js_3_2_0"]();
+    ubo["abort_on_property_read"]("overlayAdId");
 }
 if (a.domCmp(["informer.com"])) {
     ubo["abort_on_property_read"]("adblock_added");
@@ -6844,6 +7055,9 @@ if (a.domCmp(["10-download.com"])) {
     ubo["bab_defuser"]();
 }
 if (a.domCmp(["torlock.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["torlock.com"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["bournemouthecho.co.uk","dailyecho.co.uk","eveningtimes.co.uk","heraldscotland.com","lancashiretelegraph.co.uk","oxfordmail.co.uk","theargus.co.uk","thetelegraphandargus.co.uk","yorkpress.co.uk"])) {
@@ -6855,8 +7069,11 @@ if (a.domCmp(["bittorrent.am"])) {
 if (a.domCmp(["bittorrent.am"])) {
     ubo["nowebrtc"]();
 }
-if (a.domCmp(["monova.org"])) {
+if (a.domCmp(["monova.org","monova.to"])) {
     ubo["abort_on_property_read"]("adblock");
+}
+if (a.domCmp(["monova.to"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["9to5google.com","9to5mac.com","9to5toys.com","electrek.co"])) {
     ubo["abort_on_property_read"]("canRunAds");
@@ -6900,6 +7117,9 @@ if (a.domCmp(["hdfilme.tv"])) {
 if (a.domCmp(["myreadingmanga.info"])) {
     ubo["popads_net"]();
 }
+if (a.domCmp(["myreadingmanga.info"])) {
+    ubo["popads_dummy"]();
+}
 if (a.domCmp(["newser.com"])) {
     ubo["abort_on_property_read"]("checkAds");
 }
@@ -6915,16 +7135,22 @@ if (a.domCmp(["spiegel.de"])) {
 if (a.domCmp(["cloudwebcopy.com"])) {
     ubo["bab_defuser"]();
 }
+if (a.domCmp(["vidnode.net"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
 if (a.domCmp(["9anime.*"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["9anime.*"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
 }
 if (a.domCmp(["serienstream.to"])) {
     ubo["abort_current_inline_script"]("document.readyState","/(?:\\x[0-9a-f]{2}){20}/");
 }
-if (a.domCmp(["watchcartoonsonline.eu"])) {
+if (a.domCmp(["watchcartoonsonline.*"])) {
     ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
 }
-if (a.domCmp(["watchcartoonsonline.eu"])) {
+if (a.domCmp(["watchcartoonsonline.*"])) {
     ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["web2.0calc.com"])) {
@@ -6951,11 +7177,11 @@ if (a.domCmp(["proboards.com"])) {
 if (a.domCmp(["imgsrc.ru"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
+if (a.domCmp(["liferayiseasy.*"])) {
+    ubo["addEventListener_defuser"]("load","getComputedStyle");
+}
 if (a.domCmp(["iptvbin.com"])) {
     ubo["abort_on_property_write"]("Math.floor");
-}
-if (a.domCmp(["allboxing.ru"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["blackspigot.com"])) {
     ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
@@ -6963,11 +7189,17 @@ if (a.domCmp(["blackspigot.com"])) {
 if (a.domCmp(["androidsage.com"])) {
     ubo["abort_on_property_write"]("blckad");
 }
-if (a.domCmp(["korrespondent.net","nnm-club.name","nnmclub.to"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+if (a.domCmp(["korrespondent.net"])) {
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["urlcloud.us"])) {
     ubo["bab_defuser"]();
+}
+if (a.domCmp(["urlcloud.us"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["urlcloud.us"])) {
+    ubo["nano_setInterval_booster"]();
 }
 if (a.domCmp(["spaste.com"])) {
     ubo["fuckadblock_js_3_2_0"]();
@@ -6981,14 +7213,23 @@ if (a.domCmp(["hentai2read.com"])) {
 if (a.domCmp(["zippyshare.com"])) {
     ubo["abort_current_inline_script"]("String.fromCharCode","decodeURIComponent");
 }
-if (a.domCmp(["kimcartoon.me","watchcartoononline.com"])) {
+if (a.domCmp(["watchcartoononline.com"])) {
     ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
 }
-if (a.domCmp(["kimcartoon.me","watchcartoononline.com"])) {
+if (a.domCmp(["watchcartoononline.com"])) {
     ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["watchcartoononline.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["kimcartoon.me"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["kimcartoon.me"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["kimcartoon.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["dailyuploads.*"])) {
     ubo["abort_current_inline_script"]("document.getElementById","adblockinfo");
@@ -7002,22 +7243,25 @@ if (a.domCmp(["dailyuploads.*"])) {
 if (a.domCmp(["arenabg.ch","yifymovies.to"])) {
     ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+if (a.domCmp(["emty.space","livecamtv.me","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","realcam.me","realtimetv.me","seelive.me","strikeout.co"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["fbstream.io","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","strikeout.co","vipleague.*"])) {
     ubo["abort_on_property_read"]("L4UU.R3");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+if (a.domCmp(["fbstream.io","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","strikeout.co","vipleague.*"])) {
     ubo["abort_on_property_write"]("adcashMacros");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","vipleague.*"])) {
+if (a.domCmp(["fbstream.io","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","vipleague.*"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+if (a.domCmp(["fbstream.io","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","strikeout.co","vipleague.*"])) {
     ubo["nowebrtc"]();
 }
-if (a.domCmp(["fbstreams.me","mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co","vipleague.*"])) {
+if (a.domCmp(["fbstream.io","mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","strikeout.co","vipleague.*"])) {
     ubo["popads_net"]();
 }
-if (a.domCmp(["mlbstream.me","nbastreams.me","nflstreams.me","nhlstreams.me","strikeout.co"])) {
+if (a.domCmp(["mlbstream.io","nbastream.io","nflstream.io","nhlstream.io","strikeout.co"])) {
     ubo["abort_current_inline_script"]("$","uBlock");
 }
 if (a.domCmp(["vipleague.*"])) {
@@ -7026,7 +7270,13 @@ if (a.domCmp(["vipleague.*"])) {
 if (a.domCmp(["livecamtv.me","realcam.me","seelive.me"])) {
     ubo["abort_on_property_write"]("_pop");
 }
-if (a.domCmp(["imgking.co","imgprime.com","newpornup.com"])) {
+if (a.domCmp(["mlbstream.io"])) {
+    ubo["abort_current_inline_script"]("decodeURI","atob");
+}
+if (a.domCmp(["trustedreviews.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","ad-blocker");
+}
+if (a.domCmp(["imgking.co","imgkings.com","imgprime.com","newpornup.com"])) {
     ubo["abort_on_property_read"]("document.createElement");
 }
 if (a.domCmp(["cs-fundamentals.com"])) {
@@ -7098,14 +7348,14 @@ if (a.domCmp(["sockshare.net"])) {
 if (a.domCmp(["sockshare.net"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
-if (a.domCmp(["sockshare.net"])) {
-    ubo["abort_current_inline_script"]("String.fromCharCode","676574456c656d656e747342795461674e616d65");
-}
-if (a.domCmp(["downloadhub.ws","sceper.ws"])) {
+if (a.domCmp(["downloadhub.ws"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["sceper.ws"])) {
     ubo["abort_on_property_write"]("bidrev");
+}
+if (a.domCmp(["downloadhub.ws","sceper.ws"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["ikshow.net"])) {
     ubo["abort_on_property_read"]("BetterJsPop");
@@ -7128,16 +7378,28 @@ if (a.domCmp(["putlockerhd.is"])) {
 if (a.domCmp(["putlockers.*"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
+if (a.domCmp(["putlockers.*"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["putlockers.*"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["entervideo.net"])) {
+    ubo["window_open_defuser"]();
+}
 if (a.domCmp(["10fastfingers.com"])) {
     ubo["abort_current_inline_script"]("document.createElement","decodeURIComponent");
 }
 if (a.domCmp(["ultrahorny.com"])) {
     ubo["abort_on_property_write"]("_pop");
 }
-if (a.domCmp(["bibme.org","citationmachine.net"])) {
+if (a.domCmp(["bibme.org","citationmachine.net","easybib.com"])) {
     ubo["abort_on_property_read"]("canRunAds");
 }
-if (a.domCmp(["bibme.org","citationmachine.net"])) {
+if (a.domCmp(["bibme.org"])) {
+    ubo["abort_on_property_read"]("SBMGlobal.run.pcCallback");
+}
+if (a.domCmp(["citationmachine.net","easybib.com"])) {
     ubo["abort_on_property_read"]("SBMGlobal.run.gramCallback");
 }
 if (a.domCmp(["hdrezka.ag"])) {
@@ -7146,20 +7408,20 @@ if (a.domCmp(["hdrezka.ag"])) {
 if (a.domCmp(["apkmirror.com"])) {
     ubo["abort_on_property_write"]("ranTwice");
 }
-if (a.domCmp(["lavamovies.com"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
-}
-if (a.domCmp(["lavamovies.com"])) {
+if (a.domCmp(["lavamovies.se"])) {
     ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["lavamovies.se"])) {
-    ubo["abort_current_inline_script"]("parseInt","tabunder");
+    ubo["window_open_defuser"]();
 }
 if (a.domCmp(["lavacdn.xyz"])) {
     ubo["abort_on_property_write"]("F3Z9");
 }
 if (a.domCmp(["onitube.com"])) {
-    ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["onitube.com"])) {
+    ubo["setTimeout_defuser"]("newBody");
 }
 if (a.domCmp(["radio.at","radio.de","radio.dk","radio.es","radio.fr","radio.it","radio.net","radio.pl","radio.pt","radio.se"])) {
     ubo["uabinject_defuser"]();
@@ -7170,23 +7432,23 @@ if (a.domCmp(["mmorpg.com"])) {
 if (a.domCmp(["cookiesflix.com"])) {
     ubo["addEventListener_defuser"]("load","adsense");
 }
-if (a.domCmp(["postimg.org"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
-}
-if (a.domCmp(["101greatgoals.com","allthetests.com","ancient-origins.net","biology-online.org","calcalist.co.il","convert-me.com","diffen.com","eurweb.com","globes.co.il","grammarist.com","jerusalemonline.com","mako.co.il","nysun.com","reshet.tv","roadracerunner.com","textsfromlastnight.com","trifind.com","walla.co.il","x17online.com","yad2.co.il","ynet.co.il","yocore.com"])) {
+if (a.domCmp(["101greatgoals.com","allthetests.com","ancient-origins.net","biology-online.org","calcalist.co.il","convert-me.com","globes.co.il","grammarist.com","jerusalemonline.com","mako.co.il","nysun.com","reshet.tv","roadracerunner.com","textsfromlastnight.com","trifind.com","walla.co.il","x17online.com","yad2.co.il","ynet.co.il","yocore.com"])) {
     ubo["abort_on_property_write"]("upManager");
 }
-if (a.domCmp(["allpar.com","antonymsfor.com","bobshideout.com","colourlovers.com","daily-stuff.com","dietlast.com","downsub.com","emathhelp.net","genfb.com","getinmybelly.com","grammar.net","igvnews.co.uk","jspuzzles.com","kshowonline.com","nnettle.com","smartchoiceshealthyliving.com","spellcheck.net","spellweb.com","sportspickle.com","tbc.tetrisfb.com","techowiz.com","tetrisfriends.com","the4thofficial.net","thesaurus.net","tworeddots.com","usherald.com","virtualjerusalem.com"])) {
+if (a.domCmp(["allpar.com","antonymsfor.com","bobshideout.com","cheezburger.com","colourlovers.com","daily-stuff.com","dietlast.com","downsub.com","ebaumsworld.com","emathhelp.net","genfb.com","getinmybelly.com","grammar.net","igvnews.co.uk","jspuzzles.com","kshowonline.com","nnettle.com","smartchoiceshealthyliving.com","spellcheck.net","spellweb.com","sportspickle.com","tbc.tetrisfb.com","techowiz.com","tetrisfriends.com","the4thofficial.net","thesaurus.net","tworeddots.com","usherald.com","virtualjerusalem.com"])) {
     ubo["abort_current_inline_script"]("btoa","upManager");
 }
-if (a.domCmp(["abandonedspaces.com","blacklistednews.com","broadwayworld.com","clashdaily.com","daclips.in","gorillavid.in","movpod.in","netzwelt.de","parentztalk.com","powerofpositivity.com","spiele-umsonst.de","talkwithstranger.com","toptenz.net","vidmax.com","worldation.com"])) {
+if (a.domCmp(["abandonedspaces.com","asheepnomore.net","blacklistednews.com","broadwayworld.com","clashdaily.com","daclips.in","debka.com","eternallifestyle.com","ffxivguild.com","fullmatchesandshows.com","gorillavid.in","greeningz.com","healthyfocus.org","hyperactivz.com","kiwireport.com","moviepredators.com","movpod.in","netzwelt.de","parentztalk.com","powerofpositivity.com","presidentmommy.com","spiele-umsonst.de","sportsretriever.com","talkwithstranger.com","theamericanmirror.com","toptenz.net","travelfuntu.com","vidmax.com","wnd.com","worldation.com"])) {
     ubo["abort_current_inline_script"]("atob","TextDecoder");
 }
-if (a.domCmp(["footyroom.com","izzygames.com","mathwarehouse.com","meta-calculator.com","meta-chart.com","netzwelt.de","pocketnow.com","spiele-umsonst.de"])) {
+if (a.domCmp(["dailygalaxy.com","diffen.com","eurweb.com","footyroom.com","izzygames.com","mathwarehouse.com","meta-calculator.com","meta-chart.com","netzwelt.de","nowtheendbegins.com","pocketnow.com","spiele-umsonst.de"])) {
     ubo["abort_on_property_read"]("TextDecoder");
 }
 if (a.domCmp(["readcomics.website"])) {
     ubo["abort_on_property_write"]("decodeURIComponent");
+}
+if (a.domCmp(["readcomics.website"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["sankakucomplex.com"])) {
     ubo["popads_dummy"]();
@@ -7209,7 +7471,7 @@ if (a.domCmp(["androidrepublic.org"])) {
 if (a.domCmp(["biqle.ru"])) {
     ubo["addEventListener_defuser"]("/^(click|mousedown|mousemove|touchstart|touchend|touchmove)/","system.popunder");
 }
-if (a.domCmp(["onhax.me"])) {
+if (a.domCmp(["onhax.me","onhax.net"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["aargauerzeitung.ch"])) {
@@ -7257,11 +7519,14 @@ if (a.domCmp(["bmovies.to"])) {
 if (a.domCmp(["bmovies.is","bmovies.to"])) {
     ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
 }
+if (a.domCmp(["bmovies.to"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
 if (a.domCmp(["sport.ua"])) {
     ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["bookfi.net"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
 }
 if (a.domCmp(["liens-telechargement.com"])) {
     ubo["abort_current_inline_script"]("jQuery","desactiver");
@@ -7285,12 +7550,12 @@ if (a.domCmp(["powerthesaurus.org"])) {
     ubo["abort_on_property_write"]("ad_abblock_ad");
 }
 if (a.domCmp(["myegy.tv"])) {
-    ubo["abort_current_inline_script"]("A","popunders");
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
 }
 if (a.domCmp(["myegy.tv"])) {
     ubo["abort_on_property_write"]("H7WWWW");
 }
-if (a.domCmp(["animepahe.com","clicknupload.org","cloudy.ec","fileflares.com","mkvcage.com","newmusic.trade","nodefiles.com","pahe.in","owndrives.com","psarips.com","smallencode.com","twoddl.co","vidabc.com"])) {
+if (a.domCmp(["animepahe.com","clicknupload.org","cloudy.ec","fileflares.com","mactorrents.org","mkvcage.com","newmusic.trade","nodefiles.com","pahe.in","owndrives.com","psarips.com","smallencode.com","twoddl.co","vidabc.com","weshare.me"])) {
     ubo["abort_on_property_write"]("_pop");
 }
 if (a.domCmp(["brasil247.com"])) {
@@ -7377,10 +7642,10 @@ if (a.domCmp(["palimas.tv"])) {
 if (a.domCmp(["palimas.tv"])) {
     ubo["window_open_defuser"]();
 }
-if (a.domCmp(["mangahosts.com"])) {
-    ubo["abort_current_inline_script"]("eval","AdBlock");
+if (a.domCmp(["mangahost.cc"])) {
+    ubo["bab_defuser"]();
 }
-if (a.domCmp(["mangahosts.com"])) {
+if (a.domCmp(["mangahost.cc"])) {
     ubo["setTimeout_defuser"]("testDisplay","3000");
 }
 if (a.domCmp(["journalstar.com"])) {
@@ -7404,8 +7669,23 @@ if (a.domCmp(["srt.am"])) {
 if (a.domCmp(["srt.am"])) {
     ubo["abort_on_property_write"]("Fingerprint2");
 }
-if (a.domCmp(["adf.ly","atomcurve.com","atominik.com","auto-login-xxx.com","ay.gy","babblecase.com","bitigee.com","bluenik.com","casualient.com","coginator.com","cogismith.com","dataurbia.com","download.replaymod.com","gamecopyworld.click","go.awanpc.me","j.gs","kaitect.com","kializer.com","kibuilder.com","kimechanic.com","microify.com","mmoity.com","picocurl.com","pintient.com","q.gs","quainator.com","quamiller.com","queuecosm.bid","riffhold.com","skamason.com","sostieni.ilwebmaster21.com","tinyical.com","tinyium.com","twineer.com","viahold.com","vializer.com","viwright.com","yabuilder.com","yamechanic.com","yoalizer.com","yobuilder.com","yoineer.com"])) {
+if (a.domCmp(["activeation.com","adf.ly","atomcurve.com","atominik.com","auto-login-xxx.com","ay.gy","babblecase.com","bitigee.com","bluenik.com","brisktopia.com","casualient.com","coginator.com","cogismith.com","dl.android-zone.org","dl.underclassblog.com","dataurbia.com","download.replaymod.com","gamecopyworld.click","go.awanpc.me","j.gs","kaitect.com","kializer.com","kibuilder.com","kimechanic.com","microify.com","mmoity.com","picocurl.com","pintient.com","q.gs","quainator.com","quamiller.com","queuecosm.bid","riffhold.com","simizer.com","skamaker.com","skamason.com","sostieni.ilwebmaster21.com","special.picons.eu","tinyical.com","tinyium.com","twineer.com","viahold.com","vializer.com","viwright.com","yabuilder.com","yamechanic.com","yoalizer.com","yobuilder.com","yoineer.com","yoitect.com","zo.ee"])) {
     ubo["adfly_defuser"]();
+}
+if (a.domCmp(["123link.co","22o.co","adbull.me","adshorte.com","bbf.lt","bit-url.com","coin.mg","coinb.ink","cut-win.com","cutearn.com","cuturlink.com","cutwi.in","cutwin.com","cutwin.pro","eg4link.com","egy-links.com","infinityurl.co","linkatk.net","linkkawy.com","linkkch.com","lyon.kim","meulink.tk","ourl.io","psl.io","shortzero.com","teqani-plus.com","url.gem-flash.com","veneapp.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["123link.co"])) {
+    ubo["abort_on_property_read"]("jQuery.adblock");
+}
+if (a.domCmp(["cuturlink.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["meulink.tk"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["gram.im"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
 }
 if (a.domCmp(["igram.im"])) {
     ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
@@ -7413,7 +7693,7 @@ if (a.domCmp(["igram.im"])) {
 if (a.domCmp(["arconaitv.us"])) {
     ubo["abort_on_property_read"]("ab_detection");
 }
-if (a.domCmp(["alotporn.com","bobs-tube.com","dreamamateurs.com","eroxia.com","porndoe.com","pornozot.com"])) {
+if (a.domCmp(["alotporn.com","bobs-tube.com","canalporno.com","dreamamateurs.com","eroxia.com","porndoe.com","pornozot.com"])) {
     ubo["abort_on_property_read"]("ExoLoader");
 }
 if (a.domCmp(["alotporn.com"])) {
@@ -7449,6 +7729,18 @@ if (a.domCmp(["urle.co"])) {
 if (a.domCmp(["adbilty.me"])) {
     ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
 }
+if (a.domCmp(["adbilty.me"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["adbilty.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adbilty.me"])) {
+    ubo["abort_on_property_write"]("K4kk");
+}
+if (a.domCmp(["adbilty.me"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
 if (a.domCmp(["l2s.io"])) {
     ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
 }
@@ -7460,6 +7752,12 @@ if (a.domCmp(["adshort.im"])) {
 }
 if (a.domCmp(["adshort.im"])) {
     ubo["popads_net"]();
+}
+if (a.domCmp(["adshort.im"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["adshort.im"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
 }
 if (a.domCmp(["up-4ever.com"])) {
     ubo["abort_on_property_read"]("adsDisabled");
@@ -7491,8 +7789,17 @@ if (a.domCmp(["tv-porinternet.com"])) {
 if (a.domCmp(["tv-porinternet.com"])) {
     ubo["nowebrtc"]();
 }
+if (a.domCmp(["pxstream.tv"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
 if (a.domCmp(["tmearn.com"])) {
     ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["tmearn.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["tmearn.com"])) {
+    ubo["noeval_if"]("clickAnywhere");
 }
 if (a.domCmp(["foxurl.net"])) {
     ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
@@ -7554,6 +7861,9 @@ if (a.domCmp(["thaivisa.com"])) {
 if (a.domCmp(["hdpass.net"])) {
     ubo["disable_newtab_links"]();
 }
+if (a.domCmp(["hdpass.net"])) {
+    ubo["nano_setInterval_booster"]("#timer");
+}
 if (a.domCmp(["beeg.com"])) {
     ubo["abort_on_property_read"]("ExoLoader");
 }
@@ -7563,14 +7873,1952 @@ if (a.domCmp(["pichaloca.com"])) {
 if (a.domCmp(["pornodoido.com"])) {
     ubo["abort_on_property_read"]("ExoLoader");
 }
-if (a.domCmp(["kinox.*"])) {
-    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+if (a.domCmp(["ooze.ninja"])) {
+    ubo["bab_defuser"]();
 }
 if (a.domCmp(["kinox.*"])) {
     ubo["abort_current_inline_script"]("adcashMacros");
 }
-if (a.domCmp(["rapidvideo.com"])) {
-    ubo["abort_on_property_write"]("decodeURIComponent");
+if (a.domCmp(["streaming-football.org"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["streaming-football.org"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["tui.click"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["mangacanblog.com"])) {
+    ubo["abort_on_property_read"]("adblock");
+}
+if (a.domCmp(["latino-webtv.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["dvdcover.com"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["arpa7com.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["vortez.net"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["mountainbike.es"])) {
+    ubo["abort_current_inline_script"]("mpAdblockOpts","blockAdBlock.onDetected");
+}
+if (a.domCmp(["platinmods.com"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["whentai.com"])) {
+    ubo["abort_on_property_read"]("canRunAds");
+}
+if (a.domCmp(["wstream.video"])) {
+    ubo["abort_current_inline_script"]("setTimeout","mypop");
+}
+if (a.domCmp(["javdude.com"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["javdude.com","thplayers.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["javdude.com"])) {
+    ubo["fuckadblock_js_3_2_0"]();
+}
+if (a.domCmp(["txxx.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["txxx.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["proxybunker.online"])) {
+    ubo["abort_on_property_read"]("_wwwp");
+}
+if (a.domCmp(["proxybunker.online"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["voyeurhit.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["voyeurhit.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["upornia.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["upornia.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["hotmovs.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["hotmovs.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["vjav.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["vjav.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["thegay.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["thegay.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["extremetube.com","spankwire.com"])) {
+    ubo["abort_on_property_write"]("ppAb");
+}
+if (a.domCmp(["adlinkme.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cuon.io","curs.io","ecurs.co","eurs.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cuon.io","curs.io","ecurs.co","eurs.io"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["mcfucker.com"])) {
+    ubo["abort_on_property_write"]("t4PP");
+}
+if (a.domCmp(["imgprime.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["imgshots.com"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["xxxhost.me"])) {
+    ubo["abort_current_inline_script"]("puShown","/doOpen|popundr/");
+}
+if (a.domCmp(["imgsin.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["imagefruit.com"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["porn.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["serial49.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["7starhd.info"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["bdupload.info"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["bdupload.info"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["bdupload.info"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["pilot.wp.pl"])) {
+    ubo["set_constant"]("PWA_adbd","0");
+}
+if (a.domCmp(["ddlfr.pw"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["ddlfr.pw"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["taroot-rangi.com"])) {
+    ubo["abort_on_property_write"]("sc_adv_out");
+}
+if (a.domCmp(["pornwatchers.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["sotemnovinhas.com"])) {
+    ubo["fuckadblock_js_3_2_0"]();
+}
+if (a.domCmp(["porntube.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["katestube.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["katestube.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["gotporn.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["ddmix.net"])) {
+    ubo["abort_on_property_write"]("miner");
+}
+if (a.domCmp(["ddmix.net"])) {
+    ubo["abort_on_property_write"]("show_pop");
+}
+if (a.domCmp(["qe.pe"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["qe.pe"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["onlinebee.in"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["byetv.org"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["deportesmax.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["69games.xxx"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["hdeuropix.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["newpct.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["newpct.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["redditgirls.com"])) {
+    ubo["abort_on_property_read"]("canRunAds");
+}
+if (a.domCmp(["grantorrent.com"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["amateurporn1.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["amateurporn1.com"])) {
+    ubo["abort_on_property_write"]("popns");
+}
+if (a.domCmp(["pornxs.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["pornxs.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["mangoporn.net"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["mangoporn.net"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["mangoporn.net"])) {
+    ubo["abort_on_property_write"]("pURL");
+}
+if (a.domCmp(["vqporn.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["cut-earn.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["imgdone.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["imgpeak.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["imgpeak.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["frprn.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["sozcu.com.tr"])) {
+    ubo["abort_on_property_read"]("canRunAds");
+}
+if (a.domCmp(["imojado.org"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["uskip.me"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["uskip.me"])) {
+    ubo["abort_on_property_read"]("RunAds");
+}
+if (a.domCmp(["androgalaxy.in"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["sgxnifty.org"])) {
+    ubo["abort_on_property_write"]("adBlockDetected");
+}
+if (a.domCmp(["sznpaste.net"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["eusouandroid.co"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["chiaanime.co"])) {
+    ubo["setTimeout_defuser"]("$");
+}
+if (a.domCmp(["mangatail.com"])) {
+    ubo["abort_on_property_write"]("adb_checker");
+}
+if (a.domCmp(["watchseries.unblocked.vc"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["divxtotal2.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["divxtotal2.net"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["games.baltimoresun.com","games.charlotteobserver.com","games.chicagotribune.com","games.dailypress.com","games.express.co.uk","games.mcall.com","games.nydailynews.com","games.orlandosentinel.com","games.parade.com","games.reviewjournal.com","games.sandiegouniontribune.com","games.somersetlive.co.uk","games.sun-sentinel.com","puzzles.bestforpuzzles.com","puzzles.independent.co.uk","puzzles.standard.co.uk"])) {
+    ubo["set_constant"]("Adv_ab","0");
+}
+if (a.domCmp(["hentaihaven.org"])) {
+    ubo["abort_on_property_read"]("popunder_record");
+}
+if (a.domCmp(["hentaihaven.org"])) {
+    ubo["abort_on_property_write"]("loaderScript");
+}
+if (a.domCmp(["hentaihaven.org"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["hentaihaven.org"])) {
+    ubo["set_constant"]("canRunAds","true");
+}
+if (a.domCmp(["nwanime.tv"])) {
+    ubo["abort_current_inline_script"]("MutationObserver","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["vidstreaming.io"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["ah-me.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["avgle.com"])) {
+    ubo["abort_on_property_read"]("ExoDetector");
+}
+if (a.domCmp(["avgle.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["avgle.com"])) {
+    ubo["set_constant"]("checkThings","trueFunc");
+}
+if (a.domCmp(["jkanime.co"])) {
+    ubo["setTimeout_defuser"]("$");
+}
+if (a.domCmp(["ouo.press"])) {
+    ubo["abort_on_property_read"]("jsPopunder");
+}
+if (a.domCmp(["ouo.press"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["tufutbolpro.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["cutwin.com","cutwin.pro"])) {
+    ubo["abort_on_property_write"]("adss");
+}
+if (a.domCmp(["geturlpr.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["samehadaku.net"])) {
+    ubo["set_constant"]("$tieE3","true");
+}
+if (a.domCmp(["xiaopan.co"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["shooshtime.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["shooshtime.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["seattletimes.com"])) {
+    ubo["setTimeout_defuser"]("SEATIMESCO.browser.adBlock.baitLoaded","300");
+}
+if (a.domCmp(["oceanofdownload.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["oceanofdownload.com"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["animeforce.org"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["animeforce.org"])) {
+    ubo["abort_on_property_read"]("popns");
+}
+if (a.domCmp(["noticias.gospelmais.com.br"])) {
+    ubo["set_constant"]("blockAdBlock","true");
+}
+if (a.domCmp(["shrinklink.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["songs.pk"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["megaseriestorrent.net"])) {
+    ubo["abort_on_property_read"]("adBlockDetected");
+}
+if (a.domCmp(["linkshrink.net"])) {
+    ubo["abort_on_property_write"]("H7WWWW");
+}
+if (a.domCmp(["mel.fm"])) {
+    ubo["fuckadblock_js_3_2_0"]();
+}
+if (a.domCmp(["abliker.com","devliker.net","fbfriendrequest.com","igflash.com","igzoom.com","kpliker.com","leetgram.com","likesgroup.com"])) {
+    ubo["setTimeout_defuser"]("getComputedStyle","250");
+}
+if (a.domCmp(["business-service.biz"])) {
+    ubo["set_constant"]("blockAdBlock","true");
+}
+if (a.domCmp(["linxtablet.co.uk"])) {
+    ubo["setTimeout_defuser"]();
+}
+if (a.domCmp(["dailygeekshow.com"])) {
+    ubo["abort_on_property_read"]("jQuery.hello");
+}
+if (a.domCmp(["dthforum.com"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["seirsanduk.com"])) {
+    ubo["set_constant"]("canRunAds","true");
+}
+if (a.domCmp(["seirsanduk.com"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["yiv.com"])) {
+    ubo["set_constant"]("adBlocker","false");
+}
+if (a.domCmp(["jacquieetmicheltv.net"])) {
+    ubo["set_constant"]("is_adblocked","false");
+}
+if (a.domCmp(["yalujailbreak.net"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["bonertube.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["bonertube.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["uplod.cc"])) {
+    ubo["abort_current_inline_script"]("document.getElementById","adblockinfo");
+}
+if (a.domCmp(["hentaitake.net"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["rue89lyon.fr"])) {
+    ubo["abort_on_property_read"]("isShowingAd");
+}
+if (a.domCmp(["layer13.net"])) {
+    ubo["abort_on_property_read"]("adBlockDetected");
+}
+if (a.domCmp(["kitguru.net"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["pornktube.com"])) {
+    ubo["abort_on_property_write"]("__htapop");
+}
+if (a.domCmp(["mirole.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["hdzog.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["hdzog.com"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["realgfporn.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["realgfporn.com"])) {
+    ubo["abort_on_property_write"]("__htapop");
+}
+if (a.domCmp(["realgfporn.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["flowyourvideo.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["shyav.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["zmovs.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["zmovs.com"])) {
+    ubo["abort_on_property_read"]("ALoader");
+}
+if (a.domCmp(["picturelol.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["picturelol.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["picturelol.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["imgspice.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["imgspice.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["minkly.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["zlshorte.net"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["zlshorte.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["shortelink.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["shortelink.co"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["jzrputtbut.net"])) {
+    ubo["addEventListener_defuser"]("click","popunder");
+}
+if (a.domCmp(["jzrputtbut.net"])) {
+    ubo["setTimeout_defuser ()"]("50");
+}
+if (a.domCmp(["dwatchseries.to"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["dwatchseries.to"])) {
+    ubo["abort_on_property_write"]("upManager");
+}
+if (a.domCmp(["mexashare.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["fetishshrine.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["fetishshrine.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["sleazyneasy.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["sleazyneasy.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["vikiporn.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["vikiporn.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["sancaklar.org"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["globalrph.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["onlinemschool.com"])) {
+    ubo["abort_on_property_read"]("oms.ads_detect");
+}
+if (a.domCmp(["gamekings.tv"])) {
+    ubo["set_constant"]("canRunAds","true");
+}
+if (a.domCmp(["tarjetarojatv.net"])) {
+    ubo["abort_on_property_read"]("popTimes");
+}
+if (a.domCmp(["modelsxxxtube.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["modelsxxxtube.com"])) {
+    ubo["abort_on_property_read"]("advobj");
+}
+if (a.domCmp(["modelsxxxtube.com"])) {
+    ubo["abort_on_property_read"]("Aloader");
+}
+if (a.domCmp(["e-glossa.it"])) {
+    ubo["setTimeout_defuser"]("Blocco","2000");
+}
+if (a.domCmp(["letmewatchthis.ac"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["flightradar24.com"])) {
+    ubo["abort_on_property_write"]("googletag");
+}
+if (a.domCmp(["dejure.org"])) {
+    ubo["set_constant"]("a_allowed","true");
+}
+if (a.domCmp(["pornsocket.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["pornsocket.com"])) {
+    ubo["set_constant"]("_site_ads_ns","true");
+}
+if (a.domCmp(["pic-upload.de"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["nxxporn.com"])) {
+    ubo["set_constant"]("blockAdBlock","false");
+}
+if (a.domCmp(["r4dm.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["lkky.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["pornhd.com"])) {
+    ubo["abort_on_property_read"]("hasAdBlock");
+}
+if (a.domCmp(["pornhd.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["luxuretv.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["sexu.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["pussyspace.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["planetatvonlinehd.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["adpop.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adpop.me"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["vier.be"])) {
+    ubo["abort_on_property_write"]("_sp_");
+}
+if (a.domCmp(["jkmk.net"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["downace.com"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["downace.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["przegladsportowy.pl"])) {
+    ubo["abort_current_inline_script"]("$onet","adblock-detect");
+}
+if (a.domCmp(["java-forum.org"])) {
+    ubo["setTimeout_defuser"]("nextFunction","2000");
+}
+if (a.domCmp(["kaztorka.org"])) {
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["cut-urls.com"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["cut-urls.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["flashx.to","flashx.tv"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["flashx.to","flashx.tv"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["flashx.to","flashx.tv"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["flashx.to","flashx.tv"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["gadzetomania.pl"])) {
+    ubo["abort_on_property_write"]("__serviceAbModal");
+}
+if (a.domCmp(["coinlink.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["coinlink.co"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["thepiratebay.cr"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["thepiratebay.cr"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["thepiratebay.cr"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["bigtitsxxxsex.com"])) {
+    ubo["abort_on_property_read"]("ALoader");
+}
+if (a.domCmp(["bigtitsxxxsex.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["bigtitsxxxsex.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["xvideos.com"])) {
+    ubo["abort_on_property_write"]("openpop");
+}
+if (a.domCmp(["xvideos.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["perfectgirls.net"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["perfectgirls.net"])) {
+    ubo["abort_on_property_write"]("ads_priv");
+}
+if (a.domCmp(["area51.porn"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["fakeporn.tv"])) {
+    ubo["abort_on_property_write"]("prPuShown");
+}
+if (a.domCmp(["hentaipulse.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["cn.ru"])) {
+    ubo["abort_current_inline_script"]("parseInt","676574456c656d656e747342795461674e616d65");
+}
+if (a.domCmp(["megaurl.in"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["megaurl.in"])) {
+    ubo["abort_on_property_read"]("jQuery.adblock");
+}
+if (a.domCmp(["freewebscript.com"])) {
+    ubo["setTimeout_defuser"]("documentElement.classList.add","400");
+}
+if (a.domCmp(["imgmonkey.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["imgmonkey.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["imgmonkey.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["1fichier.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["pornodeblack.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["vivud.com"])) {
+    ubo["abort_on_property_read"]("ALoader");
+}
+if (a.domCmp(["vivud.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["vivud.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["linkurl.org"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["uploadedpremiumlink.xyz"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["estream.to"])) {
+    ubo["abort_on_property_read"]("encodeURIComponent");
+}
+if (a.domCmp(["ur.ly"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["webcheats.com.br"])) {
+    ubo["set_constant"]("can_run_ads","true");
+}
+if (a.domCmp(["bro.adca.st"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["vidup.me"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["vidup.me"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["dir50.net"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["dir50.net"])) {
+    ubo["abort_on_property_read"]("jsPopunder");
+}
+if (a.domCmp(["dir50.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["arabcut.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["kfluke.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["kfluke.com"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["imgcloud.pw"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["xxxstreams.org"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["angrybirdsnest.com"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["uv9ieb2ohr.com"])) {
+    ubo["set_constant"]("adsShowPopup1","true");
+}
+if (a.domCmp(["uv9ieb2ohr.com"])) {
+    ubo["set_constant"]("adsShowPopup","true");
+}
+if (a.domCmp(["uv9ieb2ohr.com"])) {
+    ubo["abort_on_property_write"]("earn");
+}
+if (a.domCmp(["uv9ieb2ohr.com"])) {
+    ubo["abort_on_property_write"]("jsPopunder");
+}
+if (a.domCmp(["nitroflare.com"])) {
+    ubo["abort_current_inline_script"]("$","window.open");
+}
+if (a.domCmp(["nitroflare.com"])) {
+    ubo["abort_current_inline_script"]("pop3","window.open");
+}
+if (a.domCmp(["coshink.co"])) {
+    ubo["setTimeout_defuser"]("checkAdblockUser","1000");
+}
+if (a.domCmp(["git.tc"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["4downfiles.org"])) {
+    ubo["setTimeout_defuser"]("nextFunction","250");
+}
+if (a.domCmp(["imggold.org"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["imggold.org"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["imggold.org"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["imgsay.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["imgtornado.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["imgtornado.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["imgtornado.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["hotimage.uk"])) {
+    ubo["abort_on_property_read"]("ExoLoader.addZone");
+}
+if (a.domCmp(["imgrock.info"])) {
+    ubo["abort_on_property_read"]("jsPopunder");
+}
+if (a.domCmp(["imgrock.info"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["imgrock.info"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["0day.kiev.ua"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["0day.kiev.ua"])) {
+    ubo["abort_on_property_read"]("_mgq");
+}
+if (a.domCmp(["sexytrunk.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["planetsuzy.org"])) {
+    ubo["set_constant"]("__ads","true");
+}
+if (a.domCmp(["zrozz.com"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["empflix.com"])) {
+    ubo["abort_on_property_write"]("popzone");
+}
+if (a.domCmp(["empflix.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["empflix.com"])) {
+    ubo["abort_on_property_read"]("ALoader");
+}
+if (a.domCmp(["hotclips24.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["hotclips24.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["pornclipsxxx.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["pornclipsxxx.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["fantasti.cc"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["fantasti.cc"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["xxxkingtube.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["xxxkingtube.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["pornomovies.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["pornomovies.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["bilasport.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["ouo.io"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["akorto.eu"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["akorto.eu"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["urlcero.*"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["urlcero.*"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["urlcero.*"])) {
+    ubo["setTimeout_defuser"]("checkAdblockUser","1000");
+}
+if (a.domCmp(["minkly.us"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["kanqite.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["kanqite.com"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["onlinetv.planetfools.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","1000");
+}
+if (a.domCmp(["capital.fr","femmeactuelle.fr","gala.fr"])) {
+    ubo["setTimeout_defuser"]("checkPub","6000");
+}
+if (a.domCmp(["wi.cr"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["imgpart.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["imagecrest.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["img2share.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["torjackan.info"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["homemoviestube.com"])) {
+    ubo["setTimeout_defuser"]("test","400");
+}
+if (a.domCmp(["newsextv.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["anyporn.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["anyporn.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["anyporn.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["widestream.io"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["iiv.pl"])) {
+    ubo["abort_on_property_read"]("miner");
+}
+if (a.domCmp(["crockolinks.com"])) {
+    ubo["setTimeout_defuser"]("test","100");
+}
+if (a.domCmp(["crockolinks.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["crockolinks.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["adcoin.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adcoin.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["cutwin.us"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cutwin.us"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["firmgoogle.com"])) {
+    ubo["abort_on_property_write"]("killAdBlock");
+}
+if (a.domCmp(["bitcoadz.pw","btc.ms","cimi.website","cryptoadz.win","cryptoskipad.com","cryptosmo.com","elibtc.win","iziwinmoney.info","madurls.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cryptoskipad.com","elibtc.win","iziwinmoney.info"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["btc.ms"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["serietvsubita.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["serietvsubita.net"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["linkrex.net"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["linkrex.net"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["linkrex.net"])) {
+    ubo["abort_on_property_write"]("__htapop");
+}
+if (a.domCmp(["leecher.xyz"])) {
+    ubo["abort_on_property_read"]("jQuery.adblock");
+}
+if (a.domCmp(["publicleech.xyz"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["publicleech.xyz"])) {
+    ubo["setTimeout_defuser"]("nextFunction","2000");
+}
+if (a.domCmp(["batshort.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["batshort.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["batshort.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["shrtfly.*"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["shrtfly.*"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["oke.io"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["gogoanime.io"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["ourl.io"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["ourl.io"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["cpmlink.net"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["win4cut.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["sunporno.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["sunporno.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["hotgirlclub.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["namethatporn.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["magnetdl.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["tejikarao.kodaisi.net"])) {
+    ubo["abort_on_property_write"]("KillAdBlock");
+}
+if (a.domCmp(["katcr.stream"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["malekal.com"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["btdb.to"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["btdb.to"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["alts4free.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["vivads.net"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["vivads.net"])) {
+    ubo["abort_on_property_read"]("open");
+}
+if (a.domCmp(["tecnofullpc.com"])) {
+    ubo["abort_on_property_write"]("KillAdBlock");
+}
+if (a.domCmp(["freeviewmovies.com"])) {
+    ubo["abort_on_property_write"]("encodeURIComponent");
+}
+if (a.domCmp(["badjojo.com"])) {
+    ubo["abort_on_property_write"]("encodeURIComponent");
+}
+if (a.domCmp(["pornhost.com"])) {
+    ubo["abort_on_property_read"]("raConf");
+}
+if (a.domCmp(["eroprofile.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["feet9.com"])) {
+    ubo["abort_on_property_read"]("__ADX_URL_U");
+}
+if (a.domCmp(["euon.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["euon.io"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["appdrop.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["appdrop.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["locopelis.com"])) {
+    ubo["abort_on_property_read"]("popTimes");
+}
+if (a.domCmp(["macupload.net"])) {
+    ubo["abort_current_inline_script"]("document.getElementById","remove");
+}
+if (a.domCmp(["macupload.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["macupload.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["absoluporn.*"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["darkcomet.net"])) {
+    ubo["abort_on_property_write"]("KillAdBlock");
+}
+if (a.domCmp(["sg-siken.com"])) {
+    ubo["setTimeout_defuser"]("adsbygoogle");
+}
+if (a.domCmp(["atlasweb.net"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["short.pe"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["xrares.com"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["xrares.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["cutbit.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cutbit.io"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["viewdrama.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["viewdrama.com"])) {
+    ubo["set_constant"]("allow_ads","true");
+}
+if (a.domCmp(["eues.io"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["eues.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["olpair.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["olpair.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["olpair.com"])) {
+    ubo["abort_on_property_read"]("BetterJsPop");
+}
+if (a.domCmp(["freecline.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["gturls.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["subtorrents.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["gamegtx.com"])) {
+    ubo["abort_on_property_write"]("AdBlockDetectorWorkaround");
+}
+if (a.domCmp(["won.pe"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["won.pe"])) {
+    ubo["disable_newtab_links"]();
+}
+if (a.domCmp(["alemdarleech.com"])) {
+    ubo["set_constant"]("koddostu_com_adblock_yok","false");
+}
+if (a.domCmp(["filespace.com"])) {
+    ubo["set_constant"]("fuckAdBlock","false");
+}
+if (a.domCmp(["orgyxxxhub.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["orgyxxxhub.com"])) {
+    ubo["abort_on_property_read"]("Aloader");
+}
+if (a.domCmp(["orgyxxxhub.com"])) {
+    ubo["abort_on_property_read"]("advobj");
+}
+if (a.domCmp(["repelis.net"])) {
+    ubo["abort_on_property_read"]("popTimes");
+}
+if (a.domCmp(["twik.pw"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["twik.pw"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["twik.pw"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["123link.pw"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["123link.pw"])) {
+    ubo["abort_on_property_read"]("jQuery.adblock");
+}
+if (a.domCmp(["iran021.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["pornomico.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["donkparty.com"])) {
+    ubo["abort_on_property_read"]("phantomPopunders");
+}
+if (a.domCmp(["donkparty.com"])) {
+    ubo["abort_on_property_read"]("raSettings");
+}
+if (a.domCmp(["donkparty.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["watchmygf.me"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["mylust.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["mylust.com"])) {
+    ubo["abort_on_property_write"]("encodeURIComponent");
+}
+if (a.domCmp(["deepbrid.com"])) {
+    ubo["abort_current_inline_script"]("document.getElementById","undefined");
+}
+if (a.domCmp(["bemetal.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["varagh.com"])) {
+    ubo["abort_current_inline_script"]("$","adBlock");
+}
+if (a.domCmp(["boysfood.com"])) {
+    ubo["abort_on_property_write"]("encodeURIComponent");
+}
+if (a.domCmp(["submityourflicks.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["submityourflicks.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["pandaporn.net"])) {
+    ubo["abort_on_property_read"]("ExoLoader.addZone");
+}
+if (a.domCmp(["pandaporn.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["pandaporn.net"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["sextingforum.net"])) {
+    ubo["abort_on_property_write"]("stagedPopUnder");
+}
+if (a.domCmp(["pornscum.com"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["maxdeportv.net"])) {
+    ubo["addEventListener_defuser"]("load","2000");
+}
+if (a.domCmp(["bonstreams.net"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["bro.adca.st"])) {
+    ubo["abort_on_property_write"]("opened");
+}
+if (a.domCmp(["programinadresi.com"])) {
+    ubo["abort_on_property_read"]("adBlock");
+}
+if (a.domCmp(["pururin.io"])) {
+    ubo["abort_on_property_write"]("BetterJsPop");
+}
+if (a.domCmp(["coinarge.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["coinarge.com"])) {
+    ubo["abort_on_property_read"]("delegateTarget");
+}
+if (a.domCmp(["icutit.ca"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["uclick.in"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["uclick.in"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["retoix.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["tl.tc"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["artocoin.com"])) {
+    ubo["abort_current_inline_script"]("atob");
+}
+if (a.domCmp(["artocoin.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["man2link.com"])) {
+    ubo["setTimeout_defuser"]("checkAdblockUser");
+}
+if (a.domCmp(["linkshorts.info"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["linkshorts.info"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["skipad.bid"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["dz4link.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["dz4link.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["goshrt.xyz"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["goshrt.xyz"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["payshorturl.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["pixhost.org"])) {
+    ubo["abort_on_property_read"]("ExoDetector");
+}
+if (a.domCmp(["pixhost.org"])) {
+    ubo["abort_on_property_read"]("ShowIt");
+}
+if (a.domCmp(["pixhost.org"])) {
+    ubo["abort_on_property_write"]("readyADN");
+}
+if (a.domCmp(["azvideo.net"])) {
+    ubo["setTimeout_defuser"]("nextFunction","2000");
+}
+if (a.domCmp(["earn-guide.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["anibatch.id"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["next-episode.net"])) {
+    ubo["abort_on_property_write"]("tryCheckA3");
+}
+if (a.domCmp(["movie4k.is"])) {
+    ubo["abort_on_property_read"]("urlToShow");
+}
+if (a.domCmp(["5movies.to"])) {
+    ubo["abort_current_inline_script"]("document.createElement","jsc.mgid.com");
+}
+if (a.domCmp(["5movies.to"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["zupload.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["zupload.me"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["indishare.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["clicknupload.org"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["reevown.com"])) {
+    ubo["set_constant"]("m5er_mav","false");
+}
+if (a.domCmp(["shaanig.se"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["genbird.com"])) {
+    ubo["addEventListener_defuser"]("load","advertisement");
+}
+if (a.domCmp(["updato.com"])) {
+    ubo["setTimeout_defuser"]("document.querySelector","2000");
+}
+if (a.domCmp(["damimage.com","dimtus.com","imagedecode.com","imageteam.org"])) {
+    ubo["abort_current_inline_script"]("loadTool","popping");
+}
+if (a.domCmp(["imgmaze.*","imgoutlet.*","imgtown.*","imgview.*"])) {
+    ubo["abort_current_inline_script"]("atob","tabunder");
+}
+if (a.domCmp(["imgdew.*","imgmaze.*","imgoutlet.*","imgtown.*","imgview.*"])) {
+    ubo["abort_on_property_read"]("ExoLoader.addZone");
+}
+if (a.domCmp(["imgdew.*","imgmaze.*","imgoutlet.*","imgtown.*","imgview.*"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["imgdew.*","imgmaze.*","imgoutlet.*","imgtown.*","imgview.*"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["imgclick.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["imgclick.net"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["gsurl.in","gsurl.me","g5u.pw"])) {
+    ubo["abort_on_property_read"]("K4kk.g4");
+}
+if (a.domCmp(["boxasian.com"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["svd.se"])) {
+    ubo["abort_on_property_write"]("SvD");
+}
+if (a.domCmp(["bro.adca.st"])) {
+    ubo["abort_current_inline_script"]("runningPop","isInArray");
+}
+if (a.domCmp(["mangaindo.web.id"])) {
+    ubo["abort_on_property_read"]("anOptions");
+}
+if (a.domCmp(["crichd.info"])) {
+    ubo["abort_on_property_write"]("encodeURIComponent");
+}
+if (a.domCmp(["adlpu.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adlpu.com"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["adcut.link","adlink4y.com","arura.win","dzurls.com","egyptoz.net","goldshorten.com","mycut.me","pureurls.com","rb7url.com","surls.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["bitshortener.site"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["urlad.co"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["urlad.co"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["ekstrabladet.dk"])) {
+    ubo["abort_current_inline_script"]("ADTECH","adblock");
+}
+if (a.domCmp(["atrix.ovh"])) {
+    ubo["setTimeout_defuser"]("noAds","2000");
+}
+if (a.domCmp(["webnovel.com"])) {
+    ubo["set_constant"]("adblockSuspected","false");
+}
+if (a.domCmp(["webnovel.com"])) {
+    ubo["nano_setTimeout_booster"]();
+}
+if (a.domCmp(["apkmirrorfull.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["watcheng.tv"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["bits.yt"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["bits.yt"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["bits.yt"])) {
+    ubo["abort_on_property_write"]("adcashMacros");
+}
+if (a.domCmp(["bits.yt"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["bits.yt"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["sunmusiq.com"])) {
+    ubo["abort_on_property_read"]("isAdBlockActive");
+}
+if (a.domCmp(["sunmusiq.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["adshort.pro"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adshort.pro"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["adshort.pro"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adshort.pro"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["adshort.pro"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["123link.co","123link.io","123link.press","123link.top","22o.co","3rabshort.com","adbilty.me","adbull.me","adcoin.me","adlinkme.com","admove.co","adpop.me","adshort.co","adshort.im","adshorte.com","adsurl.xyz","al.ly","ally.sh","apkmirror.com","arabcut.com","arpa7com.com","bbf.lt","bc.vc","bilink.xyz","bit-url.com","bitcoadz.pw","bits.yt","btc.ms","cimi.website","clik.pw","coin.mg","coinb.ink","coinlink.co","coinlink.us","coshurl.co","cpmlink.net","crockolinks.com","croco.site","cryptoadz.win","cryptoskipad.com","cryptosmo.com","curs.io","cut-earn.com","cut-egy.ml","cut-urls.com","cut-win.com","cutbit.io","cutearn.com","cuturlink.com","cutwi.in","cutwin.com","cutwin.pro","cutwin.us","earn-guide.com","ecurs.co","ecut.io","eg4link.com","egy-links.com","elibtc.win","eurs.io","fas.li","firstone.tv","firstonetv.net","foxurl.net","geturlpr.com","git.tc","gram.im","gsurl.in","gturls.com","idlelivelink.*","igram.im","iiv.pl","infinityurl.co","iziwinmoney.info","l2s.io","leechall.com","leechall.download","leenlink.com","lewat.id","linclik.com","link-cash.com","link-money.com","linkatk.net","linkdrop.net","linkhits.net","linkhits.us","linkkawy.com","linkkch.com","linkrex.net","linksh.top","linkurl.org","lkcash.net","lkky.co","lyon.kim","madurls.com","megaurl.in","met.bz","meulink.tk","minkly.me","mlink.club","oke.io","oload.stream","onlinebee.in","openload.co","ourl.io","peliculasmegahdd.net","psl.io","qe.pe","shink.me","shink.xyz","shortelink.co","shorteurl.com","shortzero.com","shrinklink.co","teqani-plus.com","tmearn.com","tny.ec","tui.click","twik.pw","u2s.io","ur.ly","url.gem-flash.com","urle.co","ulshare.me","uskip.me","veneapp.com","vivads.net","wi.cr","win4cut.com","wolink.in","xess.pro","xurl.us","zeiz.me","zlshorte.net","zonadescarga.info"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["globalbesthosting.com","goldescargas.com","katfile.com","shortify.pw","srt.am","userupload.net"])) {
+    ubo["nano_setTimeout_booster"]();
+}
+if (a.domCmp(["imgrock.info"])) {
+    ubo["nano_setTimeout_booster"]("/.?/","4000");
+}
+if (a.domCmp(["1ink.cc"])) {
+    ubo["nano_setInterval_booster"]("mSec","1050");
+}
+if (a.domCmp(["freepdf-books.com"])) {
+    ubo["nano_setInterval_booster"]("myTimer","1500");
+}
+if (a.domCmp(["backin.net"])) {
+    ubo["setTimeout_defuser"]("()","3000");
+}
+if (a.domCmp(["backin.net"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["engageme.tv"])) {
+    ubo["abort_current_inline_script"]("stop","adblock");
+}
+if (a.domCmp(["cut-w.in"])) {
+    ubo["abort_on_property_write"]("adss");
+}
+if (a.domCmp(["cut-w.in"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["cut-w.in"])) {
+    ubo["setTimeout_defuser"]("checkAdblockUser");
+}
+if (a.domCmp(["girlsfuck-tube.com"])) {
+    ubo["abort_on_property_read"]("Aloader.serve");
+}
+if (a.domCmp(["girlsfuck-tube.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["oploverz.in"])) {
+    ubo["setTimeout_defuser"]("nextFunction","450");
+}
+if (a.domCmp(["cmacapps.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["cmacapps.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["hanime.tv"])) {
+    ubo["abort_current_inline_script"]("BetterJsPop");
+}
+if (a.domCmp(["mimaletadepeliculas.*"])) {
+    ubo["addEventListener_defuser"]("load","advertising");
+}
+if (a.domCmp(["cinestrenostv.tv"])) {
+    ubo["addEventListener_defuser"]("load","2000");
+}
+if (a.domCmp(["latelete.tv"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["themeslide.com"])) {
+    ubo["abort_current_inline_script"]("jQuery","ai_adb_message_undismissible");
+}
+if (a.domCmp(["themeslide.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["themeslide.com"])) {
+    ubo["nano_setInterval_booster"]("countdown","1500");
+}
+if (a.domCmp(["gjirafa.com"])) {
+    ubo["addEventListener_defuser"]("message","videoAd");
+}
+if (a.domCmp(["gratismas.org"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["adshorte.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["adshorte.com"])) {
+    ubo["abort_on_property_write"]("window.open");
+}
+if (a.domCmp(["nmn900.com"])) {
+    ubo["abort_on_property_read"]("nmn900ads");
+}
+if (a.domCmp(["oturl.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["oturl.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["pornobae.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["imgdigs.com"])) {
+    ubo["abort_current_inline_script"]("ExoLoader");
+}
+if (a.domCmp(["cut-link.me","digacortador.com","geturls.me","vhb.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cut-link.me","digacortador.com","geturls.me","vhb.io"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["befap.com"])) {
+    ubo["abort_on_property_read"]("ExoLoader");
+}
+if (a.domCmp(["tubemania.org"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["hiapphere.com"])) {
+    ubo["abort_on_property_read"]("_d");
+}
+if (a.domCmp(["go4up.com"])) {
+    ubo["set_constant"]("_0x9f3f","true");
+}
+if (a.domCmp(["readcomiconline.to"])) {
+    ubo["abort_current_inline_script"]("String.fromCharCode","/\/\*[0-9a-f]{40}\*\//");
+}
+if (a.domCmp(["arbwarez.com"])) {
+    ubo["set_constant"]("$tieE3","true");
+}
+if (a.domCmp(["linksocean.net"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["linksocean.net"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["bc.vc"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["data-raid-recovery-link.com"])) {
+    ubo["setTimeout_defuser"]("_creatBait");
+}
+if (a.domCmp(["wolframclient.net"])) {
+    ubo["setTimeout_defuser"]("detected","0");
+}
+if (a.domCmp(["salon.com"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["cut4links.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["cut4links.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["telolet.in"])) {
+    ubo["abort_current_inline_script"]("addEventListener","DivTopAd");
+}
+if (a.domCmp(["cumlouder.com"])) {
+    ubo["abort_on_property_write"]("ExoLoader");
+}
+if (a.domCmp(["nme.com"])) {
+    ubo["abort_current_inline_script"]("setTimeout","ad-blocker");
+}
+if (a.domCmp(["cutw.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["cutw.me"])) {
+    ubo["abort_on_property_write"]("adss");
+}
+if (a.domCmp(["cutw.me"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["cutw.me"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["mejortorrent.com"])) {
+    ubo["abort_on_property_write"]("getScript");
+}
+if (a.domCmp(["iwatchgot.com","iwatchseries.online","watchamericandad.net","watcharcheronline.com","watcharresteddevelopment.com","watchcheersonline.com","watchcommunity.online","watchdoctorwhoonline.com","watcheverybodylovesraymond.com","watchfamilyguy.cc","watchfearthewalkingdead.net","watchfriendsonline.net","watchhowimetyourmother.com","watchitsalwayssunnyinphiladelphia.com","watchkingofthehill.com","watchparksandrecreation.net","watchprisonbreakonline.com","watchpsychonline.net","watchscrubsonline.com","watchseinfeld.com","watchsmallvilleonline.net","watchsouthpark.cc","watchsupernaturalonline.cc","watchthesopranos.com","watchthexfiles.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["adsrt.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adsrt.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["linclik.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["eg4link.me"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["eg4link.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["rd.com"])) {
+    ubo["abort_current_inline_script"]("btoa","Adblock");
+}
+if (a.domCmp(["mystream.la"])) {
+    ubo["abort_current_inline_script"]("decodeURI","doSecondPop");
+}
+if (a.domCmp(["mystream.la"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["betikom.com"])) {
+    ubo["setTimeout_defuser"]("document.querySelectorAll","2000");
+}
+if (a.domCmp(["conservativetribune.com"])) {
+    ubo["set_constant"]("oio","true");
+}
+if (a.domCmp(["arenavision2017.cf"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["samehadaku.tv"])) {
+    ubo["set_constant"]("$tieE3","true");
+}
+if (a.domCmp(["k2nblog.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["k2nblog.com"])) {
+    ubo["nano_setTimeout_booster"]();
+}
+if (a.domCmp(["marvelousga.com"])) {
+    ubo["abort_current_inline_script"]("$","openNewWindow");
+}
+if (a.domCmp(["720pizle.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["1movies.to"])) {
+    ubo["abort_current_inline_script"]("atob","encodeURIComponent");
+}
+if (a.domCmp(["tinypaste.cc"])) {
+    ubo["abort_current_inline_script"]("decodeURI","decodeURIComponent");
+}
+if (a.domCmp(["tinypaste.cc"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["bs.to"])) {
+    ubo["abort_on_property_read"]("_0x6658");
+}
+if (a.domCmp(["hentaigo.com"])) {
+    ubo["abort_on_property_read"]("loadTool");
+}
+if (a.domCmp(["hentaigo.com"])) {
+    ubo["abort_on_property_read"]("r3H4");
+}
+if (a.domCmp(["safelinku.net","sflink.cc"])) {
+    ubo["addEventListener_defuser"]("load","2000");
+}
+if (a.domCmp(["safelinku.net","sflink.cc"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["safelinku.net","sflink.cc"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["onlinebee.in"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["kokemoon.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["kokemoon.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["link-zero.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["link-zero.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["encurta.net"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["encurta.net"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["encurta.net","lin-ks.net"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["lin-ks.net"])) {
+    ubo["set_constant"]("canRunAds","true");
+}
+if (a.domCmp(["0link.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["0link.me"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["adsprolink.win"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["adsprolink.win"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["gomostream.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["updatetube.com"])) {
+    ubo["abort_current_inline_script"]("relateds_url_click");
+}
+if (a.domCmp(["kustvaartforum.com"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["uploadfiles.io"])) {
+    ubo["abort_current_inline_script"]("$","ad-blocked");
+}
+if (a.domCmp(["link4.me"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["allmyvideos.net"])) {
+    ubo["abort_on_property_write"]("SCrypt");
+}
+if (a.domCmp(["webdesigndev.com"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["mispelisyseries.com","tvsinpagar.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["mispelisyseries.com","tvsinpagar.com"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["mispelisyseries.com","tvsinpagar.com"])) {
+    ubo["window_open_defuser"]();
+}
+if (a.domCmp(["fembed.com"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["schwaebische.de"])) {
+    ubo["set_constant"]("roflcopter","false");
+}
+if (a.domCmp(["dz4soft.*"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["dz4soft.*"])) {
+    ubo["addEventListener_defuser"]("load","2000");
+}
+if (a.domCmp(["imageweb.ws"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["haber1903.com"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["vortez.net"])) {
+    ubo["abort_current_inline_script"]("$","Adblock");
+}
+if (a.domCmp(["peliculasgoogledrive.info"])) {
+    ubo["addEventListener_defuser"]("load","2000");
+}
+if (a.domCmp(["jurl.io"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["jurl.io"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["jurl.io"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["jurl.io"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["stream2watch.org"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["wizhdsports.fi"])) {
+    ubo["nowebrtc"]();
+}
+if (a.domCmp(["cnnamador.com"])) {
+    ubo["noeval"]();
+}
+if (a.domCmp(["cnnamador.com"])) {
+    ubo["abort_on_property_write"]("adv_pre_duration");
+}
+if (a.domCmp(["cnnamador.com"])) {
+    ubo["abort_on_property_write"]("adv_post_duration");
+}
+if (a.domCmp(["flashx.sx"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["flashx.sx"])) {
+    ubo["abort_current_inline_script"]("parseInt","tabunder");
+}
+if (a.domCmp(["flashx.sx"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["kissasian.info"])) {
+    ubo["set_constant"]("blockAdBlock","true");
+}
+if (a.domCmp(["mspik.com"])) {
+    ubo["abort_on_property_read"]("app_vars.force_disable_adblock");
+}
+if (a.domCmp(["mspik.com"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["goldshorten.com"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["goldshorten.com"])) {
+    ubo["abort_on_property_write"]("PopUP");
+}
+if (a.domCmp(["goldshorten.com"])) {
+    ubo["nano_setInterval_booster"]();
+}
+if (a.domCmp(["itdmusic.site"])) {
+    ubo["abort_on_property_write"]("_pop");
+}
+if (a.domCmp(["itdmusic.site"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
+}
+if (a.domCmp(["itdmusic.site"])) {
+    ubo["popads_dummy"]();
+}
+if (a.domCmp(["123movies.cafe"])) {
+    ubo["popads_net"]();
+}
+if (a.domCmp(["nod32key.xyz"])) {
+    ubo["bab_defuser"]();
+}
+if (a.domCmp(["clix4btc.com"])) {
+    ubo["set_constant"]("adblock","false");
+}
+if (a.domCmp(["mp3skull-tube.net"])) {
+    ubo["addEventListener_defuser"]("click","trigger");
+}
+if (a.domCmp(["mp3clan.one"])) {
+    ubo["abort_on_property_write"]("Fingerprint2");
 }
 if (a.domCmp(["pythonjobshq.com"])) {
     ubo["abort_on_property_read"]("Keen");
@@ -7631,12 +9879,6 @@ if (a.domCmp(["rarbgmirror.com","swfchan.net","swfchan.com","zippyshare.com","le
 }
 if (a.domCmp(["wordsense.eu"])) {
     ubo["setTimeout_defuser"]("ad","2000");
-}
-if (a.domCmp(["rapidvideo.com"])) {
-    ubo["noeval"]();
-}
-if (a.domCmp(["rapidvideo.com"])) {
-    ubo["abort_on_property_read"]("popns");
 }
 if (a.domCmp(["receive-a-sms.com"])) {
     ubo["abort_current_inline_script"]("$","showads.js");
@@ -7725,7 +9967,7 @@ if (a.domCmp(["peugeot-metropolis.de"])) {
 if (a.domCmp(["androidsage.com"])) {
     ubo["abort_on_property_read"]("blckad");
 }
-if (a.domCmp(["stern.de","bento.de","pcgamer.com"])) {
+if (a.domCmp(["bento.de","pcgamer.com"])) {
     ubo["abort_on_property_read"]("_sp_.mms");
 }
 if (a.domCmp(["cwseed.com"])) {
@@ -7838,6 +10080,9 @@ if (a.domCmp(["fakeporn.tv"])) {
 }
 if (a.domCmp(["bigbtc.win"])) {
     ubo["abort_on_property_read"]("ad_block_test");
+}
+if (a.domCmp(["reviewmeta.com"])) {
+    ubo["setTimeout_defuser"]("adsbygoogle");
 }
 if (a.domCmp(["eurogamer.net"])) {
     ubo["abort_on_property_read"]("stop");
