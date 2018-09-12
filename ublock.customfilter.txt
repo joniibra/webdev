@@ -7565,4 +7565,4 @@ fxtradingrevolution.com/*/background-images/*.*$image
 axiory.com/*/header-*.*$image
 tokopedia.com##.article-share-button
 tokopedia.com##.article-share
-tokopedia.net/*/*-*-bg.jpg$domain=seller.tokopedia.com,image
+tokopedia.net/*/*-*-bg.*$image
