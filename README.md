@@ -42,11 +42,11 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 *  For AdBlock, AdBlock Plus or others ads blocker →
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
-> or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 *  For uBlock Origin →
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
-> or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 <br />
 
@@ -73,7 +73,6 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 #### 『 My Custom JavaScript 』
 
 *  For Violentmonkey or Tampermonkey →
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js<br />
 > or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
 
 <br /><br />
@@ -169,9 +168,9 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 
 <br />○  Subsribes from ABP Official – https://adblockplus.org/subscriptions
 <br />○  Packages – https://filterlists.com
-<br />○  IDN: ABPindo – https://cdn.staticaly.com/gh/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
+<br />○  IDN: ABPindo – https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt
 <br />○  AAK-Cont Filters for uBlock Origin – https://xuhaiyang1234.gitlab.io/AAK-Cont
-<br />○  IDKwhattoputhere/uBlock-Filters-Plus – https://cdn.staticaly.com/gh/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
+<br />○  IDKwhattoputhere/uBlock-Filters-Plus – https://raw.githubusercontent.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
 <br />○  YouTube: Pure Video Experience – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
 <br />○  NoCoin – https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt
 
