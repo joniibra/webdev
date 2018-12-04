@@ -73,7 +73,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 #### 『 My Custom JavaScript 』
 
 *  For Violentmonkey or Tampermonkey →
-> or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
+> https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
 
 <br /><br />
 
