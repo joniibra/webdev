@@ -50,7 +50,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 <br />
 
-( This patch already including [uBlockProtectorList](https://cdn.staticaly.com/gh/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) or [NanoDefender](https://cdn.staticaly.com/gh/NanoAdblocker/NanoFilters/master/NanoMirror/NanoDefender.txt). But if you want more options, you can still add more scripts called [NanoBase](https://jspenguin2017.github.io/uBlockProtector/#extra-installation-steps-for-ublock-origin) by manual installs – Read more.. )
+( This patch already including [uBlockProtectorList](https://raw.githubusercontent.com/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) or [NanoDefender](https://raw.githubusercontent.com/NanoAdblocker/NanoFilters/master/NanoMirror/NanoDefender.txt). But if you want more options, you can still add more scripts called [NanoBase](https://jspenguin2017.github.io/uBlockProtector/#extra-installation-steps-for-ublock-origin) by manual installs – Read more.. )
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
