@@ -9,7 +9,7 @@
 // @homepage https://joniibra.github.io/webdev/adblock
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
 // @updateURL https://gitlab.com/xuhaiyang1234/AAK-Cont/blob/master/FINAL_BUILD/aak-cont-script-notubo.user.js
-// @downloadURL https://cdn.staticaly.com/joniibra/webdev/adblock/adblock.userscript.js
+// @downloadURL https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
 // @include http://*/*
 // @include https://*/*
 // @grant unsafeWindow
