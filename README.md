@@ -41,11 +41,11 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 <br />
 
 *  For AdBlock, AdBlock Plus or others ads blocker →
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
+> https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
 > or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 *  For uBlock Origin →
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt
+> https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
 > or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 <br />
@@ -73,7 +73,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 #### 『 My Custom JavaScript 』
 
 *  For Violentmonkey or Tampermonkey →
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js
+> https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js<br />
 > or https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
 
 <br /><br />
