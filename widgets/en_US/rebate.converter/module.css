@@ -1,0 +1,120 @@
+﻿.calHeader
+{
+    background-color: #000;
+    border: 1px solid #DEDEDE;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.16);
+    margin: 10px;
+    text-align: left;
+}
+.calbody
+{
+    border: 1px solid #DDDDDD;
+    padding: 10px;
+}
+.divheader
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.span-volume
+{
+    margin-right: 50px;
+    text-transform: uppercase;
+}
+.span-trade
+{
+    text-transform: uppercase;
+}
+.span-rate
+{
+    margin-right: 1px;
+    text-transform: uppercase;
+}
+.divcalc
+{
+    top: 20px;
+    text-align: center;
+    position: relative;
+    margin: 10px 0;
+}
+.calHeader input
+{
+    border: 1px solid #CCCCCC !important;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.calHeader select {
+    background-image: -moz-linear-gradient(center top , #FEFEFE, #F3F3F3);
+    border: 1px solid #CCCCCC !important;
+    border-radius: 3px;
+    color: #444444;
+    cursor: pointer;
+    margin-right: -1px;
+    min-width: 100px;
+    padding: 5px;
+	font-family: Tahoma, Roboto, Arial, Monospace;
+}
+.cal-m-n
+{
+    margin: 3px 0;
+}
+.cal-m
+{
+    margin: 10px;
+}
+.divnote
+{
+    font-style: italic;
+    color: #888;
+    font-size: 11px;
+}
+.spantitle
+{
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+.div-summary
+{
+    background-color: #B3FFBE;
+    color: #FFF;
+    height: 60px;
+    font-family: FontAwesome, Tahoma, Roboto, Arial, Monospace;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+.divresult
+{
+    border: 1px solid #DDDDDD;
+    height: auto;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    line-height: 20px;
+    background-color: #2B5C27;
+	font-family: FontAwesome, Tahoma, Roboto, Arial, Monospace;
+    font-variant: small-caps;
+}
+.spanresult
+{
+    color: #70AF41;
+    font-weight: bold;
+}
+.regwTable td
+{
+    color: #333333;
+    text-transform: uppercase;
+}
+.reg-title a
+{
+    color: #333333 !important;text-transform: uppercase;font-weight: bold !important
+}
+.reg-title img
+{vertical-align: middle;
+}
+.divcalc input {
+    padding: 0 10px;
+}
+.divreg {text-align: center;padding:13px 0}
