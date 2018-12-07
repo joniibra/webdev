@@ -18,7 +18,7 @@ Text files (.txt) and other NO needs CDN.
 
 ## Welcome to GitHub Pages
 
-EDIT THE README.md [editor on GitHub](https://github.com/joniibra/webdev/edit/master/README.md)
+[EDIT THE README.md on GitHub](https://github.com/joniibra/webdev/edit/master/README.md)
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
