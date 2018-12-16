@@ -1,9 +1,9 @@
 .header-avatar {
-    display: none;
+    display: none!important;
     position: absolute;
     top: 0;
     left: 0;
-    height: 0px;
+    height: 0px!important;
     text-align: center;
     font-size: 0px;
     color: rgba(0,0,0,0);
