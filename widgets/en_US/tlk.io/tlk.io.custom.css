@@ -1,0 +1,16 @@
+.header-avatar {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0px;
+    text-align: center;
+    font-size: 0px;
+    color: rgba(0,0,0,0);
+    overflow: hidden;
+    vertical-align: top;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+    background: url(../images/header-avatar.svg) no-repeat center center;
+    background-size: 100% auto;
+}
