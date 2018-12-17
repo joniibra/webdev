@@ -18,24 +18,3 @@
 .info {
     display: none !important;
 }
-
-.why-iframe {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    width: 308px;
-    height: 480px;
-    background: #f4f3f1;
-    border: 1px solid #cccccc;
-    border-top-width: 0;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-}
-
-.why {
-    text-align: center;
-}
