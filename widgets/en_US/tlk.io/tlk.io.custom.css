@@ -15,6 +15,10 @@
     background-size: 100% auto;
 }
 
+.info {
+    display: none !important;
+}
+
 .why-iframe {
     display: none;
     position: absolute;
