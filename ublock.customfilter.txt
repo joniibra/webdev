@@ -1,4 +1,4 @@
-[uBlock Origin 1.15.0]
+[uBlock Origin 1.19.0]
 ! Title: Joni Ibra ® Custom Filter for uBlock Origin
 ! Author: joniibra
 ! Version: 1.000
