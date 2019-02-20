@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hit Counter</title>
+</head>
+
+<body>
+  <h1>Hit Counter</h1>
+<!-- YOU NEED TO REPLACE THIS CODE WITH YOUR OWN FIREBASE CODE -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB3Z5So578AQ3-MdBjsNSoL2U4Anv2WsRM",
+      authDomain: "joniibra-v1.firebaseapp.com",
+      databaseURL: "https://joniibra-v1.firebaseio.com",
+      projectId: "joniibra-v1",
+      storageBucket: "joniibra-v1.appspot.com",
+      messagingSenderId: "928474867802"
+    };
+    firebase.initializeApp(config);
+    // You can use the code below as-is.
+    //rootRef is a reference to the whole Firebase database.
+    const rootRef = firebase.database().ref();
+    // pageCountRef is just the node that tracks hits
+    const pageCountsRef = rootRef.child("pageCounts");
+
+
+    //Gets the key and current hit count for the page (if it exists)
+    let getHistory = new Promise(function (resolve, reject) {
+      //Create an object to store copy of the saved db data.
+      let obj = {};
+      pageCountsRef.orderByChild("page").equalTo(location.pathname).once("value", function (snapshot) {
+        snapshot.forEach(function (child) {
+          obj = {
+            key: child.key,
+            count: child.val().count
+          }
+        });
+        if (obj) {
+          resolve(obj);
+        } else {
+          reject(error);
+        }
+      });
+    });
+    //When getHistory promise resoves, the key is either undefined (page not in the database),
+    //Or key is a string that uniquely identifies the page in the database.
+    getHistory.then(function (fromResolve) {
+      var key = fromResolve.key;
+      var pastcounts = fromResolve.count;
+      //If key is undefined, create a new key for this database item.
+      if (key == undefined) {
+        key = pageCountsRef.push().key;
+        pastcounts = 0;
+      }
+      //Total hits to date.
+      counts = pastcounts + 1;
+      //Gather info to post
+      var postData = {
+        page: location.pathname,
+        count: counts,
+        lastvisit: firebase.database.ServerValue.TIMESTAMP,
+        lastreferrer: document.referrer
+      }
+
+      var updates = {}
+      updates["/pageCounts/" + key] = postData;
+      rootRef.update(updates);
+    }).catch(function (fromReject) {
+      console.log(error);
+    })
+  </script>
+</body>
+
+</html>
