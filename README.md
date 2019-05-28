@@ -1,3 +1,6 @@
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://paypal.me/joniibra)
+
+
 # Ads Block – Custom Filter Lists
 
 ![header](images/joniibra.png)
