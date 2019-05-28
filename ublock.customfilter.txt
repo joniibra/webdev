@@ -1,5 +1,5 @@
-[uBlock Origin 1.19.0]
-! Title: Joni Ibra ® Custom Filter for uBlock Origin
+[uBlock Origin 1.19.6]
+! Title: ᒍOᑎI ƵᕼᗩᑎG ® Custom Filter for uBlock Origin
 ! Author: joniibra
 ! Version: 1.000
 ! Expires: 3 days
