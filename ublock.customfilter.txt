@@ -8802,3 +8802,5 @@ xdroidapps.*##.cookie-notice-container
 xdroidapps.*###check-also-box
 xdroidapps.*##.copyright-text
 xdroidapps.*###site-info
+getpocket.*##[href^="https://getpocket.com/premium"]
+getpocket.*##.css-osuxsv
