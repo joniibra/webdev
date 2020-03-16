@@ -22,7 +22,7 @@ Text files (.txt) and other NO needs CDN.
 
 # Ads Block – Custom Filter Lists
 
-![header](images/joniibra.png)
+![header](https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
 
 
 ### Customize AdBlock – Private Custom Filter Lists
@@ -40,5 +40,6 @@ The filter lists block most ads on the web. This is the list what to do:
 
 ## HOMEPAGE
 
-○  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
+🍇  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
+💦
