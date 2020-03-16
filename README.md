@@ -19,40 +19,26 @@ Text files (.txt) and other NO needs CDN.
 ○  https://<b>raw.githubusercontent.com</b>/  ––  <b>.txt</b>
 <br /><br /><br /><br /><br />
 
-## Welcome to GitHub Pages
 
-[EDIT THE README.md on GitHub](https://github.com/joniibra/webdev/edit/master/README.md)
+# Ads Block – Custom Filter Lists
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![header](images/joniibra.png)
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Customize AdBlock – Private Custom Filter Lists
 
-```markdown
-Syntax highlighted code block
+The filter lists block most ads on the web. This is the list what to do:
 
-# Header 1
-## Header 2
-### Header 3
+#### 『 What To Do Lists 』
+○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
+<br />
+<br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
+<br />
+<br />○  (Optional) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
+<br />
+<br />
 
-- Bulleted
-- List
+## HOMEPAGE
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/joniibra/webdev/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+○  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
+<br />
