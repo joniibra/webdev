@@ -1,4 +1,4 @@
-[Adblock 3.47.0]
+[Adblock 4.7.1]
 ! Title: ᒍOᑎI ƵᕼᗩᑎG ® Custom Filter for AdBlock, Plus, etc
 ! Author: joniibra
 ! Version: 1.00
@@ -11618,3 +11618,31 @@ github.*##[href="https://github.com/site/terms"]
 github.*##[href="https://github.blog"]
 githubstatus.*##[href="https://twitter.com/github"]
 githubstatus.*##[href="https://www.facebook.com/GitHub"]
+about.me##.cookie_notice-scope-1nenT
+about.me##.ledge-content
+audiojungle.*##.item-preview__preview-buttons--social
+googleusercontent.*/kanYU*EiXXnazzkn4*5OyG$domain=www.google.com,image
+mediafire.*##[href^="/upgrade/index.php"]
+mediafire.*##[href="/upgrade/"]
+||@@zippyshare.*###dlbutton
+||@@zippyshare.*##.download
+bignox.*##.tags-links
+androeed.*/go.php*
+an.yandex.ru/*
+bethesda.*##.RiotWrapper-cookie-policy-RiotWrapper-cookie-policy2
+translate.google.*##.tlid-notification-container
+receive-sms-online.*###social
+receive-sms*.*/*/logo*.*$domain=receive-sms-online.info,image
+receive-sms-online.*##[href="contact.php"]
+receive-sms-online.*##.mt-promo-bar
+receive-sms-online.*##.cc_banner
+receive-sms-online.*##[href="https://t.me/receivesmsonlineinfo"]
+receive-sms-online.*###fixed
+dailymotion.*/embed/*$domain=www.kompasiana.com
+dailymotion.*/embed/*$domain=m.kompasiana.com
+linkedin.*##.mn-abi-form__content--promo
+hellosehat.*##.sharedaddy
+hellosehat.*##.single-sharing-title
+dmca.com/*/*$domain=hellosehat.com
+play.google.com/*$domain=mega.nz
+play.google.com/*$domain=mega.co.nz
