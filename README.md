@@ -40,7 +40,7 @@ Text files (.txt) and other NO needs CDN.
 https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ```
 <br />
-> or optional – 
+> or ***optional*** → 
 ```
 https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
@@ -55,11 +55,11 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 <br /><br /><br />
 
-***  For uBlock Origin ***→
+***For uBlock Origin*** →
 ```
 https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
-> or ***optional***
+> or ***optional*** →
 ```
 https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
@@ -74,4 +74,4 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 <br />
 
-[Basic writing syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+💦  [Basic writing syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
