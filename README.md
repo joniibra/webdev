@@ -31,11 +31,11 @@ Text files (.txt) and other NO needs CDN.
 ## AdBlock『 COPY-PASTE 』
 
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
-<br /><br />○  (Optional) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
+<br /><br />○  (Additional Addon) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
 
 <br /><br /><br />
 
-***For AdBlock, AdBlock Plus or others ads blocker*** →
+For ***AdBlock***, ***AdBlock Plus*** or ***others ads blocker*** →
 ```
 https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ```
@@ -48,9 +48,7 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 ## uBlock『 COPY-PASTE 』
 
-<br /><br />
-
-○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
+<br />○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
 
 <br /><br /><br />
 
