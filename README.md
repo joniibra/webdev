@@ -26,7 +26,7 @@ Text files (.txt) and other NO needs CDN.
 
 🍇 _The filter lists block most ads on the web. This is the list what to do._
 
-<br /><br /><br /><br /><br />
+<br /><br /><br />
 
 ## AdBlock『 COPY-PASTE 』
 
@@ -35,7 +35,7 @@ Text files (.txt) and other NO needs CDN.
 
 <br /><br /><br />
 
-***  For AdBlock, AdBlock Plus or others ads blocker ***→
+***For AdBlock, AdBlock Plus or others ads blocker*** →
 ```
 https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ```
@@ -57,9 +57,9 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 ***  For uBlock Origin ***→
 ```
-https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
+https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
-> or optional 
+> or ***optional***
 ```
 https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
