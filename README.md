@@ -1,5 +1,5 @@
 [![ko-fi](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png)](https://instagram.com/joniibra)
-
+<br />
 
 # 『 UPLOAD 』
 
@@ -27,7 +27,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-## 『 COPY-PASTE for AdBlock 』
+<br />
+『 COPY-PASTE for AdBlock 』
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
@@ -44,7 +45,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-## 『 COPY-PASTE for uBlock 』
+<br />
+『 COPY-PASTE for uBlock 』
 <br />
 <br />
 ○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
@@ -60,6 +62,6 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 ## HOMEPAGE
-
+<br />
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
