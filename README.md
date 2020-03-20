@@ -22,7 +22,7 @@ Text files (.txt) and other NO needs CDN.
 
 ## Ads Block – Custom Filter Lists
 <br />
-The filter lists block most ads on the web. This is the list what to do:
+The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
@@ -59,6 +59,6 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 ### HOMEPAGE
-
+<br />
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
