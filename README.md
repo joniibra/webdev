@@ -1,4 +1,4 @@
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H3TS84)
+[![ko-fi](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png)](https://instagram.com/joniibra)
 
 
 # 『 UPLOAD 』
@@ -20,19 +20,18 @@ Text files (.txt) and other NO needs CDN.
 <br /><br /><br /><br /><br />
 
 
-# Ads Block – Custom Filter Lists
-
-![header](https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
-
-
-### Customize AdBlock – Private Custom Filter Lists
-
+## Ads Block – Custom Filter Lists
+<br />
 The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
+### Customize AdBlock – Private Custom Filter Lists
 <br />
 <br />
-#### 『 COPY-PASTE for AdBlock 』
+<br />
+<br />
+![header](https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
+# 『 COPY-PASTE for AdBlock 』
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
@@ -48,6 +47,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
+<br />
+![header](https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
 #### 『 COPY-PASTE for uBlock 』
 <br />
 <br />
