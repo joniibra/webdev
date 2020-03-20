@@ -20,7 +20,7 @@ Text files (.txt) and other NO needs CDN.
 <br /><br /><br /><br /><br />
 
 
-![header](images/joniibra.png)
+![adblock](images/joniibra.png)
 ## Ads Block – Custom Filter Lists
 <br />
 The filter lists block most ads on the web. This is the list what to do:
@@ -33,14 +33,13 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
-<br />
-<br />○  (Optional) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
-<br />
+<br /><br />○  (Optional) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
 <br />
 <br />
+<br />
+![ublock](images/joniibra.png)
 *  For AdBlock, AdBlock Plus or others ads blocker →
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
-<br />
 > or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 <br />
 <br />
@@ -62,7 +61,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-## HOMEPAGE
+### HOMEPAGE
 <br />
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
