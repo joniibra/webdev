@@ -21,8 +21,10 @@ Text files (.txt) and other NO needs CDN.
 <br /><br /><br /><br /><br />
 
 ### Ads Block – Custom Filter Lists
+
 <br />
-_🍇 The filter lists block most ads on the web. This is the list what to do._
+
+🍇 _The filter lists block most ads on the web. This is the list what to do._
 
 <br /><br /><br /><br /><br />
 
@@ -57,7 +59,7 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
 ***  For uBlock Origin →***
 ```
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
+https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
 ```
 > or optional 
 ```
@@ -67,7 +69,11 @@ https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 <br /><br /><br /><br /><br />
 
 ### HOMEPAGE
+
 <br />
+
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
+
 <br />
+
 [Basic writing syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
