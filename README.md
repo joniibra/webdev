@@ -27,7 +27,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-### 『 COPY-PASTE for AdBlock 』
+### COPY-PASTE for AdBlock
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
