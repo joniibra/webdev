@@ -27,8 +27,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-(https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
-## 『 COPY-PASTE for AdBlock 』
+[![joniibra(https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)]
+### 『 COPY-PASTE for AdBlock 』
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
@@ -45,8 +45,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
-## 『 COPY-PASTE for uBlock 』
+[![joniibra(https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)]
+### 『 COPY-PASTE for uBlock 』
 <br />
 <br />
 ○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
