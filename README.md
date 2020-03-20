@@ -20,7 +20,7 @@ Text files (.txt) and other NO needs CDN.
 <br /><br /><br /><br /><br />
 
 
-## Ads Block – Custom Filter Lists
+### Ads Block – Custom Filter Lists
 <br />
 The filter lists block most ads on the web. This is the list what to do.
 <br />
@@ -28,7 +28,7 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
-#### 『 COPY-PASTE for AdBlock 』
+## 『 COPY-PASTE for AdBlock 』
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
@@ -36,24 +36,35 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
-*  For AdBlock, AdBlock Plus or others ads blocker →
-> https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
-> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+***  For AdBlock, AdBlock Plus or others ads blocker →***
+```
+> https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
+```
+<br />
+> or optional – 
+```
+https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+```
 <br />
 <br />
 <br />
 <br />
 <br />
-#### 『 COPY-PASTE for uBlock 』
+## 『 COPY-PASTE for uBlock 』
 <br />
 <br />
 ○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
 <br />
 <br />
 <br />
-*  For uBlock Origin →
+***  For uBlock Origin →***
+```
 > 🍇  https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
-> or optional 🍇  https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+```
+> or optional 
+```
+🍇  https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+```
 <br />
 <br />
 <br />
@@ -62,3 +73,4 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
+[Basic writing syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
