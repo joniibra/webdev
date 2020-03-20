@@ -39,8 +39,7 @@ Text files (.txt) and other NO needs CDN.
 ```
 https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ```
-<br />
-> or ***optional*** → 
+> or ***optional*** →
 ```
 https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 ```
