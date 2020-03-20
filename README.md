@@ -27,7 +27,6 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-[![joniibra(https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)]
 ### 『 COPY-PASTE for AdBlock 』
 <br />
 <br />
@@ -45,7 +44,6 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-[![joniibra(https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)]
 ### 『 COPY-PASTE for uBlock 』
 <br />
 <br />
