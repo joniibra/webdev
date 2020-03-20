@@ -20,7 +20,7 @@ Text files (.txt) and other NO needs CDN.
 <br /><br /><br /><br /><br />
 
 
-## Ads Block – Custom Filter Lists
+Ads Block – Custom Filter Lists
 <br />
 The filter lists block most ads on the web. This is the list what to do.
 <br />
@@ -28,7 +28,7 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
-### 『 COPY PASTE for AdBlock 』
+## 『 COPY-PASTE for AdBlock 』
 <br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
@@ -44,7 +44,7 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
-### 『 COPY PASTE for uBlock 』
+## 『 COPY-PASTE for uBlock 』
 <br />
 <br />
 ○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
@@ -58,7 +58,7 @@ The filter lists block most ads on the web. This is the list what to do.
 <br />
 <br />
 <br />
-#### HOMEPAGE
+### HOMEPAGE
 <br />
 💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
