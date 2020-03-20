@@ -28,13 +28,33 @@ Text files (.txt) and other NO needs CDN.
 ### Customize AdBlock – Private Custom Filter Lists
 
 The filter lists block most ads on the web. This is the list what to do:
-
+<br />
+<br />
 #### 『 What To Do Lists 』
-○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
+<br />
 <br />
 <br />○  [AdBlock Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/customfilter.txt)
 <br />
 <br />○  (Optional) [AdBlock Custom Userscript ®](https://github.com/joniibra/webdev/blob/adblock/adblock.userscript.js)
+<br />
+<br />
+<br />
+*  For AdBlock, AdBlock Plus or others ads blocker →
+> https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
+> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+<br />
+<br />
+<br />
+<br />
+<br />
+○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
+<br />
+<br />
+<br />
+*  For uBlock Origin →
+> 🍇  https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
+> or optional 🍇  https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+<br />
 <br />
 <br />
 
