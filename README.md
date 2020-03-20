@@ -49,7 +49,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 ![header](https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png)
-#### 『 COPY-PASTE for uBlock 』
+# 『 COPY-PASTE for uBlock 』
 <br />
 <br />
 ○  [uBlock Origin Custom Filter ®](https://github.com/joniibra/webdev/blob/adblock/ublock.customfilter.txt)
@@ -63,9 +63,8 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />
 <br />
 <br />
-
+<br />
 ## HOMEPAGE
 
-🍇  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
+💦  [ADS Block by Joni Zhang](https://github.com/joniibra/webdev/tree/adblock)
 <br />
-💦
