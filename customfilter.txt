@@ -11819,6 +11819,9 @@ mega.*##.download-app
 mega.*##.app-advertisement-block
 mega.*##.mobile > .cancel
 mega.*##.dl-megaapp
+mega.*##.top-login-warning
+mega.*##.top-login-warning-pad
+mega.*##.social
 facebook.*##[href="https://m.facebook.com/policies/"]
 facebook.*##.cc.ib
 facebook.*##.hw > .ia > .ed.co > .gd
@@ -11827,3 +11830,35 @@ facebook.*##._43rl
 facebook.*##._43rm
 facebook.*##._1rzm
 facebook.*##.ch > .bg.bf > .bh
+uploadev.*##.aboutuplouad
+uploadev.*###gdpr-cookie-notice
+||@@uploadev.*##input
+||@@uploadev.*###direct_link
+||@@uploadev.*##.directl
+platinmods.*##.uix_icon--share
+platinmods.*##.fa-share-alt
+sharemods.*##.premium-button
+sharemods.*##.premium
+sharemods.*/*/footer*facebook*.*$image
+sharemods.*##.contact-us
+sharemods.*##[href="https://sharemods.com/contact.html"]
+sharemods.*##.cookieinfo
+apkmb.*##.botones_sociales
+tiktok.*##.logo-wrapper
+tiktok.*##.download
+tiktok.*##.jsx-413014424
+linkedin.*##.show.cta-modal
+linkedin.*##.bottom-cta-banner__link
+linkedin.*##.activities-section__button
+instagram.*##.pmxbr.IwRSH.Igw0E
+tiktok.*##.tiktok-player-icon
+tiktok.*##.swiper-slide-active.tiktok-player
+tiktok.com##.i-pinterest
+codeseek.*##.twitter-share-button
+codeseek.*##.social
+google.*##.badges__badge--appstore
+google.*##[href^="https://play.google.com/store/apps/details"]
+google.*##.badges__badge
+google.*##.started__cta--desktop
+google.*##.h-c-header__cta-li-link--primary
+google.*##[href="https://twitter.com/YouTube"]
