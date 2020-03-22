@@ -178,24 +178,69 @@ bebi.com/*.*$domain=kissanime.si
 @@||outlook.live.com/owa/?$document
 @@||gobann.com/user/edit|$document
 @@||karanpc.com/$document
+vidio.*###section-1
+vidio.*###section-2
+@@||vidio.*###section-3
+vidio.*###section-4
+vidio.*###section-5
+vidio.*###section-6
+vidio.*##.app-campaign__link
+vidio.*##.js-app-link
+vidio.*##.livestreaming-capsule__item
+vidio.*##.sidebar__menu-icon--premier
+vidio.*##.site-footer__socials
+vidio.*##.vjs-share-button
+vidio.*##[href^="https://m.vidio.com/pages/terms-and-conditions"]
+vidio.*##.vidio-logo
+akamaized.net/*/*logo*.*$domain=www.vidio.com,image
+akamaized.net/*/*logo*.*$domain=m.vidio.com,image
+vidio.*##.vidio-logo__link
+||@@vidio.*##.site-header__container
+@@||vidio.*###section-3
+@@||vidio.*##[href="/live/204-sctv"]
+@@||vidio.*##.category__nav__list
+vidio.*##.install-button
+vidio.*##.basic-banner__clickable
+vidio.*##.basic-banner
+vidio.*##.sidebar-banner
+vidio.com##.social-share-toggle
+vidio.com##.user-header__button-share
+akamaized.net/*/banners/*.*$domain=www.vidio.com
+akamaized.net/*/*banner*-quiz*.*$domain=www.vidio.com
+akamaized.net/*/*quiz*.*$domain=www.vidio.com
+akamaized.net/*/banners/*.*$domain=m.vidio.com
+akamaized.net/*/*banner*-quiz*.*$domain=m.vidio.com
+akamaized.net/*/*quiz*.*$domain=m.vidio.com
+@@||vidio.*##[href="https://support.vidio.com/"]
+@@||vidio.*##[href="https://m.vidio.com/live"]
+@@||vidio.*##[href="https://www.vidio.com/live"]
+vidio.*##[href="https://m.vidio.com/"]
+vidio.*##[href="https://www.vidio.com/"]
+vidio.*##[href="https://m.vidio.com/premier"]
+vidio.*##[href="https://www.vidio.com/premier"]
+vidio.*##.premier-menu
+vidio.*##.copyright > [href="/"]
+vidio.*##.b-section__content--scrollable
+vidio.*##.app-campaign__link.js-app-link
+cdn-production-thumbor-vidio.akamaized.net/*/*-vs-*.*$image
 atlassian.com##[class="component component--image image-depth"]
 atlassian.com##[class="component__image"]
 chevereto.com##[id="space"]
 chevereto.com##[class="stars"]
-box.com##[class="hp-section-hero-layer hp-section-hero-layer-particle hp-js-layer hp-js-layer-particle"]
-box.com##[class="hp-section-hero-devices hp-js-devices"]
-box.com##[class="hp-section-hero-layers hp-js-layers"]
-box.com##[class="hp-section-hero-background hp-js-background"]
-getsharex.com##[class="img-responsive"]
-dropbox.com##[class="header-banner"]
+box.*##[class="hp-section-hero-layer hp-section-hero-layer-particle hp-js-layer hp-js-layer-particle"]
+box.*##[class="hp-section-hero-devices hp-js-devices"]
+box.*##[class="hp-section-hero-layers hp-js-layers"]
+box.*##[class="hp-section-hero-background hp-js-background"]
+getsharex.*##[class="img-responsive"]
+dropbox.*##[class="header-banner"]
 soehoe.id##[href="watched/forums"]
-wikia.com##[class="banner-notifications-placeholder"]
-wikia.com##[class="WikiaTopAds"]
-wikia.com##[id="WikiaTopAds"]
-wikia.com##[class="WikiaTopAdsInner"]
-wikia.com##[class="background"]
-wikia.com##[id="d-skin"]
-wikia.com##[class="wikia-ad noprint"]
+wikia.*##[class="banner-notifications-placeholder"]
+wikia.*##[class="WikiaTopAds"]
+wikia.*##[id="WikiaTopAds"]
+wikia.*##[class="WikiaTopAdsInner"]
+wikia.*##[class="background"]
+wikia.*##[id="d-skin"]
+wikia.*##[class="wikia-ad noprint"]
 ay.gy##[id="cookie_notice"]
 adf.ly##[id="cookie_notice"]
 j.gs##[id="cookie_notice"]
@@ -8652,55 +8697,19 @@ letsupload.*##.sharebut
 metube.*/embed/*/*autoplay=true*$domain=news.okezone.com
 metube.*/embed/*/*autoplay=true*$domain=www.okezone.com
 okezone.*##.metube_div__inner
-divine-pride.net##.cc-theme-block
-divine-pride.net##.cShareLink
+divine-pride.*##.cc-theme-block
+divine-pride.*##.cShareLink
 imdb.*##[href^="http://www.facebook.com/sharer.php"]
 imdb.*##[href^="http://twitter.com/intent/tweet"]
 imdb.*##[href^="mailto:"]
 imdb.*##.ipc-icon--share
-vidio.*##.app-campaign__link
-vidio.*##.js-app-link
-vidio.*##.livestreaming-capsule__item
-vidio.*##.sidebar__menu-icon--premier
-vidio.*##.site-footer__socials
-vidio.*##.vjs-share-button
-vidio.*##[href^="https://m.vidio.com/pages/terms-and-conditions"]
-vidio.*###section-1
-vidio.*###section-2
-@@||vidio.*###section-3
-@@||vidio.*##[href="/live/204-sctv"]
-@@||vidio.*##.category__nav__list
-vidio.*##.install-button
-vidio.*##.basic-banner__clickable
-vidio.*##.basic-banner
-vidio.*##.sidebar-banner
-vidio.com##.social-share-toggle
-vidio.com##.user-header__button-share
-akamaized.net/*/banners/*.*$domain=www.vidio.com
-akamaized.net/*/*banner*-quiz*.*$domain=www.vidio.com
-akamaized.net/*/*quiz*.*$domain=www.vidio.com
-akamaized.net/*/banners/*.*$domain=m.vidio.com
-akamaized.net/*/*banner*-quiz*.*$domain=m.vidio.com
-akamaized.net/*/*quiz*.*$domain=m.vidio.com
-@@||vidio.*##[href="https://support.vidio.com/"]
-@@||vidio.*##[href="https://m.vidio.com/live"]
-@@||vidio.*##[href="https://www.vidio.com/live"]
-vidio.*##[href="https://m.vidio.com/"]
-vidio.*##[href="https://www.vidio.com/"]
-vidio.*##[href="https://m.vidio.com/premier"]
-vidio.*##[href="https://www.vidio.com/premier"]
-vidio.*##.premier-menu
-vidio.*##.copyright > [href="/"]
-vidio.*##.b-section__content--scrollable
-vidio.*##.app-campaign__link.js-app-link
-cdn-production-thumbor-vidio.akamaized.net/*/*-vs-*.*$image
-zippyshare.com##.video-share
-zippyshare.com###bottom
-dayoftheweek.org##.spizer
-dayoftheweek.org##.si-share
-ibb.co##.panel-networks
-ibb.co###tab-codes-link
-ibb.co###tab-about-link
+zippyshare.*##.video-share
+zippyshare.*###bottom
+dayoftheweek.*##.spizer
+dayoftheweek.*##.si-share
+ibb.*##.panel-networks
+ibb.*###tab-codes-link
+ibb.*###tab-about-link
 tunein.*###shareButton
 tunein.*###windowsDesktopLinkContainer
 tunein.*###footerLogoContainer
@@ -9195,6 +9204,9 @@ mega.*##.download-app
 mega.*##.app-advertisement-block
 mega.*##.mobile > .cancel
 mega.*##.dl-megaapp
+mega.*##.top-login-warning
+mega.*##.top-login-warning-pad
+mega.*##.social
 facebook.*##[href="https://m.facebook.com/policies/"]
 facebook.*##.cc.ib
 facebook.*##.hw > .ia > .ed.co > .gd
@@ -9203,3 +9215,35 @@ facebook.*##._43rl
 facebook.*##._43rm
 facebook.*##._1rzm
 facebook.*##.ch > .bg.bf > .bh
+uploadev.*##.aboutuplouad
+uploadev.*###gdpr-cookie-notice
+||@@uploadev.*##input
+||@@uploadev.*###direct_link
+||@@uploadev.*##.directl
+platinmods.*##.uix_icon--share
+platinmods.*##.fa-share-alt
+sharemods.*##.premium-button
+sharemods.*##.premium
+sharemods.*/*/footer*facebook*.*$image
+sharemods.*##.contact-us
+sharemods.*##[href="https://sharemods.com/contact.html"]
+sharemods.*##.cookieinfo
+apkmb.*##.botones_sociales
+tiktok.*##.logo-wrapper
+tiktok.*##.download
+tiktok.*##.jsx-413014424
+linkedin.*##.show.cta-modal
+linkedin.*##.bottom-cta-banner__link
+linkedin.*##.activities-section__button
+instagram.*##.pmxbr.IwRSH.Igw0E
+tiktok.*##.tiktok-player-icon
+tiktok.*##.swiper-slide-active.tiktok-player
+tiktok.com##.i-pinterest
+codeseek.*##.twitter-share-button
+codeseek.*##.social
+google.*##.badges__badge--appstore
+google.*##[href^="https://play.google.com/store/apps/details"]
+google.*##.badges__badge
+google.*##.started__cta--desktop
+google.*##.h-c-header__cta-li-link--primary
+google.*##[href="https://twitter.com/YouTube"]
