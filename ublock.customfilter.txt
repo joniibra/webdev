@@ -68,10 +68,6 @@ youtube.*###video-masthead
 /watch_autoplayrenderer.js$script,domain=www.youtube.com
 /annotations_module.js$script,domain=www.youtube.com
 /endscreen.js$script,domain=www.youtube.com
-youtube.*###head.ytd-compact-autoplay-renderer
-youtube.*##.checkbox-on-off
-youtube.*##.watch-sidebar-head
-youtube.*##.ytm-autonav-bar
 /altClickToSearch.
 /antirightclick.$script
 /disable-right-click-
@@ -3091,7 +3087,6 @@ cerpen.co.id###vdsShare
 cerpen.co.id##.ui_btn
 cerpen.co.id###scrollFB
 cerpen.co.id/thumb/thumbnail/*.jpg
-youtube.com##.annotation-type-text
 google.com/*/static/*/try-now/*.jpg
 googleapis.com/halosehat/*/*-*-*-*.png$image
 googleapis.com/halosehat/*/*-*-halosehat-group-*.png
@@ -3788,11 +3783,6 @@ viva.co.id##.flex_thumb
 dailymotion.com/*/*.*$domain=www.viva.co.id
 amazonaws.com/*/article_thumb/*.*$image
 hancinema.net/*/degrade_sidebar.png
-youtube.com##.ytp-ce-element
-youtube.com##.ytp-ce-covering-overlay
-youtube.com##.ytp-ce-element-shadow
-youtube.com##.ytp-ce-expanding-image
-youtube.com##.ytp-ce-covering-image
 bleepingcomputer.com###after_dl
 bleepingcomputer.com###content_video_html5_api
 vimeo.com/*/*.mp4$domain=www.bleepingcomputer.com
@@ -3883,11 +3873,6 @@ filehost.net/*/adblock/*.*$image
 filehost.net###adblockinfo
 filehost.net/*/map.png
 amazonaws.com/thinkific-import/*/*.jpg
-youtube.com##.ytp-pause-overlay
-youtube.com##.ytp-suggestion-overlay
-youtube.com##.ytp-suggestion-image
-youtube.com##.ytp-suggestions
-youtube.com##.ytp-related-title
 google.*###center_col > #\5f Emc
 google.*###center_col > #main > .dfrd > .mnr-c > .c._oc._zs
 google.*###center_col > #res > #topstuff + #search > div > #ires > #rso > #flun
@@ -3945,11 +3930,6 @@ google.*##.rscontainer > .ellip
 google.*##.section-result[data-result-ad-type]
 google.*##.widget-pane-section-result[data-result-ad-type]
 google.*###sqh
-youtube.com##.masthead-ad-control
-youtube.com##.ad-div
-youtube.com##.pyv-afc-ads-container
-youtube.com###promotion-shelf
-*_ad_$media,domain=youtube.com,third-party
 deviantart.com##.dp-ad-chrome.dp-ad-visible
 ||mac-system-alert.com^
 jeu.info###page [class^="banniere-"]
@@ -7617,7 +7597,6 @@ fxjunction.com/images/laptop_orig.png$image
 fxjunction.com/images/homepage/background.jpg$image
 youtube.com/embed/*$domain=www.fxjunction.com,subdocument
 c-dn.net/*/2svTwV.jpg$domain=www.dailyfx.com,image
-youtube.com##.iv-card-image
 ytimg.com/vi/*/mqdefault.*$domain=www.youtube.com,image
 ytimg.com/vi/*/mqdefault.*$domain=m.youtube.com,image
 deskgram.net##div.ad.post-box
@@ -8428,7 +8407,6 @@ payoneer.com/assets/*0*.*$domain=login.payoneer.com,image
 jasonsavard.com/*/promos/*.*$image
 licdn.com/*/64xk850n3a8uzse6fi11l3vmz*$domain=www.linkedin.com,image
 noxinfluencer.com##.social-block-container
-youtube.com##.ytg-box.share-group
 tapatalk.com/*/home_bg*.*$domain=www.tapatalk.com,image
 forexwinners.ru##.cc-window
 forexwinners.ru##.background-cover
@@ -8484,7 +8462,6 @@ apk4all.com##.more-link
 apk4all.com##.addtoany_share_save_container
 apk4all.com##.custom-logo
 clipconverter.cc###notificationswitch
-youtube.com##.ytcp-dialog.style-scope.content
 apkhost.co##.sharetabs
 antaranews.com##iframe
 dable.io/widgets/*$domain=www.antaranews.com,subdocument
@@ -8535,7 +8512,6 @@ lonelymoon.net##.gmr-menuwrap
 lonelymoon.net##.site-title > [href="https://lonelymoon.net/"]
 spacetica.com##.custom-splash.banner
 lonelymoon.net##.page-numbers
-youtube.com###send-feedback-item
 novaragnarok.*/forum/*/temptop.png
 reformationcharlotte.org##.shareaholic-ui
 reformationcharlotte.org##.eaa-ad
@@ -8572,7 +8548,6 @@ playdreamerro.com##.cShareLink
 cronus-emulator.com##[href^="https://virtuati.com.br/cliente/aff.php"]
 cronus-emulator.com##.ipsMessage_sticky
 cronus-emulator.com##[href="https://forum.cronus-emulator.com/donate/"]
-youtube.*##.signup-promo
 gstatic.*/youtube/*/promos/*/*.jpg$image
 spacetica.*##header
 jpost.*##.share-buttons
@@ -8903,38 +8878,6 @@ clipconverter.*###toptext > span.right
 clipconverter.*##a.right
 clipconverter.*##[href="https://cryptoradar.co"]
 @@||*.mega.*/*/*sprite*.*$image
-@@||youtube.*###dialog
-@@||youtube.*##.ytcp-dialog
-@@||youtube.*##.ytcp-settings-dialog
-@@||youtube.*##.ytcp-channel-settings-dialog
-@@||youtube.*##ytcp-channel-settings-dialog
-@@||youtube.*##.ytcp-navigation
-youtube.*##[href="//www.youtube.com/yt/policyandsafety/"]
-youtube.*##[href="https://www.youtube.com/yt/about/policies/"]
-youtube.*##[href="https://www.google.com/intl/en/policies/privacy/"]
-youtube.*##[href="https://www.youtube.com/t/terms"]
-youtube.*##[href="/t/terms"]
-youtube.*##[href="//www.youtube.com/yt/copyright/"]
-youtube.*###google-help
-youtube.*###disclaimer-html
-youtube.*##[href^="//support.google.com/youtube/answer/1722171"]
-youtube.*##[href^="//support.google.com/youtube/answer/2801999"]
-youtube.*##[href^="http://www.youtube.com/t/community_guidelines"]
-youtube.*##[href="/t/community_guidelines"]
-youtube.*##.guidelines-reminder-description
-youtube.*##.guidelines-reminder-title
-youtube.*/*/child_safety_icon*.*$domain=www.youtube.com,image
-youtube.*/*/educator_resources_icon*.*$domain=www.youtube.com,image
-youtube.*##.tb-main-menu-social
-youtube.*##[href="https://www.tubebuddy.com/termsofuse"]
-youtube.*##[href="https://www.tubebuddy.com/privacy"]
-youtube.*##.tb-menu-goto-rating
-youtube.*##.tb-menu-goto-rating-container
-youtube.*##[href="https://addons.mozilla.org/firefox/addon/tubebuddy-plugin/reviews/"]
-youtube.*##.tb-menu-upgrade-now
-youtube.*##[href^="//support.google.com/youtube/answer/9080341"]
-youtube.*##.playlist-share
-youtube.*##.action-panel-trigger
 filehorse.*###newsletter1
 filehorse.*##.cc_banner
 filehorse.*##.followus_net
