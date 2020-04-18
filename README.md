@@ -71,20 +71,28 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 > ##### Notes : [Test: BlockAdBlock](https://blockadblock.com/) – [Test: Antiblock](http://antiblock.org/?p=v3&demo)
 
-<br />
+<br /><br /><br />
 
 #### 『 My Custom JavaScript 』
 
-*  For Violentmonkey or Tampermonkey →
-> https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
+*  For ***Violentmonkey*** or ***Tampermonkey*** →
+```
+https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js
+```
+> or ***optional*** →
+```
+https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
+```
 
-<br /><br />
+<br /><br /><br /><br /><br />
 
 ## Features
 * Detect & Kill Anti-Adblockers
 * More filters for ad blockers
 * [Settings](https://joniibra.github.io/webdev)
 * [Suggest features](https://github.com/joniibra/webdev/adblock/issues)
+
+<br /><br />
 
 ## Supported Browsers
 * ![Opera](images/browsers/opera.png) Opera &#10004;
@@ -93,6 +101,8 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * ![Edge](images/browsers/msedge.png) Edge &#10004;
 * ![Chrome](images/browsers/chrome.png) Chrome &#10004; [uBlock Origin](https://github.com/joniibra/webdev/tree/adblock#add-on-installation-tutorial) should work better for you, remember it is not uBlock, but uBlock Origin.
 
+<br /><br />
+
 ## Supported ad blockers
 * ![AdBlock](images/addons/adblock.origins.png) AdBlock &#10004;
 * ![AdBlock Plus](images/addons/adblock.origins.plus.png) Adblock Plus &#10004;
@@ -100,7 +110,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * ✖ uBlock ❔ Its not uBlock Origin, I've warned you.
 * ![Adguard](images/addons/aguard.origins.png) Adguard ❔ Me not using this anymore
 
-<br />
+<br /><br /><br /><br /><br />
 
 ### Help
 * Check if you have only one ad blocker enabled. (uBlock Origin, AdBlock, Adblock Plus, etc...).
