@@ -16,7 +16,7 @@ The filter lists block most ads on the web. This is the list what to do:
 <br />○  (Optional) [Tampermonkey or Violentmonkey](https://github.com/joniibra/webdev/tree/adblock#more-add-on-installation-optional) extension
 <br />○  (Optional) [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) – Great extension for uBlock Origin only, no anti uBlock warning anymore.
 
-<br />
+<br /><br /><br />
 
 ## ADD-ON INSTALLATION TUTORIAL
 
@@ -29,7 +29,7 @@ The filter lists block most ads on the web. This is the list what to do:
 
 NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) with [uBlock Protector](https://chrome.google.com/webstore/detail/ublock-protector-extensio/ggolfgbegefeeoocgjbmkembbncoadlb) is my choice, including Ghostery and Violentmonkey.
 
-<br />
+<br /><br />
 
 ### Step 2: Add Filter List
 
@@ -37,7 +37,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 ![header](images/adblockOptions.jpg)
 
-<br />
+<br /><br />
 
 #### 『 My Custom Filter Lists 』
 
@@ -51,13 +51,13 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
 > or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
 
-<br />
+<br /><br />
 
 ( This patch already including [uBlockProtectorList](https://raw.githubusercontent.com/jspenguin2017/uBlockProtector/master/uBlockProtectorList.txt) or [NanoDefender](https://raw.githubusercontent.com/NanoAdblocker/NanoFilters/master/NanoMirror/NanoDefender.txt). But if you want more options, you can still add more scripts called [NanoBase](https://jspenguin2017.github.io/uBlockProtector/#extra-installation-steps-for-ublock-origin) by manual installs – Read more.. )
 
 ##### Note: You are finished! From this step aim to more neat only if you are ready to install userscripts.
 
-<br /><br />
+<br /><br /><br />
 
 ## MORE ADD-ON INSTALLATION (OPTIONAL)
 
@@ -69,13 +69,17 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 * ![Edge](images/browsers/msedge.png) [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
 * ![Chrome](images/browsers/chrome.png) [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
+<br />
+
 > ##### Notes : [Test: BlockAdBlock](https://blockadblock.com/) – [Test: Antiblock](http://antiblock.org/?p=v3&demo)
 
-<br /><br /><br />
+<br /><br />
 
 #### 『 My Custom JavaScript 』
 
-*  For ***Violentmonkey*** or ***Tampermonkey*** →
+<br />
+
+For ***Violentmonkey*** or ***Tampermonkey*** →
 ```
 https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js
 ```
@@ -84,7 +88,7 @@ https://raw.githubusercontent.com/joniibra/webdev/adblock/adblock.userscript.js
 https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
 ```
 
-<br /><br /><br /><br /><br />
+<br /><br /><br />
 
 ## Features
 * Detect & Kill Anti-Adblockers
@@ -136,6 +140,7 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * A website does not work? Please report it [here](https://github.com/joniibra/webdev/adblock/issues)
 * Need help with installation? Ask for help [here](https://github.com/joniibra/webdev/adblock/issues)
 
+<br /><br /><br />
 
 ## Anti-adblock scripts that we kill
 ##### Plugins (Website)
@@ -160,6 +165,8 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * BlockAdblock (blockadblock.com)
 * TryMask (trymask.com)
 
+<br /><br /><br />
+
 ##### Plugins (Wordpress)
 * AdBlock Blocker
 * No Adblock (noadblock.com)
@@ -176,8 +183,12 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 * Ad Block Defender
 * Ad Blocking Advisor
 
+<br /><br /><br />
+
 ##### And more!
 『 Another Examples of Custom Filter Lists 』
+
+<br /><br /><br /><br /><br />
 
 <br />○  Subsribes from ABP Official – https://adblockplus.org/subscriptions
 <br />○  Packages – https://filterlists.com
@@ -186,6 +197,8 @@ Check if you have it installed, and disable it to see if that fixes the problem.
 <br />○  IDKwhattoputhere/uBlock-Filters-Plus – https://raw.githubusercontent.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt
 <br />○  YouTube: Pure Video Experience – https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt
 <br />○  NoCoin – https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt
+
+<br /><br /><br />
 
 ## Like this project?
 * Help us resolve issues
