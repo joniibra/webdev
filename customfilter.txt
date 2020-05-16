@@ -97,6 +97,7 @@ google.co.id###drk_settings_icon
 www.facebook.com###drk_settings_icon
 web.facebook.com###drk_settings_icon
 m.facebook.com###drk_settings_icon
+mtouch.facebook.com###drk_settings_icon
 id-id.facebook.com###drk_settings_icon
 en-gb.facebook.com###drk_settings_icon
 en-us.facebook.com###drk_settings_icon
@@ -5821,8 +5822,8 @@ wikiwand.com##.tileBg
 ###fbcount
 ###social-plugins
 ###usermenu-feedback
-www.facebook.com###u_0_7
-www.facebook.com##._33ue
+facebook.com###u_0_7
+facebook.com##._33ue
 chrome-extension://imilbobhamcfahccagbncamhpnbkaenm/images/darkness-icon-in-page.png$domain=mail.google.com,image
 mail.google.com###drk_settings_icon
 ##.social-sharing
@@ -11789,9 +11790,9 @@ moddroid.*##[href="https://moddroid.com/contact-us"]
 moddroid.*##[href="https://moddroid.com/advertisement"]
 omahfxglobal.*/*/themes/*/*bg*.*$image
 widget.paytrust88.com##[href="https://widget.paytrust88.com/privacy"]
-hipwee.com##.share-article__item
-hipwee.com##.wp-caption-text
-hipwee.com##.ads
+hipwee.*##.share-article__item
+hipwee.*##.wp-caption-text
+hipwee.*##.ads
 yahoo.*##.AnswersListLoginBanner__answersListLoginBanner___1Orq3
 yahoo.*##[src="https://s.yimg.com/cv/apiv2/Answers/320x50B_ID.gif"]
 yahoo.*##.QACrownAD__promotedClaim____QtaP
@@ -11825,6 +11826,7 @@ gstatic.*/*/email/transparent_pixel.png
 facebook.*###login_top_banner
 facebook.*###pagelet_megaphone
 m.facebook.com##[href^="https://m.facebook.com/click.php"]
+mtouch.facebook.com##[href^="https://m.facebook.com/click.php"]
 ##a[href="http://tapstream.tapatalk.com/oiaq-1"]
 ##[href="http://tapstream.tapatalk.com/oiaq-1"]
 ##[href^="https://www.linkedin.com/e/v2"]
