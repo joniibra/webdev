@@ -3,8 +3,8 @@
 ! Author: joniibra
 ! Version: 1.00
 ! Expires: 4 days (update frequency)
-! Homepage: https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
-! Support: https://github.com/joniibra/webdev
+! Homepage: https://github.com/joniibra/webdev
+! Support: https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
@@ -12170,3 +12170,38 @@ zoom.*##[href="/terms"]
 zoom.*##[href="https://zoom.us/legal"]
 zoom.*##.info-icons
 zoom.*##.social
+tiktok.*##[href="https://www.tiktok.com/id/terms-of-use"]
+tiktok.*##[href="https://www.tiktok.com/id/privacy-policy"]
+tiktok.*##[href="https://www.tiktok.com/en/terms-of-use"]
+tiktok.*##[href="https://www.tiktok.com/en/privacy-policy"]
+tiktok.*##[href="https://www.tiktok.com/terms-of-use"]
+tiktok.*##[href="https://www.tiktok.com/privacy-policy"]
+tiktok.*##[href^="/legal/law-enforcement"]
+tiktok.*##[href^="/legal/privacy-policy"]
+tiktok.*##[href^="/community-guidelines"]
+tiktok.*##[href^="https://developers.tiktok.com/"]
+tiktok.*##[href="https://newsroom.tiktok.com"]
+tiktokcdn.*/*/static/*/download/button*.*$domain=www.tiktok.com,image
+/*/*tiktok*/store-badge/*.*$domain=www.tiktok.com,image
+/*/*tiktok*/store-badge/*.*$domain=m.tiktok.com,image
+tiktok.*##.guide
+tiktok.*##.guide-bar
+tiktok.*##button
+tiktok.*##.top-banner
+tiktok.*##.bottom-banner
+tiktok.*##.banner
+tiktok.*##.show-banner
+tiktok.*##.logo-wrapper
+tiktok.*##.download
+tiktok.*##.jsx-413014424
+tiktok.*##.share-group
+tiktok.*##.download-hint
+tiktok.*##.download-sms
+tiktok.*##.download-content
+tiktok.*##.download-container
+tiktok.*##.banner-video
+tiktok.*##.banner-video-container
+tiktok.*##.tiktok-player-icon
+tiktok.*##.swiper-slide-active.tiktok-player
+tiktok.*##.i-pinterest
+tiktok.*##.mask
