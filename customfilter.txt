@@ -1,10 +1,10 @@
-[Adblock 4.10.1]
+[Adblock 4.13.0]
 ! Title: ᒍOᑎI ƵᕼᗩᑎG ® Custom Filter for AdBlock, Plus, etc
 ! Author: joniibra
 ! Version: 1.00
 ! Expires: 4 days (update frequency)
-! Homepage: https://joniibra.github.io/
-! Support: https://github.com/joniibra/webdev/adblock/issues
+! Homepage: https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
+! Support: https://github.com/joniibra/webdev
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
@@ -12103,3 +12103,70 @@ youtube.*##.tb-menu-upgrade-now
 youtube.*##[href^="//support.google.com/youtube/answer/9080341"]
 youtube.*##.playlist-share
 youtube.*##.action-panel-trigger
+file-upload.*###sharebuttons
+miuiku.*/*
+echocobo.*##.sfsi_widget
+echocobo.*/*/*iklan*.*$image
+echocobo.*/cara-streaming-download/embed/$subdocument
+pahe.*##.fa-facebook
+pahe.*##[href="http://idfl.me"]
+pahe.*##[href="mailto:sebutsajamasbudi@gmail.com"]
+pahe.*##[href="http://www.wordpress.com"]
+pahe.*##[href="https://pahe.in/privacy-policy/"]
+discordapp.*/*$domain=pahe.ph,subdocument
+facebook.*##.nf1dmkjp.pnx7fd3z.ms05siws.pedkr2u6
+mega.*##.refresh-item
+mega.*##.choose-plan
+spacetica.*##[href="https://spacetica.com/contact"]
+spacetica.*##[href="https://spacetica.com/page/Privacy-Policy"]
+spacetica.*##[href="https://spacetica.com/page/Terms-of-Service"]
+klop.*##[href="/page/tos.php"]
+klop.*##[href="/page/privacy.php"]
+klop.*##[href="mailto:sebutsajamasbudi@gmail.com"]
+subscene.*/content/*/*crypto*.*$domain=us1.unblocksite.org,image
+soundcloud.*##.announcement
+wattpad.*##.share-tools
+wattpad.*##.bottom-banner
+idntimes.*##.icon-bar
+dropbox.*##.account-header-silo
+dropbox.*##[href="/help/desktop-web/star-doc-file-folder"]
+dropbox.*##.privacy-link
+dropbox.*##[href="/help/desktop-web/homepage#suggest"]
+zedge.*##web-feedback-overlay
+u.id/static/*/bg*.*
+my.id/static/*/bg*.*
+coowry.*###cw-data-cookie-legal
+techpowerup.*/njutrvceser/*.*$domain=www.techpowerup.com,image
+techpowerup.*com##.mnmuzjsddc
+msn.*###irisbanner
+msn.*###MSN_Firefox_DHP_Banner_INTL_version2
+antaranews.*##.blog-tags
+antaranews.*##.rrssb-buttons
+antaranews.*##.social-list
+antaranews.*##.fb-color
+antaranews.*##.tw-color
+antaranews.*##.inst-color
+antaranews.*##[href="https://ramadhan.antaranews.com"]
+antaranews.*##.social_icon
+antaranews.*##.text-center.copyright
+antaranews.*##.video-in-content
+antaranews.*##.plyr__poster
+antaranews.*##.plyr__video-wrapper--fixed-ratio
+video.antaranews.*/preview/*.*$image
+antaranews.*/clip/*/*.mp4$media
+antaranews.*/clip/*/*.flv$media
+antaranews.*/clip/*/*.3gp$media
+apk4free.*##.epcl-share
+apk4free.*##.share-buttons
+apk4free.*##.widget_epcl_social
+apk4free.*###author
+dropgalaxy.*##.btn-danger
+dropboxstatic.*/static/images/*/*/*hero*.*$image
+dropbox.*##.top-notification-link-button
+dropbox.*##.ha
+office.*/owamail/*/img/*mobile*app*.*$image
+zoom.*##[href="/privacy"]
+zoom.*##[href="/terms"]
+zoom.*##[href="https://zoom.us/legal"]
+zoom.*##.info-icons
+zoom.*##.social
