@@ -177,8 +177,8 @@ bebi.*/*.*$domain=kissanime.si
 @@||karanpc.com/$document
 vidio.*###section-1
 vidio.*###section-2
-vidio.*###section-3
-@@||vidio.*###section-4
+@@||vidio.*###section-3
+vidio.*###section-4
 vidio.*###section-5
 vidio.*###section-6
 vidio.*###section-7
