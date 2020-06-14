@@ -183,6 +183,11 @@ vidio.*###section-5
 vidio.*###section-6
 vidio.*###section-7
 vidio.*###section-8
+vidio.*###section-9
+vidio.*###section-10
+vidio.*###section-11
+vidio.*##.vjs-player-error__feedback-link
+vidio.*##.vjs-player-error__feedback
 vidio.*##.header-login__subscribe
 vidio.*##.app-campaign__link
 vidio.*##.js-app-link
