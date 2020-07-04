@@ -12472,6 +12472,7 @@ soundcloud.*##.showSpotlightUpsellBanner
 soundcloud.*##.spotlightUpsellBanner
 soundcloud.*##.empty.spotlight
 sndcdn.*/assets/*/*fallback*.*$image
+soundsnap.*##.audio-share
 soundsnap.*##.si_share
 soundsnap.*##.social
 soundsnap.*##[href="/privacy"]
