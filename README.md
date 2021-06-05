@@ -1,4 +1,4 @@
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://paypal.me/joniibra)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://paypal.me/joniibra/5)
 
 
 # Ads Block – Custom Filter Lists
