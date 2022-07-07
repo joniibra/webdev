@@ -45,7 +45,7 @@ NOTE:  [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/c
 
 *  For AdBlock, AdBlock Plus or others ads blocker →
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt<br />
-> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/ublock.customfilter.txt
+> or optional – https://cdn.staticaly.com/gh/joniibra/webdev/adblock/customfilter.txt
 
 *  For uBlock Origin →
 > https://raw.githubusercontent.com/joniibra/webdev/adblock/ublock.customfilter.txt<br />
