@@ -6,7 +6,7 @@
 // @encoding utf-8
 // @license GNU GPL v3
 // @icon https://raw.githubusercontent.com/joniibra/webdev/adblock/images/joniibra.png
-// @homepage https://joniibra.github.io/webdev/adblock
+// @homepage https://github.com/joniibra/webdev/tree/adblock
 // @supportURL https://github.com/joniibra/webdev/adblock/issues
 // @updateURL https://gitlab.com/xuhaiyang1234/AAK-Cont/blob/master/FINAL_BUILD/aak-cont-script-notubo.user.js
 // @downloadURL https://cdn.staticaly.com/gh/joniibra/webdev/adblock/adblock.userscript.js
