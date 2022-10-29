@@ -10574,3 +10574,11 @@ icmarkets.*##.login-risk-wrapper-eu
 tribunnews.*##p.baca
 tribunnews.*##.follow-us
 tribunnews.*##.btsquare
+tribunnews.*##.tapp-banner
+tradersfamily.*##.cookie-notice-container
+tradersfamily.*##.main-banner-download
+tradersfamily.*##.download-app
+tradersfamily.*##.text-download
+bigo.*##.guide-download-popup
+bigo.*##.GuideDownloadPopup-Component
+
