@@ -13256,6 +13256,10 @@ kompas.*##.gate-kgplus
 duckduckgo.*##.logo_homepage
 duckduckgo.*###logo_homepage_link
 mql5.*##.network-icons
+||s.yimg.com/bx/adb/*.png
+##[href^="https://data.mail.yahoo.com/f/track/tgt/clk"]
+kompas.*##[[href^="https://www.kompas.id/berlangganan/"]
+kompas.*##[[href^="https://www.kompas.com/berlangganan/"]
 kompas.*##[href="https://www.kompas.id/berlangganan/"]
 kompas.*##[href="https://www.kompas.com/berlangganan/"]
 kompas.*###smartbanner
