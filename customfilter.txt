@@ -3,7 +3,7 @@
 ! Author: joniibra
 ! Version: 1.00
 ! Expires: 4 days (update frequency)
-! Homepage: https://github.com/joniibra/webdev
+! Homepage: https://github.com/joniibra/webdev/tree/adblock
 ! Support: https://raw.githubusercontent.com/joniibra/webdev/adblock/customfilter.txt
 ! WritingRules: https://adblockplus.org/filters
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
