@@ -13903,3 +13903,11 @@ winbu.*##[href="https://klik.best/0EJOc"]
 winbu.*##[href="https://klik.gg/zTTWS"]
 winbu.*##[href="https://klik.top/winbu"]
 winbu.*##.sip
+flashtik.*##.mh-post-nav
+flashtik.*##.mh-clearfix.mh-container-inner.mh-container.mh-main-nav.mh-navigation > .menu-navigation-container > .menu
+flashtik.*##.widget_recent_entries
+flashtik.*##.menu-legal-pages-container
+flashtik.*##.search-form
+flashtik.*##.mh-meta
+flashtik.*##.mh-loop-thumb
+flashtik.*##.page-numbers
